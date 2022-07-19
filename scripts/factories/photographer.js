@@ -2,19 +2,25 @@ function photographerFactory(data) {
     const { name, portrait } = data;
 
     const picture = `assets/photographers/${portrait}`;
-    //fetch datas from photographer.json and log them in console
-    fetch(`/Front-End-Fisheye/data/photographers.json`)
+
+    fetch("../../data/photographers.json")
     .then((response) => response.json())
-    .then((data) => console.log(data.photographers[0].name))
-    //create a new object with the datas of the photographer
-    //log the name of each photographer
-    .then((data) => console.log(data.photographers));
+    .then((data) => {
+        console.log(data);
+        console.log(data.photographers);
+    }).catch((error) => {
+        console.log(error);
+    });
+
+
+    
+ 
+
+
+    
     
 
-    //     .then(data => console.log(data))
-    //    //log the name of all photographers in the console
-       
-    //     .then(data => console.log(data.body))
+   
 
   
 
