@@ -3,27 +3,6 @@ function photographerFactory(data) {
 
     const picture = `assets/photographers/${portrait}`;
 
-    fetch("../../data/photographers.json")
-    .then((response) => response.json())
-    .then((data) => {
-        console.log(data);
-        console.log(data.photographers);
-    }).catch((error) => {
-        console.log(error);
-    });
-
-
-    
- 
-
-
-    
-    
-
-   
-
-  
-
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
