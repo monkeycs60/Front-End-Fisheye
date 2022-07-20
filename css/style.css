@@ -57,3 +57,25 @@ h1 {
     height: 200px;
     width: 200px;
 }
+
+/* éléments importés depuis JS */
+
+.name {
+font-weight: 500;
+
+}
+.location {
+    margin-top: 0.5vh;
+    color: #901C1C;
+    font-size: 90%;
+}
+
+.tagline {
+font-size: 70%;
+}
+
+
+.price {
+color: rgba(117, 117, 117, 1);
+font-size: 65%;
+}
