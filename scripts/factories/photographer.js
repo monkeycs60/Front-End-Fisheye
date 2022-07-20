@@ -48,4 +48,4 @@ function photographerFactory(data) {
 }
 
 // export default photographerFactory;
-export default photographerFactory;
+// export default photographerFactory;
