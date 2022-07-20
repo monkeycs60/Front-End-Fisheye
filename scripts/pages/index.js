@@ -23,8 +23,18 @@ async function displayData(photographers) {
 
   photographers.forEach((photographer) => {
     const photographerModel = photographerFactory(photographer);
+
     const userCardDOM = photographerModel.getUserCardDOM();
     photographersSection.appendChild(userCardDOM);
+
+    const photographersLocation = photographerModel.photographersLocation();
+    userCardDOM.appendChild(photographersLocation);
+
+    const photographersTagline = photographerModel.photographersTagline();
+    userCardDOM.appendChild(photographersTagline);
+
+    const photographersPrice = photographerModel.photographersPrice();
+    userCardDOM.appendChild(photographersPrice);
   });
 }
 
