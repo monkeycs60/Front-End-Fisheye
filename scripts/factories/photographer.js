@@ -20,6 +20,8 @@ export function photographerFactory(data) {
         h2.classList.add("name");
         article.appendChild(img);
         article.appendChild(h2);
+        //add tabindex 0 to allow focus
+        article.setAttribute("tabindex", 0);
         return (article);
     }
 
@@ -46,6 +48,3 @@ export function photographerFactory(data) {
 
     return { name, picture, getUserCardDOM, photographersLocation, photographersTagline, photographersPrice }
 }
-
-// export default photographerFactory;
-// export default photographerFactory;
