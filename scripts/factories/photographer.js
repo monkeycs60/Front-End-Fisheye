@@ -15,6 +15,8 @@ export function photographerFactory(data) {
         const article = document.createElement( 'article' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
+        //add an alt attribute to the image
+        img.setAttribute("alt", `photo de profil de ${name}`);
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         h2.classList.add("name");
