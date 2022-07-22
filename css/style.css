@@ -1,81 +1,67 @@
 @import url("photographer.css");
-
 *,
 ::before,
 ::after {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
 body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
+  font-family: "DM Sans", sans-serif;
+  margin: 0;
 }
 
-
 header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 10vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
 }
 
 h1 {
-    color: #901C1C;
-    margin-right: 100px;
+  color: #901C1C;
+  margin-right: 100px;
 }
 
 .logo {
-    height: 50px;
-    margin-left: 100px;
+  height: 50px;
+  margin-left: 100px;
 }
 
 .photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 10vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 10vh;
 }
-
 .photographer_section article {
-    justify-self: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
-
 .photographer_section article h2 {
-    color: #D3573C;
-    font-size: 36px;
+  color: #D3573C;
+  font-size: 36px;
 }
-
 .photographer_section article img {
-    height: 200px;
-    width: 200px;
+  height: 200px;
+  width: 200px;
 }
-
-/* éléments importés depuis JS */
-
-.name {
-font-weight: 500;
-
+.photographer_section .name {
+  font-weight: 500;
 }
-.location {
-    margin-top: 0.5vh;
-    color: #901C1C;
-    font-size: 90%;
+.photographer_section .location {
+  margin-top: 0.5vh;
+  color: #901C1C;
+  font-size: 90%;
 }
-
-.tagline {
-font-size: 70%;
+.photographer_section .tagline {
+  font-size: 70%;
 }
-
-
-.price {
-color: rgba(117, 117, 117, 1);
-font-size: 65%;
-}
+.photographer_section .price {
+  color: rgb(117, 117, 117);
+  font-size: 65%;
+}/*# sourceMappingURL=style.css.map */
