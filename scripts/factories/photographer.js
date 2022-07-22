@@ -31,7 +31,7 @@ export function photographerFactory(data) {
         link.setAttribute("role", "link");
         //redirection dynamique sur la page de la photographe
         link.setAttribute("href", `/Front-End-Fisheye/photographer.html?id=${id}`);
-        // link.setAttribute("href", "`/Front-End-Fisheye/photographer.html?id=${id}`");
+
         
 
         
