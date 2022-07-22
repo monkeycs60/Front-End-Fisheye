@@ -12,20 +12,27 @@ export function photographerFactory(data) {
 
 
     function getUserCardDOM() {
+
+        //creation des constantes pour les elements html
         const article = document.createElement( 'article' );
         const link = document.createElement( 'a' );
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture)
-        //add an alt attribute to the image
-        img.setAttribute("alt", `photo de profil de ${name}`);
         const h2 = document.createElement( 'h2' );
+        img.setAttribute("src", picture)
+        img.setAttribute("alt", `photo de profil de ${name}`);
         h2.textContent = name;
         h2.classList.add("name");
         link.appendChild(img);
         link.appendChild(h2);
-        //add tabindex 0 to allow focus
+
+        //ajouts des éléments d'accessibilité
         link.setAttribute("tabindex", 0);
-        //append the link to the article
+        link.setAttribute("aria-label", `${name}`);
+        link.setAttribute("role", "link");
+        //redirection dynamique sur la page de la photographe
+        link.setAttribute("href", `/photographer/${id}`);
+
+        
         article.appendChild(link);
         return (article);
     }

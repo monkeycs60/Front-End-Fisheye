@@ -17,16 +17,23 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 10vh;
+  margin-top: 2vh;
 }
-
-h1 {
-  color: #901C1C;
-  margin-right: 100px;
+header a {
+  position: relative;
+  display: flex;
+  transform: translateX(10vw);
 }
-
-.logo {
+header img {
   height: 50px;
-  margin-left: 100px;
+}
+header p {
+  position: absolute;
+  visibility: hidden;
+}
+header h1 {
+  color: #901C1C;
+  transform: translateX(-10vw);
 }
 
 .photographer_section {
@@ -48,6 +55,7 @@ h1 {
   align-items: center;
   cursor: pointer;
   gap: 1.5vh;
+  text-decoration: none;
 }
 .photographer_section article h2 {
   color: #D3573C;

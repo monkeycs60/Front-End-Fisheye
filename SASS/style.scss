@@ -19,17 +19,33 @@ header {
     justify-content: space-between;
     align-items: center;
     height: 10vh;
+    margin-top: 2vh;
+
+    a {
+        position: relative;
+        display: flex;
+        transform: translateX(10vw);
+      
+    }
+
+    img {
+  
+            height: 50px;
+    }
+
+    p {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    h1 {
+        color: #901C1C;
+        transform: translateX(-10vw);
+    }
 }
 
-h1 {
-    color: #901C1C;
-    margin-right: 100px;
-}
 
-.logo {
-    height: 50px;
-    margin-left: 100px;
-}
+
 
 
 // PARTIE GEREE EN JAVASCRIPT - PHOTOGRAPHER CARDS
@@ -55,6 +71,7 @@ h1 {
         align-items: center;
         cursor: pointer;
         gap: 1.5vh;
+        text-decoration: none;
     }
     //PHOTOGRAPHER NAME
     article h2 {
@@ -91,7 +108,6 @@ h1 {
     font-size: 65%;
     }
 }
-
 
 
 
