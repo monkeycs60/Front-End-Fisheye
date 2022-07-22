@@ -49,6 +49,10 @@ h1 {
 .photographer_section article img {
   height: 200px;
   width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 1px 5px 20px 5px grey;
 }
 .photographer_section .name {
   font-weight: 500;

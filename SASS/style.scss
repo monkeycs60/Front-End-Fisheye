@@ -58,6 +58,9 @@ h1 {
     article img {
         height: 200px;
         width: 200px;
+        object-fit: cover;
+        border-radius: 50%;
+        box-shadow: 1px 5px 20px 5px grey;
     }
 
     //Classes importées depuis le JS
