@@ -13,6 +13,7 @@ export function photographerFactory(data) {
 
     function getUserCardDOM() {
         const article = document.createElement( 'article' );
+        const link = document.createElement( 'a' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture)
         //add an alt attribute to the image
@@ -20,10 +21,12 @@ export function photographerFactory(data) {
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         h2.classList.add("name");
-        article.appendChild(img);
-        article.appendChild(h2);
+        link.appendChild(img);
+        link.appendChild(h2);
         //add tabindex 0 to allow focus
-        article.setAttribute("tabindex", 0);
+        link.setAttribute("tabindex", 0);
+        //append the link to the article
+        article.appendChild(link);
         return (article);
     }
 
