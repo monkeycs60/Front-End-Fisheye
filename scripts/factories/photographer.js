@@ -8,7 +8,7 @@ export function photographerFactory(data) {
     const price = data.price;
     const id = data.id;
     
-    console.log(data);
+    
 
 
      function getUserCardDOM() {

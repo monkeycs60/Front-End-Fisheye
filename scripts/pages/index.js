@@ -8,7 +8,7 @@ export async function getPhotographers() {
   await fetch("/Front-End-Fisheye/data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data.photographers);
+  
       photographers = data.photographers;
     })
     .catch((error) => {
@@ -21,7 +21,9 @@ export async function getPhotographers() {
   };
 }
 
+
 export async function displayData(photographers) {
+
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
