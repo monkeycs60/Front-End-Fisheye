@@ -11,7 +11,7 @@ export function photographerFactory(data) {
     console.log(data);
 
 
-    function getUserCardDOM() {
+     function getUserCardDOM() {
 
         //creation des constantes pour les elements html
         const article = document.createElement( 'article' );
@@ -31,8 +31,6 @@ export function photographerFactory(data) {
         link.setAttribute("role", "link");
         //redirection dynamique sur la page de la photographe
         link.setAttribute("href", `/Front-End-Fisheye/photographer.html?id=${id}`);
-
-        
 
         
         article.appendChild(link);
