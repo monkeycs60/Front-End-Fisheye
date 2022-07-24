@@ -33,7 +33,12 @@
     }
     
 
+    function photographersProfilPic() {
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture)
+        img.setAttribute("alt", `photo de profil de ${name}`);
+        return (img);
+    }
 
-
-    return {  photographersTagline, photographersInfosName, photographersInfosLocation, infoCard, picture, id };
+    return {  photographersTagline, photographersInfosName, photographersInfosLocation, infoCard, picture, id, photographersProfilPic  }
 }

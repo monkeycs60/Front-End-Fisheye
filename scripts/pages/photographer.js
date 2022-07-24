@@ -41,9 +41,13 @@ async function displayData(photographers) {
 
     const photographersInfosLocation = photographerHeaderInfos.photographersInfosLocation();
     photographersInfosTxt.appendChild(photographersInfosLocation);
-    
+
     const photographersTagline = photographerHeaderInfos.photographersTagline();
     photographersInfosTxt.appendChild(photographersTagline);
+
+    //append the picture to photoheader
+    const photographersProfilPic = photographerHeaderInfos.photographersProfilPic();
+    photoHeader.appendChild(photographersProfilPic);
 
 }
 
