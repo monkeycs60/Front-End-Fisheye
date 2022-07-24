@@ -1,7 +1,7 @@
 //import the script from factories/photographer.js
 import { photographerFactory } from "../factories/photographer.js";
 
-export async function getPhotographers() {
+ async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json
 
   let photographers = [];
@@ -22,7 +22,7 @@ export async function getPhotographers() {
 }
 
 
-export async function displayData(photographers) {
+ async function displayData(photographers) {
 
   const photographersSection = document.querySelector(".photographer_section");
 
@@ -43,7 +43,7 @@ export async function displayData(photographers) {
   });
 }
 
-export async function init() {
+ async function init() {
   // Récupère les datas des photographes
   const { photographers } = await getPhotographers();
   displayData(photographers);

@@ -1,43 +1,58 @@
-//Mettre le code JavaScript lié à la page photographer.html
+import { headerPhotographerFactory } from "../factories/headerPhotographer.js";
 
-//import the script from factories/photographer.js
+async function getPhotographers() {
 
-import { photographerFactory } from "../factories/photographer.js";
-import { getPhotographers, displayData, init } from "./index.js";
-
-
-getPhotographers().then((data) => {
+    let photographers = [];
+    await fetch("/Front-End-Fisheye/data/photographers.json")
+        .then((response) => response.json())
+        .then((data) => {
     
-    const photographers = data.photographers;
-    console.log(photographers);
-    displayDataPhotographers(photographers);
-    }
-    ).catch((error) => {
+        photographers = data.photographers;
+        })
+        .catch((error) => {
         console.log(error);
-    }
-    );
-
-
-async function displayDataPhotographers(photographers) {
-    const photoHeader = document.querySelector(".photograph-header");
-
-//filter the photographer matching with the id in the url
-    const photographer = photographers.filter((photographer) => {
-        //search parameter in the url
-        const urlParams = new URLSearchParams(window.location.search);
-        const id = urlParams.get("id");
-        return photographer.id == id;
-        
-    }
-    );
-    console.log(photographer);
-   
-
-  
-    //display the data of the photographer
-    displayData(photographer);
-   
-
+        });
     
+   
+    return {
+        photographers: [...photographers],
+    };
 }
 
+async function displayData(photographers) {
+
+    const photoHeader = document.querySelector(".photograph-header");
+
+    const photographer = photographers.filter((photographer) => {
+                //search parameter in the url
+                const urlParams = new URLSearchParams(window.location.search);
+                const id = urlParams.get("id");
+                return photographer.id == id;  
+            });
+
+
+    const photographerHeaderInfos = headerPhotographerFactory(photographer[0]);
+
+    const photographersInfosTxt = photographerHeaderInfos.infoCard();
+    photoHeader.appendChild(photographersInfosTxt);
+
+    const photographersInfosName = photographerHeaderInfos.photographersInfosName();
+    photographersInfosTxt.appendChild(photographersInfosName);
+
+    const photographersInfosLocation = photographerHeaderInfos.photographersInfosLocation();
+    photographersInfosTxt.appendChild(photographersInfosLocation);
+    
+    const photographersTagline = photographerHeaderInfos.photographersTagline();
+    photographersInfosTxt.appendChild(photographersTagline);
+
+}
+
+
+
+async function init() {
+    // Récupère les datas des photographes
+    const { photographers } = await getPhotographers();
+    displayData(photographers);
+  }
+  
+  init();

@@ -1,16 +1,8 @@
 
 export function photographerFactory(data) {
-    const { name, portrait } = data;
+    const { name, portrait, city, country, tagline, price, id } = data;
     const picture = `assets/photographers/${portrait}`;
-    const city = data.city;
-    const country = data.country;
-    const tagline = data.tagline;
-    const price = data.price;
-    const id = data.id;
-    
-    
-
-
+   
      function getUserCardDOM() {
 
         //creation des constantes pour les elements html
