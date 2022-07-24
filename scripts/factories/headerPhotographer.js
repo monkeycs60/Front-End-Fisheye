@@ -16,7 +16,7 @@
     function photographersInfosName() {
         const p = document.createElement( 'p' );
         p.textContent = `${name}`;
-        p.classList.add("location");
+        p.classList.add("name");
         return (p);
     }
     function photographersInfosLocation() {

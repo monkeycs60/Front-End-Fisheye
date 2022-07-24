@@ -1,3 +1,4 @@
+@charset "UTF-8";
 #contact_modal {
   display: none;
 }
@@ -7,6 +8,22 @@
   height: 300px;
   margin: 0 100px;
   display: flex;
+  justify-content: space-between;
+  padding: 0 3vw;
+  align-items: center;
+}
+.photograph-header img {
+  height: 200px;
+  width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 1px 5px 20px 5px grey;
+  order: 3;
+}
+
+.info-card {
+  order: 1;
 }
 
 .contact_button {
@@ -20,8 +37,10 @@
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
+  order: 2;
 }
 
+/* MODAL et JS */
 .modal {
   border-radius: 5px;
   background-color: #db8876;
@@ -77,12 +96,12 @@ form input {
 }
 
 /* éléments JS */
-
 .name {
   color: #d3573c;
   font-size: 36px;
   font-weight: 500;
 }
+
 .location {
   color: #901c1c;
   font-size: 90%;
@@ -90,17 +109,4 @@ form input {
 
 .tagline {
   font-size: 70%;
-}
-
-.price {
-  color: rgba(117, 117, 117, 1);
-  font-size: 65%;
-}
-
-img {
-    height: 200px;
-        width: 200px;
-        object-fit: cover;
-        border-radius: 50%;
-        box-shadow: 1px 5px 20px 5px grey;
-}
+}/*# sourceMappingURL=photographer.css.map */
