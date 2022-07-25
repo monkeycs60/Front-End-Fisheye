@@ -68,6 +68,52 @@ header img {
   order: 2;
 }
 
+.filter {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  width: 25vw;
+  height: 5vh;
+  margin: 2vh 9.5vw;
+}
+.filter label {
+  font-weight: bold;
+  font-size: 20px;
+}
+.filter select {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  color: #ffffff;
+  width: 250px;
+  height: 60px;
+  font-size: 20px;
+  font-weight: bold;
+  text-indent: 10px;
+  background-color: #901C1C;
+  position: relative;
+}
+.filter option {
+  background-color: #901C1C;
+  height: 60px;
+  font-size: 30px;
+  position: relative;
+}
+.filter option::after {
+  content: "";
+  position: absolute;
+  top: 20px;
+  width: 55px;
+  height: 5px;
+  background: white;
+  color: white;
+}
+.filter i {
+  color: blue;
+  font-size: 25px;
+}
+
 /* MODAL et JS */
 .modal {
   border-radius: 5px;

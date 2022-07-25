@@ -1,60 +1,67 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/ico" href="assets/favicon.ico">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye - photographe </title>
-  </head>
-  <body>
-    <header>
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye homepage" />
-    </header>
+
+<head>
+  <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/ico" href="assets/favicon.ico">
+  <script src="https://kit.fontawesome.com/de1681bd68.js" crossorigin="anonymous"></script>
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye - photographe </title>
+</head>
+
+<body>
+  <header>
+    <img src="assets/images/logo.png" class="logo" alt="Fisheye homepage" />
+  </header>
 
 
 
-    <main id="main">
-      <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-      </div>
+  <main id="main">
 
-<div class="filter">
-  <label for="filter-select">Trier par</label>
+    
+    <div class="photograph-header">
+      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
+    </div>
 
-<select name="choix" id="filter-select">
-    <option value="popularity">Popularité</option>
-    <option value="date">Date</option>
-    <option value="titre">Titre</option>
+    <div class="filter">
+      <label for="filter-select">Trier par</label>
 
-</select>
-</div>
+      <select name="choix" id="filter-select">
+        <option value="popularity">Popularité</option>
+        <option value="date">Date</option>
+        <option value="titre">Titre</option>
+        <i class="fa-solid fa-chevron-up"></i>
+      </select>
+      <i class="fa-solid fa-chevron-up"></i>
+    </div>
 
-      <div class="photographer_section">
-      </div> 
-
-
-    </main>
-
-
+    <div class="photographer_section">
+    </div>
 
 
-    <div id="contact_modal">
-			<div class="modal">
-				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" alt="close cross" aria-label="close the form"/>
-        </header>
-				<form>
-					<div>
-						<label>Prénom</label>
-						<input aria-label="first name field"/>
-					</div>
-          <button class="contact_button">Envoyer</button>
-				</form>
-			</div>
-		</div>
-    <script type="module" src="/Front-End-Fisheye/scripts/pages/photographer.js"></script>
-    <!-- <script src="/scripts/utils/contactForm.js"></script> -->
-  </body>
+  </main>
+
+
+
+
+  <div id="contact_modal">
+    <div class="modal">
+      <header>
+        <h2>Contactez-moi</h2>
+        <img src="assets/icons/close.svg" onclick="closeModal()" alt="close cross" aria-label="close the form" />
+      </header>
+      <form>
+        <div>
+          <label>Prénom</label>
+          <input aria-label="first name field" />
+        </div>
+        <button class="contact_button">Envoyer</button>
+      </form>
+    </div>
+  </div>
+  <script type="module" src="/Front-End-Fisheye/scripts/pages/photographer.js"></script>
+  <!-- <script src="/scripts/utils/contactForm.js"></script> -->
+</body>
+
 </html>
