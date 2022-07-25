@@ -1,4 +1,4 @@
-@import url("photographer.css");
+// @import url("photographer.css");
 
 *,
 ::before,
@@ -15,16 +15,17 @@ body {
 
 header {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     height: 10vh;
-    margin-top: 2vh;
+    width: 80%;
+    margin: 2vh auto;
+ 
 
     a {
         position: relative;
         display: flex;
-        transform: translateX(10vw);
+        // transform: translateX(10vw);
       
     }
 
@@ -40,7 +41,7 @@ header {
 
     h1 {
         color: #901C1C;
-        transform: translateX(-10vw);
+        // transform: translateX(-10vw);
     }
 }
 
@@ -54,7 +55,7 @@ header {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 70px;
     margin-top: 10vh;
-
+    
     //CONTAINER FOR PHOTOGRAPHER CARDS
     article {
         justify-self: center;

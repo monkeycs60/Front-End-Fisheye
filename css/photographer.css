@@ -1,4 +1,16 @@
 @charset "UTF-8";
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10vh;
+  width: 80%;
+  margin: 2vh auto;
+}
+header img {
+  height: 50px;
+}
+
 #contact_modal {
   display: none;
 }
@@ -6,7 +18,8 @@
 .photograph-header {
   background-color: #fafafa;
   height: 300px;
-  margin: 0 100px;
+  margin: auto;
+  width: 75%;
   display: flex;
   justify-content: space-between;
   padding: 0 3vw;

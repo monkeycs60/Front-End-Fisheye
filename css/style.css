@@ -1,4 +1,3 @@
-@import url("photographer.css");
 *,
 ::before,
 ::after {
@@ -13,16 +12,15 @@ body {
 
 header {
   display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
   height: 10vh;
-  margin-top: 2vh;
+  width: 80%;
+  margin: 2vh auto;
 }
 header a {
   position: relative;
   display: flex;
-  transform: translateX(10vw);
 }
 header img {
   height: 50px;
@@ -33,7 +31,6 @@ header p {
 }
 header h1 {
   color: #901C1C;
-  transform: translateX(-10vw);
 }
 
 .photographer_section {
