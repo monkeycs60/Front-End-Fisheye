@@ -107,26 +107,10 @@ async function displayMedia(photographersMedia) {
   }
   );
   console.log(photographersMediaArray);
- 
-
-  
-  
 
 const photographerGalleryFirst = mediaPhotographerFactory(photographersMediaArray);
+const photographersMediaDOM = photographerGalleryFirst.createImageFromArray();
 
-// const photographersMediaDOMPictures = photographerGalleryFirst.photographersGallery();
-// photoSection.appendChild(photographersMediaDOMPictures);
-
-
-const photographersMediaDOMMajor = photographerGalleryFirst.infoCardZ();
-photoSection.appendChild(photographersMediaDOMMajor);
-
-
-const photographersMediaDOMPicturesLLK = photographerGalleryFirst.createImageFromArray();
-photographersMediaDOMMajor.appendChild(photographersMediaDOMPicturesLLK);
-
-// const photographersMediaDOMMovies = photographerGalleryFirst.photographersMovie();
-// photoSection.appendChild(photographersMediaDOMMovies);
 }
 
 
