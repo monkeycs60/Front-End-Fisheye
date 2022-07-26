@@ -61,7 +61,6 @@ init();
 
 
 async function getPhotographersMedia() {
-
   
   let photographersMedia = [];
 
@@ -96,11 +95,32 @@ async function displayMedia(photographersMedia) {
   }
   );
   console.log(photographerMedia);
+  //make an array with all images contained in photographerMedia
+  const photographersMediaArray = photographerMedia.map((photographerMedia) => {
+    return photographerMedia.image;
+  }
+  );
+  console.log(photographersMediaArray);
+ 
+
+  
   
 
-const photographerGallery = mediaPhotographerFactory(photographerMedia[0]);
-const photographersMediaDOM = photographerGallery.photographersGallery();
-photoSection.appendChild(photographersMediaDOM);
+const photographerGalleryFirst = mediaPhotographerFactory(photographersMediaArray);
+
+// const photographersMediaDOMPictures = photographerGalleryFirst.photographersGallery();
+// photoSection.appendChild(photographersMediaDOMPictures);
+
+
+const photographersMediaDOMMajor = photographerGalleryFirst.infoCardZ();
+photoSection.appendChild(photographersMediaDOMMajor);
+
+
+const photographersMediaDOMPicturesLLK = photographerGalleryFirst.createImageFromArray();
+photographersMediaDOMMajor.appendChild(photographersMediaDOMPicturesLLK);
+
+// const photographersMediaDOMMovies = photographerGalleryFirst.photographersMovie();
+// photoSection.appendChild(photographersMediaDOMMovies);
 }
 
 

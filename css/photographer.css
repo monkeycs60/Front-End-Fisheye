@@ -125,6 +125,10 @@ header p {
   gap: 70px;
   margin-top: 10vh;
 }
+.photographer_section img {
+  width: 200px;
+  height: 200px;
+}
 
 /* MODAL et JS */
 .modal {
