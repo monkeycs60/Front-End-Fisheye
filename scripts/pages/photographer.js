@@ -1,4 +1,5 @@
 import { headerPhotographerFactory } from "../factories/headerPhotographer.js";
+import { mediaPhotographerFactory } from "../factories/mediaFactory.js";
 
 async function getPhotographers() {
   let photographers = [];
@@ -64,8 +65,10 @@ async function getPhotographersMedia() {
   await fetch("/Front-End-Fisheye/data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
+      
+      console.log(data.media);
       photographersMedia = data.media;
+      console.log(photographersMedia[12].photographerId);
     
     })
     .catch((error) => {
@@ -77,7 +80,7 @@ async function getPhotographersMedia() {
   };
 }
 
-getPhotographersMedia();
+
 
 async function displayMedia(photographersMedia) {
   const photoSection = document.querySelector(".photographer_section");
@@ -87,9 +90,22 @@ async function displayMedia(photographersMedia) {
     //search parameter in the url
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
-    return photographerMedia.photographerId == id;
+    return photographersMedia.forEach((photographerMedia) => {
+    photographerMedia.photographerId == id;
   }
   );
+  });
 
-const photographerGallery = mediaFactory(photographerMedia);
+const photographerGallery = mediaPhotographerFactory(photographerMedia[0]);
+const photographersMediaDOM = photographerGallery.photographersGallery();
+photoSection.appendChild(photographersMediaDOM);
 }
+
+
+async function lastInit() {
+  // Récupère les datas des photographes
+  const { photographersMedia } = await getPhotographersMedia();
+  displayMedia(photographersMedia);
+}
+
+lastInit();
