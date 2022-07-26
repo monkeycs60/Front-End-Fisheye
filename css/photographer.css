@@ -123,15 +123,19 @@ header p {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 70px;
-  margin-top: 10vh;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  background: yellow;
+  margin: 10vh auto;
 }
 .photographer_section img {
-  width: 200px;
-  height: 200px;
+  width: 360px;
+  height: 300px;
 }
 .photographer_section video {
-  width: 200px;
-  height: 200px;
+  width: 360px;
+  height: 300px;
 }
 
 /* MODAL et JS */
