@@ -69,9 +69,8 @@ async function getPhotographersMedia() {
     .then((response) => response.json())
     .then((data) => {
       
-      console.log(data.media);
+      console.log(data);
       photographersMedia = data.media;
-      console.log(photographersMedia[12].photographerId);
     
     })
     .catch((error) => {
@@ -93,11 +92,11 @@ async function displayMedia(photographersMedia) {
     //search parameter in the url
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
-    return photographersMedia.forEach((photographerMedia) => {
-    photographerMedia.photographerId == id;
+    return photographerMedia.photographerId == id;
   }
   );
-  });
+  console.log(photographerMedia);
+  
 
 const photographerGallery = mediaPhotographerFactory(photographerMedia[0]);
 const photographersMediaDOM = photographerGallery.photographersGallery();
