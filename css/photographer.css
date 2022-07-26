@@ -129,6 +129,10 @@ header p {
   width: 200px;
   height: 200px;
 }
+.photographer_section video {
+  width: 200px;
+  height: 200px;
+}
 
 /* MODAL et JS */
 .modal {
