@@ -97,7 +97,13 @@ async function displayMedia(photographersMedia) {
   console.log(photographerMedia);
   //make an array with all images contained in photographerMedia
   const photographersMediaArray = photographerMedia.map((photographerMedia) => {
-    return photographerMedia.image;
+   if (photographerMedia.image) {
+     return photographerMedia.image;
+   }
+   else if (photographerMedia.video) {
+     return photographerMedia.video;
+   }
+    // return photographerMedia.image  
   }
   );
   console.log(photographersMediaArray);
