@@ -2,6 +2,7 @@
  export function mediaPhotographerFactory(data) {
 
     const { image } = data;
+    console.log(image);
     const picture = `../../assets/Sample Photos/${image}`;
     
     
