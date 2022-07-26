@@ -22,6 +22,10 @@ header {
 header img {
   height: 50px;
 }
+header p {
+  position: absolute;
+  visibility: hidden;
+}
 
 #contact_modal {
   display: none;
@@ -66,6 +70,7 @@ header img {
   border-radius: 5px;
   cursor: pointer;
   order: 2;
+  transform: translateX(-5vw);
 }
 
 .filter {
@@ -112,6 +117,13 @@ header img {
 .filter i {
   color: blue;
   font-size: 25px;
+}
+
+.photographer_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 10vh;
 }
 
 /* MODAL et JS */

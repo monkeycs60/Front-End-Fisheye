@@ -1,62 +1,95 @@
 import { headerPhotographerFactory } from "../factories/headerPhotographer.js";
 
 async function getPhotographers() {
+  let photographers = [];
+  await fetch("/Front-End-Fisheye/data/photographers.json")
+    .then((response) => response.json())
+    .then((data) => {
+      photographers = data.photographers;
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
-    let photographers = [];
-    await fetch("/Front-End-Fisheye/data/photographers.json")
-        .then((response) => response.json())
-        .then((data) => {
-    
-        photographers = data.photographers;
-        })
-        .catch((error) => {
-        console.log(error);
-        });
-    
-   
-    return {
-        photographers: [...photographers],
-    };
+  return {
+    photographers: [...photographers],
+  };
 }
 
 async function displayData(photographers) {
+  const photoHeader = document.querySelector(".photograph-header");
 
-    const photoHeader = document.querySelector(".photograph-header");
+  const photographer = photographers.filter((photographer) => {
+    //search parameter in the url
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    return photographer.id == id;
+  });
 
-    const photographer = photographers.filter((photographer) => {
-                //search parameter in the url
-                const urlParams = new URLSearchParams(window.location.search);
-                const id = urlParams.get("id");
-                return photographer.id == id;  
-            });
+  const photographerHeaderInfos = headerPhotographerFactory(photographer[0]);
 
+  const photographersInfosTxt = photographerHeaderInfos.infoCard();
+  photoHeader.appendChild(photographersInfosTxt);
 
-    const photographerHeaderInfos = headerPhotographerFactory(photographer[0]);
+  const photographersInfosName =
+    photographerHeaderInfos.photographersInfosName();
+  photographersInfosTxt.appendChild(photographersInfosName);
 
-    const photographersInfosTxt = photographerHeaderInfos.infoCard();
-    photoHeader.appendChild(photographersInfosTxt);
+  const photographersInfosLocation =
+    photographerHeaderInfos.photographersInfosLocation();
+  photographersInfosTxt.appendChild(photographersInfosLocation);
 
-    const photographersInfosName = photographerHeaderInfos.photographersInfosName();
-    photographersInfosTxt.appendChild(photographersInfosName);
+  const photographersTagline = photographerHeaderInfos.photographersTagline();
+  photographersInfosTxt.appendChild(photographersTagline);
 
-    const photographersInfosLocation = photographerHeaderInfos.photographersInfosLocation();
-    photographersInfosTxt.appendChild(photographersInfosLocation);
-
-    const photographersTagline = photographerHeaderInfos.photographersTagline();
-    photographersInfosTxt.appendChild(photographersTagline);
-
-    //append the picture to photoheader
-    const photographersProfilPic = photographerHeaderInfos.photographersProfilPic();
-    photoHeader.appendChild(photographersProfilPic);
-
+  //append the picture to photoheader
+  const photographersProfilPic =
+    photographerHeaderInfos.photographersProfilPic();
+  photoHeader.appendChild(photographersProfilPic);
 }
 
-
-
 async function init() {
-    // Récupère les datas des photographes
-    const { photographers } = await getPhotographers();
-    displayData(photographers);
-  }
+  // Récupère les datas des photographes
+  const { photographers } = await getPhotographers();
+  displayData(photographers);
+}
+
+init();
+
+async function getPhotographersMedia() {
+
   
-  init();
+  let photographersMedia = [];
+
+  await fetch("/Front-End-Fisheye/data/photographers.json")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+      photographersMedia = data.media;
+    
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return {
+    photographersMedia: [...photographersMedia],
+  };
+}
+
+getPhotographersMedia();
+
+async function displayMedia(photographersMedia) {
+  const photoSection = document.querySelector(".photographer_section");
+
+ //if photographer.id = url param, get all the media related to this photographer
+  const photographerMedia = photographersMedia.filter((photographerMedia) => {
+    //search parameter in the url
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    return photographerMedia.photographerId == id;
+  }
+  );
+
+const photographerGallery = mediaFactory(photographerMedia);
+}

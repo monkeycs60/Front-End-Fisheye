@@ -23,6 +23,10 @@ header {
   img {
     height: 50px;
   }
+  p {
+    position: absolute;
+        visibility: hidden;
+  }
 }
 
 
@@ -76,6 +80,7 @@ header {
   border-radius: 5px;
   cursor: pointer;
   order: 2;
+  transform: translateX(-5vw);
 }
 
 //partie filter
@@ -132,7 +137,14 @@ header {
   }
 }
 
+//grid
 
+.photographer_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 10vh;
+}
 
 
 
