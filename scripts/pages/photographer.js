@@ -1,5 +1,6 @@
 import { headerPhotographerFactory } from "../factories/headerPhotographer.js";
 import { mediaPhotographerFactory } from "../factories/mediaFactory.js";
+import { titlesPhotographerFactory } from "../factories/titlesFactory.js";
 
 async function getPhotographers() {
   let photographers = [];
@@ -68,7 +69,7 @@ async function getPhotographersMedia() {
     .then((response) => response.json())
     .then((data) => {
       
-      console.log(data);
+      console.log(data.media);
       photographersMedia = data.media;
     
     })
@@ -85,6 +86,10 @@ async function getPhotographersMedia() {
 
 async function displayMedia(photographersMedia) {
   const photoSection = document.querySelector(".photographer_section");
+  const gridDiv = document.querySelector(".grid-div ");
+  //log second child of photosection
+ 
+
 
  //if photographer.id = url param, get all the media related to this photographer
   const photographerMedia = photographersMedia.filter((photographerMedia) => {
@@ -95,6 +100,7 @@ async function displayMedia(photographersMedia) {
   }
   );
   console.log(photographerMedia);
+  console.log(photographerMedia[1].title);
   //make an array with all images contained in photographerMedia
   const photographersMediaArray = photographerMedia.map((photographerMedia) => {
    if (photographerMedia.image) {
@@ -108,8 +114,24 @@ async function displayMedia(photographersMedia) {
   );
   console.log(photographersMediaArray);
 
-const photographerGalleryFirst = mediaPhotographerFactory(photographersMediaArray);
-const photographersMediaDOM = photographerGalleryFirst.createImageFromArray();
+
+  const photographersTitleArray = photographerMedia.map((photographerMedia) => {
+    return {
+      title: photographerMedia.title,
+      likes: photographerMedia.likes,
+    };
+  }
+  );
+
+ console.log(photographersTitleArray);
+
+ 
+ 
+ const photographerGalleryFirst = mediaPhotographerFactory(photographersMediaArray);
+ const photographersMediaDOM = photographerGalleryFirst.createImageFromArray();
+ 
+ const photographerTitlesGallery = titlesPhotographerFactory(photographersTitleArray);
+ const photographersTitlesDOM = photographerTitlesGallery.createTitlesFromArray();
 
 }
 
@@ -121,3 +143,38 @@ async function lastInit() {
 }
 
 lastInit();
+
+//sort the different images in the gallery by likes
+// const photographersMedia = photographersMedia.sort((a, b) => {
+//   return b.likes - a.likes;
+// }
+
+
+async function displayMediaTitlesLikes(photographersMedia) {
+  const photoSection = document.querySelector(".photographer_section");
+  const gridDiv = document.querySelector(".grid-div ");
+
+ //if photographer.id = url param, get all the media related to this photographer
+  const photographerMedia = photographersMedia.filter((photographerMedia) => {
+    //search parameter in the url
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = urlParams.get("id");
+    return photographerMedia.photographerId == id;
+  }
+  );
+  console.log(photographerMedia);
+//create an array with all titles and likes contained in photographerMedia
+  const photographersMediaArray = photographerMedia.map((photographerMedia) => {
+    return {
+      title: photographerMedia.title,
+      likes: photographerMedia.likes,
+    };
+  }
+  );
+
+ console.log(photographersMediaArray);
+
+// const photographerGalleryFirst = mediaPhotographerFactory(photographersMediaArray);
+// const photographersMediaDOM = photographerGalleryFirst.createImageFromArray();
+
+}

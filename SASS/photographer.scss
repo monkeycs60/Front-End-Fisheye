@@ -106,10 +106,11 @@ header {
     font-size: 20px;
     font-weight: bold;
     text-indent: 10px;
+    background: url("/Front-End-Fisheye/assets/icons/chevron-up-solid.svg") no-repeat;
+    background-size: 20px;
+    background-position: right;
     background-color: #901C1C;
     position: relative;
-   
-    
     
   }
 
@@ -118,6 +119,7 @@ header {
     height: 60px;
     font-size: 30px;
     position: relative;
+    border-bottom: 2px solid white;
 
     &::after {
       content: "";
@@ -160,7 +162,10 @@ header {
   }
 }
 
-
+//div child of grid
+.grid-div {
+  background: red;
+}
 
 
 /* MODAL et JS */

@@ -96,6 +96,9 @@ header p {
   font-size: 20px;
   font-weight: bold;
   text-indent: 10px;
+  background: url("/Front-End-Fisheye/assets/icons/chevron-up-solid.svg") no-repeat;
+  background-size: 20px;
+  background-position: right;
   background-color: #901C1C;
   position: relative;
 }
@@ -104,6 +107,7 @@ header p {
   height: 60px;
   font-size: 30px;
   position: relative;
+  border-bottom: 2px solid white;
 }
 .filter option::after {
   content: "";
@@ -136,6 +140,10 @@ header p {
 .photographer_section video {
   width: 360px;
   height: 300px;
+}
+
+.grid-div {
+  background: red;
 }
 
 /* MODAL et JS */
