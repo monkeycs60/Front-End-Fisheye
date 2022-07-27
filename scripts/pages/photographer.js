@@ -129,7 +129,7 @@ async function displayMedia(photographersMedia) {
  
  const photographerGalleryFirst = mediaPhotographerFactory(photographersMediaArray);
  const photographersMediaDOM = photographerGalleryFirst.createImageFromArray();
- 
+
  const photographerTitlesGallery = titlesPhotographerFactory(photographersTitleArray);
  const photographersTitlesDOM = photographerTitlesGallery.createTitlesFromArray();
 
@@ -150,31 +150,3 @@ lastInit();
 // }
 
 
-async function displayMediaTitlesLikes(photographersMedia) {
-  const photoSection = document.querySelector(".photographer_section");
-  const gridDiv = document.querySelector(".grid-div ");
-
- //if photographer.id = url param, get all the media related to this photographer
-  const photographerMedia = photographersMedia.filter((photographerMedia) => {
-    //search parameter in the url
-    const urlParams = new URLSearchParams(window.location.search);
-    const id = urlParams.get("id");
-    return photographerMedia.photographerId == id;
-  }
-  );
-  console.log(photographerMedia);
-//create an array with all titles and likes contained in photographerMedia
-  const photographersMediaArray = photographerMedia.map((photographerMedia) => {
-    return {
-      title: photographerMedia.title,
-      likes: photographerMedia.likes,
-    };
-  }
-  );
-
- console.log(photographersMediaArray);
-
-// const photographerGalleryFirst = mediaPhotographerFactory(photographersMediaArray);
-// const photographersMediaDOM = photographerGalleryFirst.createImageFromArray();
-
-}
