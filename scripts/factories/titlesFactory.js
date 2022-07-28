@@ -32,20 +32,6 @@ export function titlesPhotographerFactory(data) {
       div.appendChild(pLikes);
       counter += data[index].likes;
 
-      pLikes.addEventListener("click", () => {
-        pLikes.innerHTML = `${data[index].likes + 1} <i class="coeur fa-solid fa-heart"></i>`;
-        pLikes.addEventListener("click", () => {
-          pLikes.innerHTML = `${data[index].likes} <i class="coeur fa-regular fa-heart"></i>`;
-          //reset the event listener
-          
-        }
-        );
-        
-      }
-      );
-
-     
-     
       
    
     }
@@ -55,6 +41,17 @@ export function titlesPhotographerFactory(data) {
     sticky.appendChild(p);
 
 
+    const icon = document.querySelectorAll(".fa-heart");
+    //event listener for each icon
+    icon.forEach((icon) => {
+      icon.addEventListener("click", (e) => {
+        e.target.classList.toggle("fa-solid");
+        e.target.classList.toggle("fa-regular");
+        likeValue++;
+        
+      }
+      );
+    });
    
   }
   
