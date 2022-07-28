@@ -131,6 +131,10 @@ header p {
   font-size: 24px;
 }
 
+.coeur {
+  cursor: pointer;
+}
+
 .sticky {
   position: fixed;
   background: #D3573C;

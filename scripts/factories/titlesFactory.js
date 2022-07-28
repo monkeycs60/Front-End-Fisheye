@@ -41,14 +41,24 @@ export function titlesPhotographerFactory(data) {
     sticky.appendChild(p);
 
 
+    const pLikes = document.querySelectorAll(".pLikes");
     const icon = document.querySelectorAll(".fa-heart");
     //event listener for each icon
     icon.forEach((icon) => {
       icon.addEventListener("click", (e) => {
+        if ((icon.classList.contains("fa-solid"))) {
+          counter --;
+          p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`
+          console.log("test1");
+        } else {
+          counter++;
+          p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
+          console.log("test2");
+        }
+        
         e.target.classList.toggle("fa-solid");
         e.target.classList.toggle("fa-regular");
-        likeValue++;
-        
+
       }
       );
     });
