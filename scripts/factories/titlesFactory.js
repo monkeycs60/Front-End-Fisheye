@@ -25,11 +25,14 @@ export function titlesPhotographerFactory(data) {
       pTitle.innerHTML = `${data[index].title}`;
       pTitle.classList.add("pTitle");
       const pLikes = document.createElement("p");
-      pLikes.innerHTML = `${data[index].likes} <i class="coeur fa-regular fa-heart"></i>`;
+      const pHeart = document.createElement("p");
+      pLikes.innerHTML = `${data[index].likes}`;
       pLikes.classList.add("pLikes");
+      pHeart.innerHTML = `<i class="coeur fa-regular fa-heart"></i>`;
       photoSection.children[index].appendChild(div);
       div.appendChild(pTitle);
       div.appendChild(pLikes);
+      div.appendChild(pHeart);
       counter += data[index].likes;
 
       
@@ -46,14 +49,15 @@ export function titlesPhotographerFactory(data) {
     //event listener for each icon
     icon.forEach((icon) => {
       icon.addEventListener("click", (e) => {
+        const previous = e.target.parentNode.previousSibling;
         if ((icon.classList.contains("fa-solid"))) {
           counter --;
+          previous.innerHTML = parseInt(previous.innerHTML) - 1;
           p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`
-          console.log("test1");
         } else {
           counter++;
+          previous.innerHTML = parseInt(previous.innerHTML) + 1;
           p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
-          console.log("test2");
         }
         
         e.target.classList.toggle("fa-solid");
