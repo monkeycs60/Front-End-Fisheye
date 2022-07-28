@@ -19,8 +19,12 @@ export function titlesPhotographerFactory(data) {
     //CREATE N IMG ELEMENTS CORRESPOND TO DATA.LENGTH and fill each img element with the data.image
     for (let index = 0; index < data.length; index++) {
       //create a p element with data.title and data.likes as text
+      const globalContainer = document.createElement("div");
       const div = document.createElement("div");
+      const div2 = document.createElement("div");
     div.classList.add("description-grid");
+    div2.classList.add("description-grid2");
+    globalContainer.classList.add("global-container");
       const pTitle = document.createElement("p");
       pTitle.innerHTML = `${data[index].title}`;
       pTitle.classList.add("pTitle");
@@ -29,10 +33,13 @@ export function titlesPhotographerFactory(data) {
       pLikes.innerHTML = `${data[index].likes}`;
       pLikes.classList.add("pLikes");
       pHeart.innerHTML = `<i class="coeur fa-regular fa-heart"></i>`;
-      photoSection.children[index].appendChild(div);
+      photoSection.children[index].appendChild(globalContainer);
+      // photoSection.children[index].appendChild(div2);
+      globalContainer.appendChild(div);
+      globalContainer.appendChild(div2);
       div.appendChild(pTitle);
-      div.appendChild(pLikes);
-      div.appendChild(pHeart);
+      div2.appendChild(pLikes);
+      div2.appendChild(pHeart);
       counter += data[index].likes;
 
       
@@ -44,7 +51,7 @@ export function titlesPhotographerFactory(data) {
     sticky.appendChild(p);
 
 
-    const pLikes = document.querySelectorAll(".pLikes");
+   
     const icon = document.querySelectorAll(".fa-heart");
     //event listener for each icon
     icon.forEach((icon) => {

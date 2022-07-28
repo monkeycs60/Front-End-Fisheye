@@ -123,12 +123,18 @@ header p {
   height: 400px;
 }
 
-.description-grid {
+.global-container {
   margin-top: 1vh;
   display: flex;
   justify-content: space-between;
   color: #901C1C;
   font-size: 24px;
+}
+
+.description-grid2 {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
 .coeur {
