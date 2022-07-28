@@ -93,49 +93,35 @@ header {
   height: 5vh;
   margin: 2vh 9.5vw;
 
-  label {
-    font-weight: bold;
-    font-size: 20px;
-  }
-
-  select {
-    appearance: none;
-    color: #ffffff;
-    width: 250px;
-    height: 60px;
+  p {
     font-size: 20px;
     font-weight: bold;
-    text-indent: 10px;
-    background: url("/Front-End-Fisheye/assets/icons/chevron-up-solid.svg") no-repeat;
-    background-size: 20px;
-    background-position: right;
-    background-color: #901C1C;
-    position: relative;
-    
+  }
+  
+  button {
+background: #901C1C;
+padding: 20px;
+color: white;
+font-size: 20px;
+border-radius: 5px;
+
   }
 
-  option {
-    background-color: #901C1C;
-    height: 60px;
-    font-size: 30px;
-    position: relative;
-    border-bottom: 2px solid white;
+.down {
+  display: none;
+}
 
-    &::after {
-      content: "";
-      position: absolute;
-      top: 20px;
-      width: 55px;
-      height: 5px;
-      background: white;
-      color: white;
-    }
+  .item {
+    // display: none;
   }
-
+  li {
+   
+  }
   i {
     
-    color: blue;
-    font-size: 25px;
+    color: white;
+    font-size: 20px;
+    margin-left: 25px;
   }
 }
 
@@ -144,29 +130,58 @@ header {
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
+  gap: 4vh 8vw;
+  width: 80%;
+  margin: 10vh auto;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  background: yellow;
-  margin: 10vh auto;
+ 
+}
+
+//div child of grid (img + description)
+.grid-div {
+  
+  img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  video {
+    width: 100%;
+    height: 400px;
+  }
+}
+
+.description-grid {
+  margin-top: 1vh;
+  display: flex;
+  justify-content: space-between;
+  color: #901C1C;
+  font-size: 24px;
+}
+
+
+//sticky like bar
+.sticky {
+  position: fixed;
+  background: #D3573C;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2vw;
+  font-size: 28px;
+  height: 5vh;
+  width: 15%;
+  bottom: 0;
+  right: 5%;
+  border-radius: 10px 10px 0 0;
+  z-index: 2;
   
 
-  img {
-    width: 360px;
-    height: 300px;
-  }
-  video {
-    width: 360px;
-    height: 300px;
-  }
-}
 
-//div child of grid
-.grid-div {
-  background: red;
 }
-
 
 /* MODAL et JS */
 .modal {

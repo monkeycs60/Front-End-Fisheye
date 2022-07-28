@@ -82,68 +82,70 @@ header p {
   height: 5vh;
   margin: 2vh 9.5vw;
 }
-.filter label {
-  font-weight: bold;
-  font-size: 20px;
-}
-.filter select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  color: #ffffff;
-  width: 250px;
-  height: 60px;
+.filter p {
   font-size: 20px;
   font-weight: bold;
-  text-indent: 10px;
-  background: url("/Front-End-Fisheye/assets/icons/chevron-up-solid.svg") no-repeat;
-  background-size: 20px;
-  background-position: right;
-  background-color: #901C1C;
-  position: relative;
 }
-.filter option {
-  background-color: #901C1C;
-  height: 60px;
-  font-size: 30px;
-  position: relative;
-  border-bottom: 2px solid white;
-}
-.filter option::after {
-  content: "";
-  position: absolute;
-  top: 20px;
-  width: 55px;
-  height: 5px;
-  background: white;
+.filter button {
+  background: #901C1C;
+  padding: 20px;
   color: white;
+  font-size: 20px;
+  border-radius: 5px;
+}
+.filter .down {
+  display: none;
 }
 .filter i {
-  color: blue;
-  font-size: 25px;
+  color: white;
+  font-size: 20px;
+  margin-left: 25px;
 }
 
 .photographer_section {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 70px;
+  gap: 4vh 8vw;
+  width: 80%;
+  margin: 10vh auto;
   justify-content: space-between;
   align-items: center;
-  width: 80%;
-  background: yellow;
-  margin: 10vh auto;
-}
-.photographer_section img {
-  width: 360px;
-  height: 300px;
-}
-.photographer_section video {
-  width: 360px;
-  height: 300px;
 }
 
-.grid-div {
-  background: red;
+.grid-div img {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.grid-div video {
+  width: 100%;
+  height: 400px;
+}
+
+.description-grid {
+  margin-top: 1vh;
+  display: flex;
+  justify-content: space-between;
+  color: #901C1C;
+  font-size: 24px;
+}
+
+.sticky {
+  position: fixed;
+  background: #D3573C;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2vw;
+  font-size: 28px;
+  height: 5vh;
+  width: 15%;
+  bottom: 0;
+  right: 5%;
+  border-radius: 10px 10px 0 0;
+  z-index: 2;
 }
 
 /* MODAL et JS */

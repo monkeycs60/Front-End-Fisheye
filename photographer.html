@@ -18,31 +18,31 @@
     </a>
   </header>
 
-
+  <div class="sticky"></div>
 
   <main id="main">
 
-    
+
     <div class="photograph-header">
       <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
     </div>
 
-    <div class="filter">
-      <label for="filter-select">Trier par</label>
 
-      <select name="choix" id="filter-select">
-        <option value="popularity">Popularité</option>
-        <option value="date">Date</option>
-        <option value="titre">Titre</option>
+    <div class="filter">
+      <p>Trier par</p>
+
+
+      <div class="filter-section">
+        <button class="filter-button" onclick="filterSelection('all')">Popularité
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+        <ul class="down">
+          <li class="popularity" tabindex="0">Popularité</li>
+          <li class="date" tabindex="0">Date</li>
+          <li class="title" tabindex="0">Titre</li>
+        </ul>
        
-      </select>
-      <svg width="100" height="100" xmlns="http://www.w3.org/2000/svg" version="1.1">
-        <g color="green">
-          <rect width="50" height="50" fill="currentColor" />
-          
-        </g>
-      </svg>
-      <!-- <i class="fa-solid fa-chevron-up"></i> -->
+      </div>
     </div>
 
     <div class="photographer_section">

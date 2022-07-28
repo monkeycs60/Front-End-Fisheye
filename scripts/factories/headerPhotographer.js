@@ -3,6 +3,13 @@
 
     const { name, portrait, city, country, tagline, price, id } = data;
     const picture = `assets/photographers/${portrait}`;
+    const sticky = document.querySelector(".sticky");
+ 
+
+    const p = document.createElement("p");
+    p.innerHTML = `${data.price} € / jour`;
+    sticky.appendChild(p);
+    console.log(data.price);
     
     
 

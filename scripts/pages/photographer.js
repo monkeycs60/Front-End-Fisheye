@@ -69,7 +69,7 @@ async function getPhotographersMedia() {
     .then((response) => response.json())
     .then((data) => {
       
-      console.log(data.media);
+      console.log(data);
       photographersMedia = data.media;
     
     })
@@ -144,9 +144,40 @@ async function lastInit() {
 
 lastInit();
 
-//sort the different images in the gallery by likes
-// const photographersMedia = photographersMedia.sort((a, b) => {
-//   return b.likes - a.likes;
-// }
 
+
+const photoSection = document.querySelector(".photographer_section");
+const gridDiv = document.querySelectorAll(".grid-div ");
+const description = document.querySelectorAll(".description-grid");
+const pTitle = document.querySelectorAll(".pTitle");
+const pLikes = document.querySelectorAll(".pLikes");
+console.log(pTitle);
+
+//classe les children de photoSection selon l'ordre alphabetique du titre de l'image
+console.log(photoSection.children);
+console.log(description[1]);
+//sort photoSection.children by title
+// photoSection.children.sort((a, b) => {
+//   if (a.children[0].innerText < b.children[0].innerText) {
+//     return -1;
+//   }
+//   if (a.children[0].innerText > b.children[0].innerText) {
+//     return 1;
+//   }
+//   return 0;
+// }
+// );
+
+
+
+//add event listener on filter pannel
+const boutonFilter = document.querySelector(".filter-button");
+boutonFilter.addEventListener("click", (e) => {
+  e.preventDefault();
+  const listedItems = document.querySelectorAll("li");
+  const down = document.querySelector("ul");
+  
+  down.classList.toggle("down");
+}
+);
 
