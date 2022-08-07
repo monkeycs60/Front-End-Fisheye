@@ -4,7 +4,7 @@ import { titlesPhotographerFactory } from "../factories/titlesFactory.js";
 
 async function getPhotographers() {
   let photographers = [];
-  await fetch("/Front-End-Fisheye/data/photographers.json")
+  await fetch("/data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
@@ -65,7 +65,7 @@ async function getPhotographersMedia() {
   
   let photographersMedia = [];
 
-  await fetch("/Front-End-Fisheye/data/photographers.json")
+  await fetch("/data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       
