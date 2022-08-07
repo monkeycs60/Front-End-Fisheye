@@ -187,66 +187,173 @@ boutonFilter.addEventListener("click", (e) => {
     listedItem.addEventListener("click", (e) => {
       e.preventDefault();
       const filter = listedItem.innerText;
+      const mediaTitle = document.querySelectorAll(".pTitle");
       console.log(filter);
-      
-      
-        //sort photoSection.children by title
-      photoSection.children.sort((a, b) => {
-        if (a.children[0].innerText < b.children[0].innerText) {
+      console.log(photoSection.children);
+      console.log(mediaTitle[2]);
+const mediaTitleArray = [];     
+      mediaTitle.forEach((mediaTitle) => {
+        //push the title of each media in an array
+        mediaTitleArray.push(mediaTitle.innerText);
+      });
+      console.log(mediaTitleArray);
+      //sort the array by title
+      mediaTitleArray.sort((a, b) => {
+        if (a < b) {
           return -1;
         }
-        if (a.children[0].innerText > b.children[0].innerText) {
+        if (a > b) {
           return 1;
         }
         return 0;
       }
       );
-      //sort photoSection.children by likes
-      photoSection.children.sort((a, b) => {
-        if (a.children[1].innerText < b.children[1].innerText) {
-          return -1;
-        }
-        if (a.children[1].innerText > b.children[1].innerText) {
-          return 1;
-        }
-        return 0;
-      }
-      );
-      //sort photoSection.children by date
-      photoSection.children.sort((a, b) => {
-        if (a.children[2].innerText < b.children[2].innerText) {
-          return -1;
-        }
-        if (a.children[2].innerText > b.children[2].innerText) {
-          return 1;
-        }
-        return 0;
-      }
-      );
+      console.log(mediaTitleArray);
+      //change the order of the grid items following its  title position in the mediaTitleArray
+    
+      console.log(photoSection.children);
 
-      //sort photoSection.children by popularity
-      photoSection.children.sort((a, b) => {
-        if (a.children[3].innerText < b.children[3].innerText) {
-          return -1;
-        }
-        if (a.children[3].innerText > b.children[3].innerText) {
-          return 1;
-        }
-        return 0;
-      }
-      );
+      for (let index = 0; index < photoSection.children.length; index++) {
+        if (mediaTitleArray[index] == mediaTitle[0].innerText) {
+          photoSection.children[0].style.order = index;
 
-      //sort photoSection.children by price
-      photoSection.children.sort((a, b) => {
-        if (a.children[4].innerText < b.children[4].innerText) {
-          return -1;
         }
-        if (a.children[4].innerText > b.children[4].innerText) {
-          return 1;
+        else if (mediaTitleArray[index] == mediaTitle[1].innerText) {
+          photoSection.children[1].style.order = index;
+
         }
-        return 0;
+        else if (mediaTitleArray[index] == mediaTitle[2].innerText) {
+          photoSection.children[2].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[3].innerText) {
+          photoSection.children[3].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[4].innerText) {
+          photoSection.children[4].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[5].innerText) {
+          photoSection.children[5].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[6].innerText) {
+          photoSection.children[6].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[7].innerText) {
+          photoSection.children[7].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[8].innerText) {
+          photoSection.children[8].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[9].innerText) {
+          photoSection.children[9].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[10].innerText) {
+          photoSection.children[10].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[11].innerText) {
+          photoSection.children[11].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[12].innerText) {
+          photoSection.children[12].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[13].innerText) {
+          photoSection.children[13].style.order = index;
+
+        }
+        else if (mediaTitleArray[index] == mediaTitle[14].innerText) {
+          photoSection.children[14].style.order = index;
+
+        }
+
       }
-      );
+
+
+   
+
+
+      //sort photoSection.children by mediaTitle 
+    //  for (let index = 0; index < photoSection.children.length; index++) {
+    //     console.log(mediaTitle[index].innerText);
+    //     if (filter == mediaTitle[index].innerText) {
+    //       console.log("ok");
+    //       photoSection.children[index].style.order = "1";
+    //     }
+    //     else {
+    //       photoSection.children[index].style.order = "2";
+    //     }
+      
+    //  }
+      
+      //   //sort photoSection.children by title
+      // photoSection.children.sort((a, b) => {
+      //   if (a.children[0].innerText < b.children[0].innerText) {
+      //     return -1;
+      //   }
+      //   if (a.children[0].innerText > b.children[0].innerText) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // }
+      // );
+      // //sort photoSection.children by likes
+      // photoSection.children.sort((a, b) => {
+      //   if (a.children[1].innerText < b.children[1].innerText) {
+      //     return -1;
+      //   }
+      //   if (a.children[1].innerText > b.children[1].innerText) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // }
+      // );
+      // //sort photoSection.children by date
+      // photoSection.children.sort((a, b) => {
+      //   if (a.children[2].innerText < b.children[2].innerText) {
+      //     return -1;
+      //   }
+      //   if (a.children[2].innerText > b.children[2].innerText) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // }
+      // );
+
+      // //sort photoSection.children by popularity
+      // photoSection.children.sort((a, b) => {
+      //   if (a.children[3].innerText < b.children[3].innerText) {
+      //     return -1;
+      //   }
+      //   if (a.children[3].innerText > b.children[3].innerText) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // }
+      // );
+
+      // //sort photoSection.children by price
+      // photoSection.children.sort((a, b) => {
+      //   if (a.children[4].innerText < b.children[4].innerText) {
+      //     return -1;
+      //   }
+      //   if (a.children[4].innerText > b.children[4].innerText) {
+      //     return 1;
+      //   }
+      //   return 0;
+      // }
+      // );
     });
+
   }
+
   );
+
