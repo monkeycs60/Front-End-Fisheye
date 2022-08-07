@@ -179,5 +179,74 @@ boutonFilter.addEventListener("click", (e) => {
   
   down.classList.toggle("down");
 }
-);
+  );
 
+  const listedItems = document.querySelectorAll("li");
+  //change the order of the grid items
+  listedItems.forEach((listedItem) => {
+    listedItem.addEventListener("click", (e) => {
+      e.preventDefault();
+      const filter = listedItem.innerText;
+      console.log(filter);
+      
+      
+        //sort photoSection.children by title
+      photoSection.children.sort((a, b) => {
+        if (a.children[0].innerText < b.children[0].innerText) {
+          return -1;
+        }
+        if (a.children[0].innerText > b.children[0].innerText) {
+          return 1;
+        }
+        return 0;
+      }
+      );
+      //sort photoSection.children by likes
+      photoSection.children.sort((a, b) => {
+        if (a.children[1].innerText < b.children[1].innerText) {
+          return -1;
+        }
+        if (a.children[1].innerText > b.children[1].innerText) {
+          return 1;
+        }
+        return 0;
+      }
+      );
+      //sort photoSection.children by date
+      photoSection.children.sort((a, b) => {
+        if (a.children[2].innerText < b.children[2].innerText) {
+          return -1;
+        }
+        if (a.children[2].innerText > b.children[2].innerText) {
+          return 1;
+        }
+        return 0;
+      }
+      );
+
+      //sort photoSection.children by popularity
+      photoSection.children.sort((a, b) => {
+        if (a.children[3].innerText < b.children[3].innerText) {
+          return -1;
+        }
+        if (a.children[3].innerText > b.children[3].innerText) {
+          return 1;
+        }
+        return 0;
+      }
+      );
+
+      //sort photoSection.children by price
+      photoSection.children.sort((a, b) => {
+        if (a.children[4].innerText < b.children[4].innerText) {
+          return -1;
+        }
+        if (a.children[4].innerText > b.children[4].innerText) {
+          return 1;
+        }
+        return 0;
+      }
+      );
+    });
+  }
+  );
