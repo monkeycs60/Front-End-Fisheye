@@ -113,7 +113,7 @@ header p {
 }
 
 .grid-div img {
-  width: 100%;
+  width: 300px;
   height: 400px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -129,6 +129,7 @@ header p {
   justify-content: space-between;
   color: #901C1C;
   font-size: 24px;
+  width: 300px;
 }
 
 .description-grid2 {
@@ -137,8 +138,19 @@ header p {
   gap: 10px;
 }
 
+.pTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 15vw;
+}
+
 .coeur {
   cursor: pointer;
+}
+
+.invisibleDate {
+  display: none;
 }
 
 .sticky {

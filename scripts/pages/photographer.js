@@ -2,6 +2,16 @@ import { headerPhotographerFactory } from "../factories/headerPhotographer.js";
 import { mediaPhotographerFactory } from "../factories/mediaFactory.js";
 import { titlesPhotographerFactory } from "../factories/titlesFactory.js";
 
+const photoSection = document.querySelector(".photographer_section");
+const gridDiv = document.querySelectorAll(".grid-div ");
+const description = document.querySelectorAll(".description-grid");
+const pTitle = document.querySelectorAll(".pTitle");
+const fullList = document.querySelector("ul");
+
+
+
+
+
 async function getPhotographers() {
   let photographers = [];
   await fetch("/data/photographers.json")
@@ -71,6 +81,9 @@ async function getPhotographersMedia() {
       
       console.log(data);
       photographersMedia = data.media;
+      //push each date for each media in the array
+      
+
     
     })
     .catch((error) => {
@@ -83,6 +96,62 @@ async function getPhotographersMedia() {
 }
 
 
+async function getPhotographersDate() {
+  let photographersDate = [];
+  await fetch("/data/photographers.json")
+    .then((response) => response.json())
+    .then((data) => {
+      //filter the media array to get only the media related to the photographer
+      
+        //search parameter in the url
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get("id");
+        console.log(id);
+        //get the media related to the photographer
+        const photographerMedia = data.media.filter((photographerMedia) => {
+          return photographerMedia.photographerId == id;
+        });
+        console.log(photographerMedia);
+        //create an array with all the dates of the media
+        const photographersDateArray = photographerMedia.map((photographerMedia) => {
+          return photographerMedia.date;
+
+        });
+        console.log(photographersDateArray);
+
+        //SORT THE PHOTOS BY DATE
+        fullList.children[1].addEventListener("click", (e) => {
+          e.preventDefault();
+          console.log("click");
+          const dateInvisible = document.querySelectorAll(".invisibleDate");
+    
+
+for (let index = 0; index < photoSection.children.length; index++) {
+  for (let j = 0; j < photographersDateArray.length; j++) {
+    if (photographersDateArray[index] == dateInvisible[j].innerText) {
+      photoSection.children[j].style.order = index;
+    }
+    
+  }
+}
+
+
+        });
+         
+  
+     
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
+  return {
+    photographersDate: [...photographersDate],
+  };
+
+}
+    
+getPhotographersDate();
 
 async function displayMedia(photographersMedia) {
   const photoSection = document.querySelector(".photographer_section");
@@ -119,6 +188,7 @@ async function displayMedia(photographersMedia) {
     return {
       title: photographerMedia.title,
       likes: photographerMedia.likes,
+      date: photographerMedia.date,
     };
   }
   );
@@ -146,27 +216,10 @@ lastInit();
 
 
 
-const photoSection = document.querySelector(".photographer_section");
-const gridDiv = document.querySelectorAll(".grid-div ");
-const description = document.querySelectorAll(".description-grid");
-const pTitle = document.querySelectorAll(".pTitle");
-const pLikes = document.querySelectorAll(".pLikes");
-console.log(pTitle);
 
 //classe les children de photoSection selon l'ordre alphabetique du titre de l'image
-console.log(photoSection.children);
-console.log(description[1]);
-//sort photoSection.children by title
-// photoSection.children.sort((a, b) => {
-//   if (a.children[0].innerText < b.children[0].innerText) {
-//     return -1;
-//   }
-//   if (a.children[0].innerText > b.children[0].innerText) {
-//     return 1;
-//   }
-//   return 0;
-// }
-// );
+
+
 
 
 
@@ -179,5 +232,84 @@ boutonFilter.addEventListener("click", (e) => {
   
   down.classList.toggle("down");
 }
-);
+  );
 
+ 
+  
+  //change the order of the grid items
+  //add event listener on the third child of the fullList 
+
+  fullList.children[0].addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const likeCount = document.querySelectorAll(".pLikes");
+    const likeCountArray = Array.from(likeCount);
+    console.log(likeCountArray);
+
+    const likeCountArrayInt = likeCountArray.map((likeCount) => {
+      return parseInt(likeCount.textContent);
+    }
+    );
+
+    const likeCountArraySorted = likeCountArrayInt.sort((a, b) => a - b);
+    console.log(likeCountArraySorted);
+    
+    for (let index = 0; index < photoSection.children.length; index++) {
+      for (let j = 0; j < likeCountArraySorted.length; j++) {
+        if (likeCountArraySorted[index] == likeCount[j].innerText) {
+          photoSection.children[j].style.order = index;
+        }
+        
+      }
+    }
+
+  }
+  );
+
+  // async function orderGrid {}
+  let pLikes = document.querySelectorAll(".pLikes");
+  let pLikesArray = Array.from(pLikes);
+  console.log(pLikesArray);
+  
+
+    fullList.children[2].addEventListener("click", (e) => {
+      e.preventDefault();
+     
+      const mediaTitle = document.querySelectorAll(".pTitle");
+      const mediaTitleArray = [];     
+      
+      console.log(photoSection.children);
+      console.log(mediaTitle[2]);
+      mediaTitle.forEach((mediaTitle) => {
+        //push the title of each media in an array
+        mediaTitleArray.push(mediaTitle.innerText);
+      });
+      console.log(mediaTitleArray);
+      //sort the array by title
+      mediaTitleArray.sort((a, b) => {
+        if (a < b) {
+          return -1;
+        }
+        if (a > b) {
+          return 1;
+        }
+        return 0;
+      }
+      );
+      console.log(mediaTitleArray);
+      //change the order of the grid items following its  title position in the mediaTitleArray
+    
+      console.log(photoSection.children);
+
+      for (let index = 0; index < photoSection.children.length; index++) {
+        for (let j = 0; j < mediaTitleArray.length; j++) {
+          if (mediaTitleArray[index] == mediaTitle[j].innerText) {
+            photoSection.children[j].style.order = index;
+          }
+          
+        }
+      }
+
+
+     
+    });

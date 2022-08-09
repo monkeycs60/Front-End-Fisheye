@@ -142,7 +142,7 @@ border-radius: 5px;
 .grid-div {
   
   img {
-    width: 100%;
+    width: 300px;
     height: 400px;
     object-fit: cover;
   }
@@ -160,6 +160,7 @@ display: flex;
 justify-content: space-between;
 color: #901C1C;
 font-size: 24px;
+width: 300px;
 }
 
 .description-grid {
@@ -174,6 +175,15 @@ gap: 10px;
 
 }
 
+//title of the photography
+.pTitle {
+  //display ... when the text is too long
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 15vw;
+}
+
 //number of likes
 .pLikes {
  
@@ -183,6 +193,11 @@ gap: 10px;
 //coeur subtitle
 .coeur {
   cursor: pointer;
+}
+
+//date invisible
+.invisibleDate {
+  display: none;
 }
 
 
