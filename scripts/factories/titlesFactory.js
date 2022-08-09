@@ -3,6 +3,7 @@ export function titlesPhotographerFactory(data) {
   // console.log(image, video, data[0].image);
 
   console.log(data);
+  
 
   //for each data create a new img element
   function createTitlesFromArray() {
@@ -11,7 +12,6 @@ export function titlesPhotographerFactory(data) {
     const sticky = document.querySelector(".sticky");
     //define first child of photosection
     let counter = 0;
-    
    
   
 
@@ -22,10 +22,11 @@ export function titlesPhotographerFactory(data) {
       const globalContainer = document.createElement("div");
       const div = document.createElement("div");
       const div2 = document.createElement("div");
+      const pTitle = document.createElement("p");
+      const invisibleDate = document.createElement("p");
     div.classList.add("description-grid");
     div2.classList.add("description-grid2");
     globalContainer.classList.add("global-container");
-      const pTitle = document.createElement("p");
       pTitle.innerHTML = `${data[index].title}`;
       pTitle.classList.add("pTitle");
       const pLikes = document.createElement("p");
@@ -33,6 +34,8 @@ export function titlesPhotographerFactory(data) {
       pLikes.innerHTML = `${data[index].likes}`;
       pLikes.classList.add("pLikes");
       pHeart.innerHTML = `<i class="coeur fa-regular fa-heart"></i>`;
+      invisibleDate.innerHTML = `${data[index].date}`;
+      invisibleDate.classList.add("invisibleDate");
       photoSection.children[index].appendChild(globalContainer);
       // photoSection.children[index].appendChild(div2);
       globalContainer.appendChild(div);
@@ -40,6 +43,7 @@ export function titlesPhotographerFactory(data) {
       div.appendChild(pTitle);
       div2.appendChild(pLikes);
       div2.appendChild(pHeart);
+      div2.appendChild(invisibleDate);
       counter += data[index].likes;
 
       

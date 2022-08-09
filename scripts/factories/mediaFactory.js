@@ -35,6 +35,29 @@
      }
     
   }
+
+
+
+  //log the like count of each ima
+  
+
+// const likeCountArrayInt = likeCountArray.map((pLikes) => {
+//   return parseInt(pLikes.textContent);
+// }
+// );
+
+// const likeCountArraySorted = likeCountArrayInt.sort((a, b) => a - b);
+// console.log(likeCountArraySorted);
+
+// for (let index = 0; index < photoSection.children.length; index++) {
+//   for (let j = 0; j < likeCountArraySorted.length; j++) {
+//     if (likeCountArraySorted[index] == likeCount[j].innerText) {
+//       photoSection.children[j].style.order = index;
+//     }
+    
+//   }
+// }
+
         }
   
     
