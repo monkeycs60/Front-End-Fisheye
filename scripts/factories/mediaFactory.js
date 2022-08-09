@@ -21,15 +21,15 @@
      //if data contains .mp4 in its title, create a video element
     if (data[index].includes(".mp4")) {
         const video = document.createElement("video");
-        video.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
-      //   video.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
+        // video.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
+        video.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
         video.setAttribute("controls", "controls");
         div.appendChild(video);
     }
      else {
          const img = document.createElement("img");
-      img.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
-      // img.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
+      // img.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
+      img.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
       img.setAttribute("alt", `cool`);
       div.appendChild(img);
      }

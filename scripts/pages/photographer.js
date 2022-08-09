@@ -14,7 +14,7 @@ const fullList = document.querySelector("ul");
 
 async function getPhotographers() {
   let photographers = [];
-  await fetch("/data/photographers.json")
+  await fetch("/Front-End-Fisheye/data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
@@ -75,7 +75,7 @@ async function getPhotographersMedia() {
   
   let photographersMedia = [];
 
-  await fetch("/data/photographers.json")
+  await fetch("/Front-End-Fisheye/data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       
@@ -98,7 +98,7 @@ async function getPhotographersMedia() {
 
 async function getPhotographersDate() {
   let photographersDate = [];
-  await fetch("/data/photographers.json")
+  await fetch("/Front-End-Fisheye/data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       //filter the media array to get only the media related to the photographer
