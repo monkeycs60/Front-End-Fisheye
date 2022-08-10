@@ -350,6 +350,7 @@ closeButton.addEventListener("click", (e) => {
   e.preventDefault();
   document.querySelector(".page-container").style.opacity = "1";
   contactModal.style.display = "none";
+  document.querySelector(".page-container").style.pointerEvents = "auto";
 });
 
 // const likePhotos = document.querySelectorAll(".pLikes");
