@@ -74,13 +74,13 @@ header p {
 }
 
 .filter {
-  position: relative;
   display: flex;
   align-items: center;
   gap: 30px;
   width: 25vw;
   height: 5vh;
   margin: 2vh 9.5vw;
+  position: relative;
 }
 .filter p {
   font-size: 20px;
@@ -88,18 +88,78 @@ header p {
 }
 .filter button {
   background: #901C1C;
-  padding: 20px;
   color: white;
   font-size: 20px;
   border-radius: 5px;
+  border: none;
+  width: 8vw;
+  height: 6vh;
+  cursor: pointer;
+  position: relative;
+}
+.filter button p {
+  font-family: dm sans;
+  font-weight: normal;
+  position: absolute;
+  top: 28%;
+  left: 8%;
+  font-size: 125%;
+}
+.filter button i {
+  position: absolute;
+  top: 35%;
+  left: 70%;
+  font-size: 110%;
+}
+.filter button:hover {
+  background: #D3573C;
 }
 .filter .down {
   display: none;
+}
+.filter .specs {
+  border-radius: 10px;
+}
+.filter ul {
+  transform: translateY(31%);
+  width: 8vw;
+  position: relative;
+}
+.filter li {
+  cursor: pointer;
+  list-style-type: none;
+  background: #901C1C;
+  padding: 20px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 155%;
+}
+.filter li p {
+  font-weight: normal;
+}
+.filter li:hover {
+  background: #D3573C;
+}
+.filter hr {
+  color: #901C1C;
+  background: #901C1C;
 }
 .filter i {
   color: white;
   font-size: 20px;
   margin-left: 25px;
+}
+.filter .popularity {
+  position: relative;
+}
+.filter .popularity i {
+  position: absolute;
+  font-size: 95%;
+  top: 40%;
+  left: 70%;
 }
 
 .photographer_section {
@@ -113,14 +173,16 @@ header p {
 }
 
 .grid-div img {
-  width: 300px;
-  height: 400px;
+  width: 20vw;
+  height: 30vh;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 5px;
 }
 .grid-div video {
-  width: 100%;
-  height: 400px;
+  width: 20vw;
+  height: 30vh;
+  border-radius: 5px;
 }
 
 .global-container {
@@ -129,7 +191,7 @@ header p {
   justify-content: space-between;
   color: #901C1C;
   font-size: 24px;
-  width: 300px;
+  width: 20vw;
 }
 
 .description-grid2 {
@@ -161,9 +223,9 @@ header p {
   justify-content: space-between;
   align-items: center;
   padding: 0 2vw;
-  font-size: 28px;
-  height: 10%;
-  width: 20%;
+  font-size: 220%;
+  height: 8vh;
+  width: 15vw;
   bottom: 0;
   right: 5%;
   border-radius: 10px 10px 0 0;
@@ -175,6 +237,7 @@ header p {
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;

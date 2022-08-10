@@ -3,12 +3,12 @@ import { mediaPhotographerFactory } from "../factories/mediaFactory.js";
 import { titlesPhotographerFactory } from "../factories/titlesFactory.js";
 
 const photoSection = document.querySelector(".photographer_section");
-const gridDiv = document.querySelectorAll(".grid-div ");
-const description = document.querySelectorAll(".description-grid");
-const pTitle = document.querySelectorAll(".pTitle");
 const fullList = document.querySelector("ul");
-
-
+const listedItems = document.querySelectorAll("li");
+const boutonFiltre = document.querySelector(".filter-button");
+const popularity = document.querySelector(".popularity");
+const date = document.querySelector(".date");
+const title = document.querySelector(".title");
 
 
 
@@ -81,10 +81,7 @@ async function getPhotographersMedia() {
       
       console.log(data);
       photographersMedia = data.media;
-      //push each date for each media in the array
-      
-
-    
+  
     })
     .catch((error) => {
       console.log(error);
@@ -106,12 +103,12 @@ async function getPhotographersDate() {
         //search parameter in the url
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get("id");
-        console.log(id);
+       
         //get the media related to the photographer
         const photographerMedia = data.media.filter((photographerMedia) => {
           return photographerMedia.photographerId == id;
         });
-        console.log(photographerMedia);
+       
         //create an array with all the dates of the media
         const photographersDateArray = photographerMedia.map((photographerMedia) => {
           return photographerMedia.date;
@@ -120,9 +117,9 @@ async function getPhotographersDate() {
         console.log(photographersDateArray);
 
         //SORT THE PHOTOS BY DATE
-        fullList.children[1].addEventListener("click", (e) => {
+        fullList.children[2].addEventListener("click", (e) => {
           e.preventDefault();
-          console.log("click");
+          
           const dateInvisible = document.querySelectorAll(".invisibleDate");
     
 
@@ -134,6 +131,9 @@ for (let index = 0; index < photoSection.children.length; index++) {
     
   }
 }
+fullList.classList.toggle("down");
+boutonFiltre.innerHTML = `<p>Date</p> <i class="fa-solid fa-chevron-down"></i>`;
+boutonFiltre.style.display = "block";
 
 
         });
@@ -168,8 +168,7 @@ async function displayMedia(photographersMedia) {
     return photographerMedia.photographerId == id;
   }
   );
-  console.log(photographerMedia);
-  console.log(photographerMedia[1].title);
+  
   //make an array with all images contained in photographerMedia
   const photographersMediaArray = photographerMedia.map((photographerMedia) => {
    if (photographerMedia.image) {
@@ -181,7 +180,7 @@ async function displayMedia(photographersMedia) {
     // return photographerMedia.image  
   }
   );
-  console.log(photographersMediaArray);
+
 
 
   const photographersTitleArray = photographerMedia.map((photographerMedia) => {
@@ -193,7 +192,7 @@ async function displayMedia(photographersMedia) {
   }
   );
 
- console.log(photographersTitleArray);
+ 
 
  
  
@@ -223,26 +222,38 @@ lastInit();
 
 
 
-//add event listener on filter pannel
-const boutonFilter = document.querySelector(".filter-button");
-boutonFilter.addEventListener("click", (e) => {
+//add event listener on FILTER pannel
+
+boutonFiltre.addEventListener("click", (e) => {
   e.preventDefault();
-  const listedItems = document.querySelectorAll("li");
-  const down = document.querySelector("ul");
+
   
-  down.classList.toggle("down");
+  boutonFiltre.style.display = "none";
+
+ //change innerHTML of popularity to "Popularity"
+  popularity.innerHTML = `Popularité <i class="fa-solid fa-chevron-up"></i>`;
+ 
+  fullList.classList.toggle("down");
+
+  
+
+
+
+
 }
   );
 
  
   
-  //change the order of the grid items
+  
+//change the order of the grid items
   //add event listener on the third child of the fullList 
 
   fullList.children[0].addEventListener("click", (e) => {
     e.preventDefault();
 
     const likeCount = document.querySelectorAll(".pLikes");
+    console.log(likeCount);
     const likeCountArray = Array.from(likeCount);
     console.log(likeCountArray);
 
@@ -251,7 +262,7 @@ boutonFilter.addEventListener("click", (e) => {
     }
     );
 
-    const likeCountArraySorted = likeCountArrayInt.sort((a, b) => a - b);
+    const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
     console.log(likeCountArraySorted);
     
     for (let index = 0; index < photoSection.children.length; index++) {
@@ -262,54 +273,103 @@ boutonFilter.addEventListener("click", (e) => {
         
       }
     }
-
+    
+    fullList.classList.toggle("down");
+    boutonFiltre.innerHTML = `<p>Popularité</p> <i class="fa-solid fa-chevron-down"></i>`;
+    boutonFiltre.style.display = "block";
   }
   );
 
-  // async function orderGrid {}
-  let pLikes = document.querySelectorAll(".pLikes");
-  let pLikesArray = Array.from(pLikes);
-  console.log(pLikesArray);
+
+console.log(fullList.children);
+
+  //Listener for TITLE of photos
+  fullList.children[4].addEventListener("click", (e) => {
+    e.preventDefault();
+   
+    const mediaTitle = document.querySelectorAll(".pTitle");
+    const mediaTitleArray = [];     
+    
+   
+    mediaTitle.forEach((mediaTitle) => {
+      //push the title of each media in an array
+      mediaTitleArray.push(mediaTitle.innerText);
+    });
+
+    //sort the array by title
+    mediaTitleArray.sort((a, b) => {
+      if (a < b) {
+        return -1;
+      }
+      if (a > b) {
+        return 1;
+      }
+      return 0;
+    }
+    );
+  
+    //change the order of the grid items following its  title position in the mediaTitleArray
+  
   
 
-    fullList.children[2].addEventListener("click", (e) => {
-      e.preventDefault();
-     
-      const mediaTitle = document.querySelectorAll(".pTitle");
-      const mediaTitleArray = [];     
-      
-      console.log(photoSection.children);
-      console.log(mediaTitle[2]);
-      mediaTitle.forEach((mediaTitle) => {
-        //push the title of each media in an array
-        mediaTitleArray.push(mediaTitle.innerText);
-      });
-      console.log(mediaTitleArray);
-      //sort the array by title
-      mediaTitleArray.sort((a, b) => {
-        if (a < b) {
-          return -1;
+    for (let index = 0; index < photoSection.children.length; index++) {
+      for (let j = 0; j < mediaTitleArray.length; j++) {
+        if (mediaTitleArray[index] == mediaTitle[j].innerText) {
+          photoSection.children[j].style.order = index;
         }
-        if (a > b) {
-          return 1;
-        }
-        return 0;
+        
       }
-      );
-      console.log(mediaTitleArray);
-      //change the order of the grid items following its  title position in the mediaTitleArray
+    }
+
+    fullList.classList.toggle("down");
+    boutonFiltre.innerHTML = `<p>Titre</p> <i class="fa-solid fa-chevron-down"></i>`;
+    boutonFiltre.style.display = "block";
+   
+  });
+
+  // async function orderGrid() {
+  // let pLikes = document.querySelectorAll(".pLikes");
+  // let pLikesArray = Array.from(pLikes);
+  // console.log(pLikes);
+  // console.log(pLikesArray);
+
+  // const pTitle = document.querySelectorAll(".pTitle");
+  // const pTitleArray = Array.from(pTitle);
+  // console.log(pTitle);
+
+  // const images = document.querySelectorAll("image");
+  // console.log(images);
+
+  // const titreSite = document.getElementsByClassName("name");
+  // console.log(titreSite[0]);
+  // }
+  // orderGrid();
+
+
+
+  
+
+   
+const likede = document.getElementsByClassName("pLikes");
+console.log(likede);
+//log each individual like count
+
+
+
+
+    /// CONTACT FORM MODAL
+    const contactButton = document.querySelector(".contact_button");
+    const contactModal = document.querySelector("#contact_modal");
     
-      console.log(photoSection.children);
-
-      for (let index = 0; index < photoSection.children.length; index++) {
-        for (let j = 0; j < mediaTitleArray.length; j++) {
-          if (mediaTitleArray[index] == mediaTitle[j].innerText) {
-            photoSection.children[j].style.order = index;
-          }
-          
-        }
-      }
-
-
+    contactButton.addEventListener("click", (e) => {
+      e.preventDefault();
+      console.log("click");
+      // modal.style.display = "block";
+      //toggle class active on the modal
+      
+      contactModal.style.display = "block";
      
-    });
+    }
+    );
+
+   

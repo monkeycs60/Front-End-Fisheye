@@ -36,7 +36,12 @@
     
   }
 
+const gridDiv = document.querySelectorAll(".grid-div");
+const gridDivArray = Array.from(gridDiv);
+console.log(gridDivArray[1]);
 
+const desc = document.querySelectorAll(".description-grid2");
+console.log(desc);
 
   //log the like count of each ima
   
