@@ -29,6 +29,7 @@ header p {
 
 #contact_modal {
   display: none;
+  position: relative;
 }
 
 .photograph-header {
@@ -98,7 +99,7 @@ header p {
   position: relative;
 }
 .filter button p {
-  font-family: dm sans;
+  font-family: "DM Sans", sans-serif;
   font-weight: normal;
   position: absolute;
   top: 28%;
@@ -237,13 +238,18 @@ header p {
   border-radius: 5px;
   background-color: #db8876;
   width: 50%;
-  height: 40vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   padding: 35px;
   margin: auto;
+  margin-top: 5vh;
+  position: fixed;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, -15%);
+  z-index: 3;
 }
 
 .modal header {
@@ -271,6 +277,7 @@ form {
 form label {
   color: #312e2e;
   font-size: 36px;
+  margin-top: 2vh;
 }
 
 form div {
@@ -286,6 +293,14 @@ form input {
   height: 68px;
   border: none;
   border-radius: 5px;
+}
+
+.textmessage {
+  height: 15vh;
+}
+
+.center_button {
+  transform: none;
 }
 
 /* éléments JS */

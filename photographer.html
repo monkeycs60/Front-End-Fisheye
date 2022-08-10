@@ -1,79 +1,96 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-  <meta charset="utf-8">
-  <link rel="icon" type="image/ico" href="assets/favicon.ico">
-  <script src="https://kit.fontawesome.com/de1681bd68.js" crossorigin="anonymous"></script>
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-  <title>Fisheye - photographe </title>
-</head>
+<div class="page-container">
 
-<body>
-  <header>
-    <a href="./index.html" tabindex="-1" aria-label="lien vers la page d'accueil">
-      <p>Lien vers la page d'accueil</p>
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" tabindex="0" />
-    </a>
-  </header>
+  <head>
+    <link href="css/photographer.css" rel="stylesheet" type="text/css" />
+    <meta charset="utf-8">
+    <link rel="icon" type="image/ico" href="assets/favicon.ico">
+    <script src="https://kit.fontawesome.com/de1681bd68.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <title>Fisheye - photographe </title>
+  </head>
 
-  <div class="sticky"></div>
+  <body>
+    <header>
+      <a href="./index.html" tabindex="-1" aria-label="lien vers la page d'accueil">
+        <p>Lien vers la page d'accueil</p>
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" tabindex="0" />
+      </a>
+    </header>
 
-  <main id="main">
+    <div class="sticky"></div>
 
-
-    <div class="photograph-header">
-      <button class="contact_button">Contactez-moi</button>
-    </div>
+    <main id="main">
 
 
-    <div class="filter">
-      <p>Trier par</p>
-
-
-      <div class="filter-section">
-        <button class="filter-button">
-          <p class="filter-text-button">Popularité</p> 
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <ul class="specs down">
-          <li class="popularity" tabindex="0">Popularité</li>
-          <hr>
-          <li class="date" tabindex="0">Date</li>
-          <hr>
-          <li class="title" tabindex="0">Titre</li>
-        </ul>
-       
+      <div class="photograph-header">
+        <button class="contact_button">Contactez-moi</button>
       </div>
-    </div>
-
-    <div class="photographer_section">
-    </div>
 
 
-  </main>
+      <div class="filter">
+        <p>Trier par</p>
 
 
+        <div class="filter-section">
+          <button class="filter-button">
+            <p class="filter-text-button">Popularité</p>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <ul class="specs down">
+            <li class="popularity" tabindex="0">Popularité</li>
+            <hr>
+            <li class="date" tabindex="0">Date</li>
+            <hr>
+            <li class="title" tabindex="0">Titre</li>
+          </ul>
 
-
-  <div id="contact_modal">
-    <div class="modal">
-      <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" alt="close cross" aria-label="close the form" />
-      </header>
-      <form>
-        <div>
-          <label>Prénom</label>
-          <input aria-label="first name field" />
         </div>
-        <button class="contact_button">Envoyer</button>
-      </form>
-    </div>
+      </div>
+
+      <div class="photographer_section">
+      </div>
+
+
+    </main>
+</div>
+
+
+
+<div id="contact_modal">
+  <div class="modal">
+    <header>
+      <h2>Contactez-moi</h2>
+      <img class="close-cross" src="assets/icons/close.svg" alt="close cross" aria-label="close the form" />
+    </header>
+    <form>
+      <div>
+
+        <label>Prénom</label>
+        <input aria-label="first name field" />
+
+        <label>Nom</label>
+        <input aria-label="last name field" />
+
+        <label>Email</label>
+        <input aria-label="email field" />
+
+        <label>Votre message</label>
+
+        <!-- <textarea aria-label="message field" rows="10" cols="150"></textarea> -->
+        <input class="textmessage" aria-label="email field" />
+
+
+
+      </div>
+      <button class="contact_button center_button">Envoyer</button>
+    </form>
   </div>
-  <script type="module" src="/Front-End-Fisheye/scripts/pages/photographer.js"></script>
-  <!-- <script src="/scripts/utils/contactForm.js"></script> -->
+</div>
+<script type="module" src="/Front-End-Fisheye/scripts/pages/photographer.js"></script>
+<!-- <script src="/scripts/utils/contactForm.js"></script> -->
 </body>
 
 </html>
