@@ -184,6 +184,8 @@ header p {
   width: 20vw;
   height: 30vh;
   border-radius: 5px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .global-container {
@@ -317,4 +319,66 @@ form input {
 
 .tagline {
   font-size: 18px;
+}
+
+.errorClass {
+  color: rgb(139, 27, 27);
+  font-size: 20px;
+}
+
+#lightbox-container {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  z-index: 5;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.lightbox-content {
+  margin: auto;
+  width: 90%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.fa-xmark {
+  position: absolute;
+  top: 10%;
+  right: 6%;
+  font-size: 70px;
+  color: #901C1C;
+}
+
+.lightbox-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 70%;
+  height: 80%;
+}
+.lightbox-image img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.chevron {
+  width: 15%;
+  background: white;
+  font-size: 70px;
+  color: #901C1C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }/*# sourceMappingURL=photographer.css.map */
