@@ -125,8 +125,9 @@ export function titlesPhotographerFactory(data) {
         chevronLeft.addEventListener("click", (e) => {
           e.preventDefault();
          //get img data order
-          console.log(document.querySelectorAll(".grid-div").dataset.order);
-          c
+         
+         const imgLightbox = document.querySelector("article img[data-order]");
+         console.log(imgLightbox);
 
 
 
