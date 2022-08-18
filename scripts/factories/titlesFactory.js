@@ -116,24 +116,29 @@ export function titlesPhotographerFactory(data) {
         // const nextImage = e.target.parentNode.nextSibling.children[0].src;
         let compteur = 0;
         let currentImg = img.dataset.order;
+        console.log(typeof currentImg);
         console.log(currentImg);
-        let previousImg = document.querySelector(`article img[data-order="${currentImg - 1}"]`);
-        let nextImg = document.querySelector(`article img[data-order="${parseInt(currentImg) + 1}"]`);
+        let nextPosition = parseInt(currentImg) + 1;
+        let previousPosition = parseInt(currentImg) - 1;
+        let nextImg = document.querySelector(`article img[data-order="${nextPosition}"]`);
+        let previousImg = document.querySelector(`article img[data-order="${previousPosition}"]`);
         console.log(nextImg);
-       //parseInt(currentImg) + 1;
+        console.log(previousImg);
+       
        
         const imageActuelle = document.querySelector("#lightboxImage");
-       
+        const longueurTableau = document.querySelectorAll("article img").length;
+        console.log(longueurTableau);
 
         // addevent listener to chevron left to see previous image
         chevronLeft.addEventListener("click", (e) => {
           e.preventDefault();
-        
+        console.log(`compteur fonction descendante : ${compteur}`);
 
 
           if (compteur > 0) {
         
-            currentImg = currentImg - compteur;
+            // currentImg = currentImg - compteur;
             console.log(currentImg);
             console.log(img.src);
             
@@ -142,60 +147,64 @@ export function titlesPhotographerFactory(data) {
             
             console.log(document.querySelector("#lightboxImage"));
             
-            imageActuelle.src = document.querySelector(`article img[data-order="${currentImg - 1}"]`).src
+            imageActuelle.src = document.querySelector(`article img[data-order="${previousPosition - compteur}"]`).src
             // imageActuelle.src = previousImg.src;
            
           } else {
 
-            const previousImg = document.querySelector(`article img[data-order="${currentImg - 1}"]`);
-            console.log(previousImg);
+            const imagePrecedente = document.querySelector(`article img[data-order="${previousPosition}"]`);
+            console.log(imagePrecedente);
             
-            imageActuelle.src = previousImg.src;
-            // currentImg = currentImg - 1;
-            // console.log(currentImg);
+            imageActuelle.src = imagePrecedente.src; 
 
       }
-
+       if (compteur >= 0 && compteur <= longueurTableau - 1) {
         compteur++;
-        console.log(compteur);
-
+       } else {
+        compteur = 0;
+       }
+       
         });
 
 
+        
           //addevent listener to chevron right to see next image
           chevronRight.addEventListener("click", (e) => {
             e.preventDefault();
-           
-            if (compteur > 0) {
-        
-              currentImg = parseInt(currentImg) + compteur;
+            console.log(`compteur fonction ascendante : ${compteur}`);
 
+            if (compteur == 0) {
+              imageActuelle.src = nextImg.src;
+            } else if (compteur <= longueurTableau - 1) {
+              // currentImg = currentImg - compteur;
               console.log(currentImg);
               console.log(img.src);
               
               //find the img with the data-order equal to the currentImg - 1
               console.log(previousImg);
-              console.log(parseInt(currentImg) + 1);
               
               console.log(document.querySelector("#lightboxImage"));
-              //change article img [data-order] to parseInt(currentImg) + 1
               
-              console.log(document.querySelector(`article img[data-order="${(currentImg)}"]`));
-              // imageActuelle.src = document.querySelector(`article img[data-order="${currentImg + 1}"]`).src
-              imageActuelle.src = document.querySelector(`article img[data-order="${parseInt(currentImg) + 1}"]`).src
-              console.log(nextImg);             
+              imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src
+              // imageActuelle.src = previousImg.src;
+             
             } else {
   
-              console.log(previousImg);
+              const imagePrecedente = document.querySelector(`article img[data-order="${nextPosition}"]`);
+              console.log(imagePrecedente);
               
-              imageActuelle.src = nextImg.src;
-              // currentImg = currentImg - 1;
-              // console.log(currentImg);
+              imageActuelle.src = imagePrecedente.src; 
   
         }
-  
+
+        if (compteur >= 0 && compteur <= longueurTableau - 1) {
           compteur++;
-          console.log(compteur);
+         } else {
+          compteur = 0;
+         }
+//if img dataset order is max, then go to the first img
+         
+          
           });
 
 
