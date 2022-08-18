@@ -22,8 +22,8 @@ export function photographerFactory(data) {
         link.setAttribute("aria-label", `${name}`);
         link.setAttribute("role", "link");
         //redirection dynamique sur la page de la photographe
-        // link.setAttribute("href", `/photographer.html?id=${id}`);
-        link.setAttribute("href", `/Front-End-Fisheye/photographer.html?id=${id}`);
+        // link.setAttribute("href", `/Front-End-Fisheye/photographer.html?id=${id}`);
+        link.setAttribute("href", `./../../photographer.html?id=${id}`);
 
         
         article.appendChild(link);

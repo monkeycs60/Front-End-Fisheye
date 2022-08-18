@@ -4,8 +4,8 @@
     // const { image, video } = data;
     // console.log(image, video, data[0].image);
    
-   console.log(data);
-   console.log(`/Front-End-Fisheye/assets/SamplePhotos/${data}`);
+   // console.log(data);
+   // console.log(`/Front-End-Fisheye/assets/SamplePhotos/${data}`);
 
 
    //for each data create a new img element
@@ -21,19 +21,17 @@
      //if data contains .mp4 in its title, create a video element
     if (data[index].includes(".mp4")) {
         const video = document.createElement("video");
-        // video.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
-        video.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
+  
+      //   video.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
+        video.setAttribute("src", `./../../assets/SamplePhotos/${data[index]}`);
         // video.setAttribute("controls", "controls");
-        
-        
-
-
         article.appendChild(video);
     }
      else {
          const img = document.createElement("img");
       // img.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
-      img.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
+      // img.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
+      img.setAttribute("src", `./../../assets/SamplePhotos/${data[index]}`);
       img.setAttribute("alt", `cool`);
       article.appendChild(img);
      }

@@ -12,7 +12,8 @@ const title = document.querySelector(".title");
 
 async function getPhotographers() {
   let photographers = [];
-  await fetch("/Front-End-Fisheye/data/photographers.json")
+  // await fetch("/Front-End-Fisheye/data/photographers.json")
+  await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
@@ -69,7 +70,8 @@ init();
 async function getPhotographersMedia() {
   let photographersMedia = [];
 
-  await fetch("/Front-End-Fisheye/data/photographers.json")
+  // await fetch("/Front-End-Fisheye/data/photographers.json")
+  await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -86,7 +88,8 @@ async function getPhotographersMedia() {
 
 async function getPhotographersDate() {
   let photographersDate = [];
-  await fetch("/Front-End-Fisheye/data/photographers.json")
+  // await fetch("/Front-End-Fisheye/data/photographers.json")
+  await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
       //filter the media array to get only the media related to the photographer
@@ -106,7 +109,7 @@ async function getPhotographersDate() {
           return photographerMedia.date;
         }
       );
-      console.log(photographersDateArray);
+    
 
       //SORT THE PHOTOS BY DATE
       fullList.children[2].addEventListener("click", (e) => {
@@ -192,9 +195,8 @@ async function displayMedia(photographersMedia) {
     photographerTitlesGallery.createTitlesFromArray();
 
   const likeCount = document.querySelectorAll(".pLikes");
-  console.log(likeCount);
   const likeCountArray = Array.from(likeCount);
-  console.log(likeCountArray);
+ 
 
   const likeCountArrayInt = likeCountArray.map((likeCount) => {
     return parseInt(likeCount.textContent);

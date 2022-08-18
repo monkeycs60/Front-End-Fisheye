@@ -5,7 +5,8 @@ import { photographerFactory } from "../factories/photographer.js";
   // Penser à remplacer par les données récupérées dans le json
 
   let photographers = [];
-  await fetch("/Front-End-Fisheye/data/photographers.json")
+  // await fetch("/Front-End-Fisheye/data/photographers.json")
+  await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
   

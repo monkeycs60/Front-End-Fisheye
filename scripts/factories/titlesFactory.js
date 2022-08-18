@@ -76,12 +76,7 @@ export function titlesPhotographerFactory(data) {
     const imgTitle = document.querySelectorAll(".pTitle");
     console.log(imgTitle);
 
-    //display dataset of the first img
-    img[0].dataset.lightbox = "true";
-    img[0].dataset.index = "0";
-    console.log(img[0].dataset.index);
-
-
+  
 
     //add event listener to each img
     img.forEach((img) => {
@@ -89,6 +84,7 @@ export function titlesPhotographerFactory(data) {
         e.preventDefault();
 
         window.scrollTo(0, 0);
+
 
         //create a const for html
         const wholeDocument = document.querySelector("html");
@@ -118,33 +114,88 @@ export function titlesPhotographerFactory(data) {
 
         // const previousImage = e.target.parentNode.previousSibling.children[0].src;
         // const nextImage = e.target.parentNode.nextSibling.children[0].src;
-
+        let compteur = 0;
+        let currentImg = img.dataset.order;
+        console.log(currentImg);
+        let previousImg = document.querySelector(`article img[data-order="${currentImg - 1}"]`);
+        let nextImg = document.querySelector(`article img[data-order="${parseInt(currentImg) + 1}"]`);
+        console.log(nextImg);
+       //parseInt(currentImg) + 1;
+       
+        const imageActuelle = document.querySelector("#lightboxImage");
        
 
         // addevent listener to chevron left to see previous image
         chevronLeft.addEventListener("click", (e) => {
           e.preventDefault();
-         //get img data order
-         
-         const imgLightbox = document.querySelector("article img[data-order]");
-         console.log(imgLightbox);
+        
 
 
+          if (compteur > 0) {
+        
+            currentImg = currentImg - compteur;
+            console.log(currentImg);
+            console.log(img.src);
+            
+            //find the img with the data-order equal to the currentImg - 1
+            console.log(previousImg);
+            
+            console.log(document.querySelector("#lightboxImage"));
+            
+            imageActuelle.src = document.querySelector(`article img[data-order="${currentImg - 1}"]`).src
+            // imageActuelle.src = previousImg.src;
+           
+          } else {
 
+            const previousImg = document.querySelector(`article img[data-order="${currentImg - 1}"]`);
+            console.log(previousImg);
+            
+            imageActuelle.src = previousImg.src;
+            // currentImg = currentImg - 1;
+            // console.log(currentImg);
 
-          // if (e.target.parentNode.previousSibling.src) {
-          //   lightboxImage.src = e.target.parentNode.previousSibling.src;
-          // } else {
-          //   lightboxImage.src = e.target.parentNode.nextSibling.src;
-          // }
+      }
+
+        compteur++;
+        console.log(compteur);
+
         });
 
 
           //addevent listener to chevron right to see next image
           chevronRight.addEventListener("click", (e) => {
             e.preventDefault();
-            console.log(nextImage);
-            lightboxImage.src = nextImage;
+           
+            if (compteur > 0) {
+        
+              currentImg = parseInt(currentImg) + compteur;
+
+              console.log(currentImg);
+              console.log(img.src);
+              
+              //find the img with the data-order equal to the currentImg - 1
+              console.log(previousImg);
+              console.log(parseInt(currentImg) + 1);
+              
+              console.log(document.querySelector("#lightboxImage"));
+              //change article img [data-order] to parseInt(currentImg) + 1
+              
+              console.log(document.querySelector(`article img[data-order="${(currentImg)}"]`));
+              // imageActuelle.src = document.querySelector(`article img[data-order="${currentImg + 1}"]`).src
+              imageActuelle.src = document.querySelector(`article img[data-order="${parseInt(currentImg) + 1}"]`).src
+              console.log(nextImg);             
+            } else {
+  
+              console.log(previousImg);
+              
+              imageActuelle.src = nextImg.src;
+              // currentImg = currentImg - 1;
+              // console.log(currentImg);
+  
+        }
+  
+          compteur++;
+          console.log(compteur);
           });
 
 
