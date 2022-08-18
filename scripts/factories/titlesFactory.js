@@ -76,6 +76,7 @@ export function titlesPhotographerFactory(data) {
     const imgTitle = document.querySelectorAll(".pTitle");
     console.log(imgTitle);
 
+
     //add event listener to each img
     img.forEach((img) => {
       img.addEventListener("click", (e) => {
@@ -97,50 +98,66 @@ export function titlesPhotographerFactory(data) {
 
         //make lightbox visible
         lightboxContainer.style.display = "flex";
-        console.log(e.target.src);
+        
 
-        console.log(lightboxImage);
         //set the src of the lightboxImage to the src of the img that was clicked
         lightboxImage.src = e.target.src;
 
-       //log voisin of e.target
-       console.log(e.target.parentNode.previousSibling);
-        console.log(e.target.parentNode.previousSibling.children[0].src);
-     const previousImage = e.target.parentNode.previousSibling.children[0].src;
-      const nextImage = e.target.parentNode.nextSibling.children[0].src;
+        //sort the photos following their style order
+        
+    
 
+        const allArticles = document.querySelectorAll("article");
+
+
+console.log(document.querySelector("article img").style);
+        const ordered = e.target.style.order;
+        console.log(allArticles);
+        console.log(allArticles[3].outerHTML);
+//if allarticles contains the text "cat" then do this
+        if (allArticles[0].outerHTML.includes(`style="order: 0;"`)) {
+
+          console.log("cat");
+        } else {
+          console.log("not cat");
+        }
+      
+
+
+
+      
+
+        // const previousImage = e.target.parentNode.previousSibling.children[0].src;
+        // const nextImage = e.target.parentNode.nextSibling.children[0].src;
+
+       
 
         //addevent listener to chevron left to see previous image
-        chevronLeft.addEventListener("click", (e) => {
-          e.preventDefault();
-          console.log(previousImage);
-          lightboxImage.src = previousImage;
-          
-          // if (e.target.parentNode.previousSibling.src) {
-          //   lightboxImage.src = e.target.parentNode.previousSibling.src;
-          // } else {
-          //   lightboxImage.src = e.target.parentNode.nextSibling.src;
-          // }
-        }),
-          //addevent listener to chevron right to see next image
-          chevronRight.addEventListener("click", (e) => {
-            e.preventDefault();
-            console.log(nextImage);
-            lightboxImage.src = nextImage;
-          }),
+        // chevronLeft.addEventListener("click", (e) => {
+        //   e.preventDefault();
+        //   console.log(previousImage);
+        //   lightboxImage.src = previousImage;
 
-
-
-
-
-        //add event listener to closeCross
-        closeCross.addEventListener("click", () => {
-          //make lightbox invisible
-          lightboxContainer.style.display = "none";
-          //impeed scroll, focus on the page
-          wholeDocument.style.overflowY = "scroll";
-          wholeDocument.style.overflowX = "scroll";
-        } );
+        //   // if (e.target.parentNode.previousSibling.src) {
+        //   //   lightboxImage.src = e.target.parentNode.previousSibling.src;
+        //   // } else {
+        //   //   lightboxImage.src = e.target.parentNode.nextSibling.src;
+        //   // }
+        // }),
+        //   //addevent listener to chevron right to see next image
+        //   chevronRight.addEventListener("click", (e) => {
+        //     e.preventDefault();
+        //     console.log(nextImage);
+        //     lightboxImage.src = nextImage;
+        //   }),
+          //add event listener to closeCross
+          closeCross.addEventListener("click", () => {
+            //make lightbox invisible
+            lightboxContainer.style.display = "none";
+            //impeed scroll, focus on the page
+            wholeDocument.style.overflowY = "scroll";
+            wholeDocument.style.overflowX = "scroll";
+          });
       });
     });
   }

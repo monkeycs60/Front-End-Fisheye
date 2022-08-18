@@ -261,9 +261,10 @@ fullList.children[0].addEventListener("click", (e) => {
   fullList.classList.toggle("down");
   boutonFiltre.innerHTML = `<p>Popularité</p> <i class="fa-solid fa-chevron-down"></i>`;
   boutonFiltre.style.display = "block";
+
 });
 
-console.log(fullList.children);
+
 
 //Listener for TITLE of photos
 fullList.children[4].addEventListener("click", (e) => {
