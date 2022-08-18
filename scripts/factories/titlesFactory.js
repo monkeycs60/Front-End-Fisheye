@@ -76,6 +76,12 @@ export function titlesPhotographerFactory(data) {
     const imgTitle = document.querySelectorAll(".pTitle");
     console.log(imgTitle);
 
+    //display dataset of the first img
+    img[0].dataset.lightbox = "true";
+    img[0].dataset.index = "0";
+    console.log(img[0].dataset.index);
+
+
 
     //add event listener to each img
     img.forEach((img) => {
@@ -110,46 +116,38 @@ export function titlesPhotographerFactory(data) {
         const allArticles = document.querySelectorAll("article");
 
 
-console.log(document.querySelector("article img").style);
-        const ordered = e.target.style.order;
-        console.log(allArticles);
-        console.log(allArticles[3].outerHTML);
-//if allarticles contains the text "cat" then do this
-        if (allArticles[0].outerHTML.includes(`style="order: 0;"`)) {
-
-          console.log("cat");
-        } else {
-          console.log("not cat");
-        }
-      
-
-
-
-      
-
         // const previousImage = e.target.parentNode.previousSibling.children[0].src;
         // const nextImage = e.target.parentNode.nextSibling.children[0].src;
 
        
 
-        //addevent listener to chevron left to see previous image
-        // chevronLeft.addEventListener("click", (e) => {
-        //   e.preventDefault();
-        //   console.log(previousImage);
-        //   lightboxImage.src = previousImage;
+        // addevent listener to chevron left to see previous image
+        chevronLeft.addEventListener("click", (e) => {
+          e.preventDefault();
+         //get img data order
+          console.log(document.querySelectorAll(".grid-div").dataset.order);
+          c
 
-        //   // if (e.target.parentNode.previousSibling.src) {
-        //   //   lightboxImage.src = e.target.parentNode.previousSibling.src;
-        //   // } else {
-        //   //   lightboxImage.src = e.target.parentNode.nextSibling.src;
-        //   // }
-        // }),
-        //   //addevent listener to chevron right to see next image
-        //   chevronRight.addEventListener("click", (e) => {
-        //     e.preventDefault();
-        //     console.log(nextImage);
-        //     lightboxImage.src = nextImage;
-        //   }),
+
+
+
+          // if (e.target.parentNode.previousSibling.src) {
+          //   lightboxImage.src = e.target.parentNode.previousSibling.src;
+          // } else {
+          //   lightboxImage.src = e.target.parentNode.nextSibling.src;
+          // }
+        });
+
+
+          //addevent listener to chevron right to see next image
+          chevronRight.addEventListener("click", (e) => {
+            e.preventDefault();
+            console.log(nextImage);
+            lightboxImage.src = nextImage;
+          });
+
+
+
           //add event listener to closeCross
           closeCross.addEventListener("click", () => {
             //make lightbox invisible

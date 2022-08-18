@@ -118,6 +118,12 @@ async function getPhotographersDate() {
           for (let j = 0; j < photographersDateArray.length; j++) {
             if (photographersDateArray[index] == dateInvisible[j].innerText) {
               photoSection.children[j].style.order = index;
+              console.log(photoSection.children[j]);
+              photoSection.children[j].dataset.order = index;
+              photoSection.children[j].children[0].dataset.order = index;
+              console.log(
+                `tri par date : ${photoSection.children[j].dataset.order}`
+              );
             }
           }
         }
@@ -137,11 +143,11 @@ async function getPhotographersDate() {
 }
 
 getPhotographersDate();
-function setTri() {
-  const photoLikes = document.querySelectorAll(".pLikes");
-  console.log(photoLikes);
-}
-setTri();
+// function setTri() {
+//   const photoLikes = document.querySelectorAll(".pLikes");
+//   console.log(photoLikes);
+// }
+// setTri();
 
 async function displayMedia(photographersMedia) {
   const photoSection = document.querySelector(".photographer_section");
@@ -185,9 +191,6 @@ async function displayMedia(photographersMedia) {
   const photographersTitlesDOM =
     photographerTitlesGallery.createTitlesFromArray();
 
-  //  const photosLike = document.querySelectorAll(".pLikes");
-  //  console.log(photosLike);
-
   const likeCount = document.querySelectorAll(".pLikes");
   console.log(likeCount);
   const likeCountArray = Array.from(likeCount);
@@ -204,6 +207,11 @@ async function displayMedia(photographersMedia) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
       if (likeCountArraySorted[index] == likeCount[j].innerText) {
         photoSection.children[j].style.order = index;
+        photoSection.children[j].dataset.order = index;
+        photoSection.children[j].children[0].dataset.order = index;
+        console.log(
+          `tri par likes : ${photoSection.children[j].dataset.order}`
+        );
       }
     }
   }
@@ -254,6 +262,12 @@ fullList.children[0].addEventListener("click", (e) => {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
       if (likeCountArraySorted[index] == likeCount[j].innerText) {
         photoSection.children[j].style.order = index;
+        console.log(photoSection.children[j]);
+        photoSection.children[j].dataset.order = index;
+        photoSection.children[j].children[0].dataset.order = index;
+        console.log(
+          `tri par likes : ${photoSection.children[j].dataset.order}`
+        );
       }
     }
   }
@@ -261,10 +275,7 @@ fullList.children[0].addEventListener("click", (e) => {
   fullList.classList.toggle("down");
   boutonFiltre.innerHTML = `<p>Popularité</p> <i class="fa-solid fa-chevron-down"></i>`;
   boutonFiltre.style.display = "block";
-
 });
-
-
 
 //Listener for TITLE of photos
 fullList.children[4].addEventListener("click", (e) => {
@@ -295,6 +306,12 @@ fullList.children[4].addEventListener("click", (e) => {
     for (let j = 0; j < mediaTitleArray.length; j++) {
       if (mediaTitleArray[index] == mediaTitle[j].innerText) {
         photoSection.children[j].style.order = index;
+        console.log(photoSection.children[j]);
+        photoSection.children[j].dataset.order = index;
+        photoSection.children[j].children[0].dataset.order = index;
+        console.log(
+          `tri par likes : ${photoSection.children[j].dataset.order}`
+        );
       }
     }
   }
@@ -304,8 +321,6 @@ fullList.children[4].addEventListener("click", (e) => {
   boutonFiltre.style.display = "block";
 });
 
-const likede = document.getElementsByClassName("pLikes");
-console.log(likede);
 //log each individual like count
 
 /// CONTACT FORM MODAL
@@ -470,10 +485,6 @@ contactButton.addEventListener("click", (e) => {
       validateEmail() &&
       validateMessage()
     ) {
-    
-
-     
-
       //take the url of the page
       let url = window.location.href;
       //split the url to get the id of the page
@@ -482,18 +493,17 @@ contactButton.addEventListener("click", (e) => {
 
       //change form action to the same page
       form.action = `${url}`;
-      
 
       console.log(`Prénom : ${surname.value}`);
       console.log(`Nom : ${name.value}`);
       console.log(`Email : ${mail.value}`);
       console.log(`Message : ${message.value}`);
-    
+
       // form.submit();
 
       closeModalContact();
 
-       //reset the form
+      //reset the form
       //set all borders to default
       surname.style.border = "3px solid #ccc";
       name.style.border = "3px solid #ccc";
@@ -504,7 +514,7 @@ contactButton.addEventListener("click", (e) => {
       email.value = "";
       message.value = "";
       form.reset();
-    } 
+    }
   });
 });
 
@@ -517,16 +527,3 @@ function closeModalContact() {
   contactModal.style.display = "none";
   document.querySelector(".page-container").style.pointerEvents = "auto";
 }
-
-
-//partie lightbox
-
-// window.onload = () => {
-//    const lightboxContainer = document.querySelector("#lightbox-container");
-//    const closeCross = document.querySelector(".close-cross");
-//    //create const for all img inside article
-//     const img = document.querySelectorAll("article img");
-//     console.log(img);
-//     console.log("hello");
-
-// }
