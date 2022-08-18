@@ -137,29 +137,19 @@ export function titlesPhotographerFactory(data) {
 
 
           if (compteur > 0) {
-        
-            // currentImg = currentImg - compteur;
-            console.log(currentImg);
-            console.log(img.src);
             
-            //find the img with the data-order equal to the currentImg - 1
-            console.log(previousImg);
-            
-            console.log(document.querySelector("#lightboxImage"));
-            
-            imageActuelle.src = document.querySelector(`article img[data-order="${previousPosition - compteur}"]`).src
+            imageActuelle.src = document.querySelector(`article img[data-order="${previousPosition - (-compteur)}"]`).src
             // imageActuelle.src = previousImg.src;
            
           } else {
 
-            const imagePrecedente = document.querySelector(`article img[data-order="${previousPosition}"]`);
-            console.log(imagePrecedente);
-            
+            const imagePrecedente = document.querySelector(`article img[data-order="${previousPosition}"]`);          
             imageActuelle.src = imagePrecedente.src; 
 
       }
        if (compteur >= 0 && compteur <= longueurTableau - 1) {
-        compteur++;
+        // compteur++;
+        compteur--;
        } else {
         compteur = 0;
        }
@@ -173,26 +163,22 @@ export function titlesPhotographerFactory(data) {
             e.preventDefault();
             console.log(`compteur fonction ascendante : ${compteur}`);
 
-            if (compteur == 0) {
+            if (img.dataset.order == longueurTableau) {
+              imageActuelle.src = document.querySelector(`article img[data-order="1"]`).src
+              compteur = 0;
+            } else if (compteur == 0) {
               imageActuelle.src = nextImg.src;
             } else if (compteur <= longueurTableau - 1) {
-              // currentImg = currentImg - compteur;
-              console.log(currentImg);
-              console.log(img.src);
+
               
               //find the img with the data-order equal to the currentImg - 1
-              console.log(previousImg);
-              
-              console.log(document.querySelector("#lightboxImage"));
               
               imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src
               // imageActuelle.src = previousImg.src;
              
             } else {
   
-              const imagePrecedente = document.querySelector(`article img[data-order="${nextPosition}"]`);
-              console.log(imagePrecedente);
-              
+              const imagePrecedente = document.querySelector(`article img[data-order="${nextPosition}"]`);             
               imageActuelle.src = imagePrecedente.src; 
   
         }
@@ -200,9 +186,14 @@ export function titlesPhotographerFactory(data) {
         if (compteur >= 0 && compteur <= longueurTableau - 1) {
           compteur++;
          } else {
-          compteur = 0;
-         }
-//if img dataset order is max, then go to the first img
+          // compteur = 0;
+        }
+
+
+
+
+
+console.log(compteur);
          
           
           });
@@ -216,6 +207,10 @@ export function titlesPhotographerFactory(data) {
             //impeed scroll, focus on the page
             wholeDocument.style.overflowY = "scroll";
             wholeDocument.style.overflowX = "scroll";
+
+            //reset the compteur
+            compteur = 0;
+
           });
       });
     });
