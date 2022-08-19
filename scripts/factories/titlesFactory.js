@@ -168,6 +168,13 @@ export function titlesPhotographerFactory(data) {
             
            console.log(parseInt(currentImg) + parseInt(compteur));
 
+
+
+           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+
+
           //create an array with all the element with data-order
           const allImages = document.querySelectorAll("article img");
           console.log(allImages);
@@ -179,15 +186,21 @@ export function titlesPhotographerFactory(data) {
             allImagesOrder.push(image.dataset.order);
           }
           );
-          console.log(allImagesOrder);
 
-          //classer les images dans un tableau suivant leur place dans le tableau allImagesOrder
-          const imagesOrdered = [];
-          allImagesOrder.forEach((order) => {
-            imagesOrdered.push(document.querySelector(`article img[data-order="${order}"]`));
+          
+          for (let index = 0; index < allImagesOrder.length; index++) {
+            //set data-position to the index of the array
+            allImages[index].dataset.position = index;
+            
           }
-          );
-          console.log(imagesOrdered);
+
+          ////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////
+          ////////////////////////////////////////////////////////////////
+       
+        
+          
 
 
           
