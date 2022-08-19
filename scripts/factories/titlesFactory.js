@@ -162,17 +162,43 @@ export function titlesPhotographerFactory(data) {
           chevronRight.addEventListener("click", (e) => {
             e.preventDefault();
             console.log(`compteur fonction ascendante : ${compteur}`);
+            console.log(currentImg);
+            console.log(document.querySelector(`article img[data-order="2"]`));
+            //add currentImg to compteur
+            
+           console.log(parseInt(currentImg) + parseInt(compteur));
 
-            if (img.dataset.order == longueurTableau) {
-              imageActuelle.src = document.querySelector(`article img[data-order="1"]`).src
-              compteur = 0;
+           //if 
+          
+           
+            if (parseInt(currentImg) + parseInt(compteur) == longueurTableau ) {
+              console.log("fin du carroussel");
+              imageActuelle.src = document.querySelector(`article img[data-order="0"]`).src
+              compteur = -1;
+              currentImg = 0;
+              nextPosition = 1;
+              console.log(currentImg);
+              console.log(nextPosition);
             } else if (compteur == 0) {
-              imageActuelle.src = nextImg.src;
+              console.log(nextPosition);
+              // console.log(nextImg.src);
+
+              console.log(`deuxième condition, addition next position et compteur bug : ${nextPosition + compteur}`);
+              imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src;
+              // imageActuelle.src = nextImg.src;
             } else if (compteur <= longueurTableau - 1) {
 
+              if (document.querySelector(`article img[data-order="${nextPosition + compteur}"]`) === null) {
+                //if deux images suivantes ont le même data-order, on ne peut pas les afficher
+                
+                
+                compteur++;
+                imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src;
               
+               }
+
+              console.log(`troisième condition 190 : ${nextPosition + compteur}`);
               //find the img with the data-order equal to the currentImg - 1
-              
               imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src
               // imageActuelle.src = previousImg.src;
              
@@ -183,14 +209,13 @@ export function titlesPhotographerFactory(data) {
   
         }
 
-        if (compteur >= 0 && compteur <= longueurTableau - 1) {
-          compteur++;
-         } else {
-          // compteur = 0;
-        }
-
-
-
+        // if (compteur >= 0 && compteur <= longueurTableau - 1) {
+        //   compteur++;
+        //  } else {
+        //   compteur++;
+        //   // compteur = 0;
+        // }
+        compteur++;
 
 
 console.log(compteur);

@@ -10,6 +10,8 @@ const popularity = document.querySelector(".popularity");
 const date = document.querySelector(".date");
 const title = document.querySelector(".title");
 
+let tabDateOrder = [];
+
 async function getPhotographers() {
   let photographers = [];
   // await fetch("/Front-End-Fisheye/data/photographers.json")
@@ -86,6 +88,9 @@ async function getPhotographersMedia() {
   };
 }
 
+
+
+
 async function getPhotographersDate() {
   let photographersDate = [];
   // await fetch("/Front-End-Fisheye/data/photographers.json")
@@ -127,9 +132,32 @@ async function getPhotographersDate() {
               console.log(
                 `tri par date : ${photoSection.children[j].dataset.order}`
               );
+
+              //push every children in an array
+             
+
+
+              //create an array with children ordered by date
+              // const orderedChildren = Array.from(photoSection.children).sort(
+              //   (a, b) => {
+              //     return a.dataset.order - b.dataset.order;
+              //   }
+              // );
+              //  console.log(orderedChildren);
+              //  //push the orderered children in taborder
+              //   tabDateOrder.push(orderedChildren);
+              //   console.log(tabDateOrder);
+              //replace the children of the photoSection with the ordered children
+          
+              
             }
           }
         }
+
+        //for each photo, change the order of the photo in the DOM
+        
+
+
 
         fullList.classList.toggle("down");
         boutonFiltre.innerHTML = `<p>Date</p> <i class="fa-solid fa-chevron-down"></i>`;
@@ -144,6 +172,8 @@ async function getPhotographersDate() {
     photographersDate: [...photographersDate],
   };
 }
+
+
 
 getPhotographersDate();
 // function setTri() {
@@ -211,9 +241,7 @@ async function displayMedia(photographersMedia) {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
-        console.log(
-          `tri par likes : ${photoSection.children[j].dataset.order}`
-        );
+       
       }
     }
   }
@@ -529,3 +557,5 @@ function closeModalContact() {
   contactModal.style.display = "none";
   document.querySelector(".page-container").style.pointerEvents = "auto";
 }
+
+
