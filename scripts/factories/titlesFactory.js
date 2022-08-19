@@ -168,7 +168,28 @@ export function titlesPhotographerFactory(data) {
             
            console.log(parseInt(currentImg) + parseInt(compteur));
 
-           //if 
+          //create an array with all the element with data-order
+          const allImages = document.querySelectorAll("article img");
+          console.log(allImages);
+          //create an array with all the element with data-order
+          const allImagesOrder = [];
+          //classer les éléments d'après leur data-order et renvoyer les images dans l'ordre dans le tableau allImagesOrder 
+        
+          allImages.forEach((image) => {
+            allImagesOrder.push(image.dataset.order);
+          }
+          );
+          console.log(allImagesOrder);
+
+          //classer les images dans un tableau suivant leur place dans le tableau allImagesOrder
+          const imagesOrdered = [];
+          allImagesOrder.forEach((order) => {
+            imagesOrdered.push(document.querySelector(`article img[data-order="${order}"]`));
+          }
+          );
+          console.log(imagesOrdered);
+
+
           
            
             if (parseInt(currentImg) + parseInt(compteur) == longueurTableau ) {
@@ -190,7 +211,7 @@ export function titlesPhotographerFactory(data) {
 
               if (document.querySelector(`article img[data-order="${nextPosition + compteur}"]`) === null) {
                 //if deux images suivantes ont le même data-order, on ne peut pas les afficher
-                
+
                 
                 compteur++;
                 imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src;
