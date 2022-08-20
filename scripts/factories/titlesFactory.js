@@ -115,13 +115,13 @@ export function titlesPhotographerFactory(data) {
         // const previousImage = e.target.parentNode.previousSibling.children[0].src;
         // const nextImage = e.target.parentNode.nextSibling.children[0].src;
         let compteur = 0;
-        let currentImg = img.dataset.order;
+        let currentImg = img.dataset.position;
         console.log(typeof currentImg);
         console.log(currentImg);
         let nextPosition = parseInt(currentImg) + 1;
         let previousPosition = parseInt(currentImg) - 1;
-        let nextImg = document.querySelector(`article img[data-order="${nextPosition}"]`);
-        let previousImg = document.querySelector(`article img[data-order="${previousPosition}"]`);
+        let nextImg = document.querySelector(`article img[data-position="${nextPosition}"]`);
+        let previousImg = document.querySelector(`article img[data-position="${previousPosition}"]`);
         console.log(nextImg);
         console.log(previousImg);
        
@@ -138,12 +138,12 @@ export function titlesPhotographerFactory(data) {
 
           if (compteur > 0) {
             
-            imageActuelle.src = document.querySelector(`article img[data-order="${previousPosition - (-compteur)}"]`).src
+            imageActuelle.src = document.querySelector(`article img[data-position="${previousPosition - (-compteur)}"]`).src
             // imageActuelle.src = previousImg.src;
            
           } else {
 
-            const imagePrecedente = document.querySelector(`article img[data-order="${previousPosition}"]`);          
+            const imagePrecedente = document.querySelector(`article img[data-position="${previousPosition}"]`);          
             imageActuelle.src = imagePrecedente.src; 
 
       }
@@ -163,7 +163,7 @@ export function titlesPhotographerFactory(data) {
             e.preventDefault();
             console.log(`compteur fonction ascendante : ${compteur}`);
             console.log(currentImg);
-            console.log(document.querySelector(`article img[data-order="2"]`));
+            console.log(document.querySelector(`article img[data-position="2"]`));
             //add currentImg to compteur
             
            console.log(parseInt(currentImg) + parseInt(compteur));
@@ -171,14 +171,11 @@ export function titlesPhotographerFactory(data) {
 
 
         
-          
-
-
-          
+        
            
             if (parseInt(currentImg) + parseInt(compteur) == longueurTableau ) {
               console.log("fin du carroussel");
-              imageActuelle.src = document.querySelector(`article img[data-order="0"]`).src
+              imageActuelle.src = document.querySelector(`article img[data-position="0"]`).src
               compteur = -1;
               currentImg = 0;
               nextPosition = 1;
@@ -189,27 +186,27 @@ export function titlesPhotographerFactory(data) {
               // console.log(nextImg.src);
 
               console.log(`deuxième condition, addition next position et compteur bug : ${nextPosition + compteur}`);
-              imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src;
+              imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src;
               // imageActuelle.src = nextImg.src;
             } else if (compteur <= longueurTableau - 1) {
 
-              if (document.querySelector(`article img[data-order="${nextPosition + compteur}"]`) === null) {
+              if (document.querySelector(`article img[data-position="${nextPosition + compteur}"]`) === null) {
                 //if deux images suivantes ont le même data-order, on ne peut pas les afficher
 
                 
                 compteur++;
-                imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src;
+                imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src;
               
                }
 
               console.log(`troisième condition 190 : ${nextPosition + compteur}`);
               //find the img with the data-order equal to the currentImg - 1
-              imageActuelle.src = document.querySelector(`article img[data-order="${nextPosition + compteur}"]`).src
+              imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src
               // imageActuelle.src = previousImg.src;
              
             } else {
   
-              const imagePrecedente = document.querySelector(`article img[data-order="${nextPosition}"]`);             
+              const imagePrecedente = document.querySelector(`article img[data-position="${nextPosition}"]`);             
               imageActuelle.src = imagePrecedente.src; 
   
         }
