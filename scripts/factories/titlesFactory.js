@@ -170,35 +170,6 @@ export function titlesPhotographerFactory(data) {
 
 
 
-           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
-           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
-           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
-
-
-          //create an array with all the element with data-order
-          const allImages = document.querySelectorAll("article img");
-          console.log(allImages);
-          //create an array with all the element with data-order
-          const allImagesOrder = [];
-          //classer les éléments d'après leur data-order et renvoyer les images dans l'ordre dans le tableau allImagesOrder 
-        
-          allImages.forEach((image) => {
-            allImagesOrder.push(image.dataset.order);
-          }
-          );
-
-          
-          for (let index = 0; index < allImagesOrder.length; index++) {
-            //set data-position to the index of the array
-            allImages[index].dataset.position = index;
-            
-          }
-
-          ////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////
-          ////////////////////////////////////////////////////////////////
-       
         
           
 

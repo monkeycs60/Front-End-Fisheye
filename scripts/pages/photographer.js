@@ -245,6 +245,52 @@ async function displayMedia(photographersMedia) {
       }
     }
   }
+
+
+
+
+           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+
+           //create a const for children of article
+           const articleChildren = document.querySelectorAll("article");
+           console.log(articleChildren);
+
+           //for each children push its first child in an array
+           const arrayMedia = [];
+           articleChildren.forEach((child) => {
+             arrayMedia.push(child.children[0]);
+           }
+           );
+           console.log(arrayMedia);
+           
+         
+
+          //sort the array by data-order
+          const arrayMediaByOrder = arrayMedia.sort((a, b) => {
+            return a.dataset.order - b.dataset.order;
+          }
+          );
+
+          console.log(arrayMediaByOrder);
+
+
+
+         
+         for (let index = 0; index < arrayMediaByOrder.length; index++) {
+           //set data-position to the index of the array
+           arrayMediaByOrder[index].dataset.position = index;
+           
+         }
+
+         ////////////////////////////////////////////////////////////////
+         ////////////////////////////////////////////////////////////////
+         ////////////////////////////////////////////////////////////////
+         ////////////////////////////////////////////////////////////////
+      
+
+
 }
 
 async function lastInit() {
