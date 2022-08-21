@@ -88,7 +88,10 @@ export function titlesPhotographerFactory(data) {
 
         //create a const for html
         const wholeDocument = document.querySelector("html");
-        const lightboxImage = document.querySelector(".lightbox-image img");
+        const lightboxImage = document.querySelector(".lightbox-image").children[0];
+        console.log(lightboxImage);
+        console.log(lightboxImage.src);
+
         const closeCross = document.querySelector(".fa-xmark");
         const chevronLeft = document.querySelector(".fa-chevron-left");
         const chevronRight = document.querySelector(".fa-chevron-right");
@@ -103,6 +106,14 @@ export function titlesPhotographerFactory(data) {
         
 
         //set the src of the lightboxImage to the src of the img that was clicked
+
+//if lightboximage includes a video, play the video
+if (lightboxImage.src.includes(".mp4")) {
+  // is a video, set the src to the video
+  console.log("is a video");
+}
+    
+           
         lightboxImage.src = e.target.src;
 
         //sort the photos following their style order

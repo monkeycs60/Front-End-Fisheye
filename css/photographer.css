@@ -155,12 +155,16 @@ header p {
 }
 .filter .popularity {
   position: relative;
+  border-radius: 5px 5px 0 0;
 }
 .filter .popularity i {
   position: absolute;
   font-size: 95%;
   top: 40%;
   left: 70%;
+}
+.filter .title {
+  border-radius: 0 0 5px 5px;
 }
 
 .photographer_section {

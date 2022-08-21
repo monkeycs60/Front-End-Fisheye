@@ -195,6 +195,7 @@ hr {
 
   .popularity {
     position: relative;
+    border-radius: 5px 5px 0 0;
     i {
       position: absolute;
       font-size: 95%;
@@ -202,6 +203,10 @@ hr {
       left: 70%;
 
     }
+  }
+
+  .title {
+    border-radius: 0 0 5px 5px;
   }
 }
 
