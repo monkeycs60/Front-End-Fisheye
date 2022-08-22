@@ -1,9 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
+
 
 <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="css/photographer.css" rel="stylesheet" type="text/css" />
-  <meta charset="utf-8">
   <link rel="icon" type="image/ico" href="assets/favicon.ico">
   <script src="https://kit.fontawesome.com/de1681bd68.js" crossorigin="anonymous"></script>
   <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
@@ -11,65 +14,135 @@
 </head>
 
 <body>
-  <header>
-    <a href="./index.html" tabindex="-1" aria-label="lien vers la page d'accueil">
-      <p>Lien vers la page d'accueil</p>
-      <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" tabindex="0" />
-    </a>
-  </header>
 
-  <div class="sticky"></div>
+  <div class="page-container">
 
-  <main id="main">
+    <header>
+      <a href="./index.html" tabindex="-1" aria-label="lien vers la page d'accueil">
+        <p>Lien vers la page d'accueil</p>
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+      </a>
+    </header>
 
+    <div class="sticky"></div>
 
-    <div class="photograph-header">
-      <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-    </div>
+    <main id="main">
 
 
-    <div class="filter">
-      <p>Trier par</p>
-
-
-      <div class="filter-section">
-        <button class="filter-button">Popularité
-          <i class="fa-solid fa-chevron-down"></i>
-        </button>
-        <ul class="down">
-          <li class="popularity" tabindex="0">Popularité</li>
-          <li class="date" tabindex="0">Date</li>
-          <li class="title" tabindex="0">Titre</li>
-        </ul>
-       
+      <div class="photograph-header">
+        <button class="contact_button">Contactez-moi</button>
       </div>
-    </div>
-
-    <div class="photographer_section">
-    </div>
 
 
-  </main>
+      <div class="filter">
+        <p>Trier par</p>
 
+
+        <div class="filter-section">
+          <button class="filter-button">
+            <span class="filter-text-button">Popularité</span>
+            <i class="fa-solid fa-chevron-down"></i>
+          </button>
+          <ul class="specs down">
+            <li class="popularity" tabindex="0">Popularité</li>
+            <hr>
+            <li class="date" tabindex="0">Date</li>
+            <hr>
+            <li class="title" tabindex="0">Titre</li>
+          </ul>
+
+        </div>
+      </div>
+
+      <div class="photographer_section">
+      </div>
+
+
+    </main>
+  </div>
 
 
 
   <div id="contact_modal">
     <div class="modal">
       <header>
-        <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" alt="close cross" aria-label="close the form" />
+        <h2 id="popupTitle">Contactez-moi</h2>
+        <img class="close-cross" src="assets/icons/close.svg" alt="close cross" aria-label="close the form" />
       </header>
-      <form>
+
+
+      <form name="contactForm" method="get" id="contactForm">
+
         <div>
-          <label>Prénom</label>
-          <input aria-label="first name field" />
+
+          <div class="formData">
+            <label for="surname">Prénom</label>
+            <input type="text" class="inputText" id="surname" name="surname" aria-label="first name field"
+              placeholder="Entrez un prénom valide (entre 2 et 20 caractères non-numériques et non spéciaux)" />
+          </div>
+
+          <div class="formData">
+            <label for="lastname">Nom</label>
+            <input type="text" class="inputText" id="lastname" name="lastname" aria-label="last name field"
+              placeholder="Entrez un nom valide (entre 2 et 20 caractères non-numériques et non spéciaux)" />
+          </div>
+
+          <div class="formData">
+            <label for="mail">Email</label>
+            <input type="email" class="inputText" id="mail" name="mail" aria-label="email field"
+              placeholder="Entrez une adresse mail valide" />
+          </div>
+
+          <div class="formData">
+            <label for="message">Votre message</label>
+            <!-- <textarea aria-label="message field" rows="10" cols="150"></textarea> -->
+            <input type="text" class="textmessage" id="message" name="message" aria-label="email field"
+              placeholder="Entrez entre 10 et 500 caractères" />
+          </div>
+
         </div>
-        <button class="contact_button">Envoyer</button>
+
+        <button class="contact_button center_button" id="submitContact">Envoyer</button>
+
       </form>
+
     </div>
   </div>
-  <script type="module" src="/scripts/pages/photographer.js"></script>
+
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox-container">
+
+    <div class="lightbox-content">
+
+      <!-- <div class="lightbox-cross">
+    <img class="close-cross" src="./assets/icons/close.svg" alt="close cross" aria-label="close the form" />
+  </div> -->
+      <i class="fa-solid fa-xmark"></i>
+
+      <div class="chevron-left chevron">
+        <i class="fa-solid fa-chevron-left"></i>
+      </div>
+      <div class="lightbox-image">
+        <!-- <img id="lightboxImage" src="#" alt="" /> -->
+        <!-- <video id="lightboxVideo" src="#" alt="" /> -->
+        <!-- <p class="lightboxDescription"></p> -->
+      </div>
+      <div class="chevron-right chevron">
+        <i class="fa-solid fa-chevron-right"></i>
+      </div>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+  <!-- <script type="module" src="/Front-End-Fisheye/scripts/pages/photographer.js"></script> -->
+  <script type="module" src="./scripts/pages/photographer.js"></script>
   <!-- <script src="/scripts/utils/contactForm.js"></script> -->
 </body>
 
