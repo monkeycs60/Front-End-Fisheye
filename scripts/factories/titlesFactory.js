@@ -127,18 +127,15 @@ const mediaContainer = document.querySelector(".lightbox-image");
 
 
 if (typeOfMedia === "VIDEO") {
-  mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video>;
-       <p class="lightboxDescription"></p>
+  mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video>
+       <p class="lightboxDescription">${e.target.parentNode.children[1].children[0].children[0].textContent}</p>
   `;
+ 
   
 } else {
-  mediaContainer.innerHTML = `<img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}">;
+  mediaContainer.innerHTML = `<img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}">
   <p class="lightboxDescription">${e.target.alt}</p>
   `;
-  //set lightboxDescription to the alt of the img that was clicked
-  // const lightboxDescription = document.querySelector(".lightboxDescription");
-  // lightboxDescription.innerHTML = `${e.target.alt}`;
- 
 }
 
               // CREATION DE L INDEX POUR LA LIGHTBOX ////////////////////////////
@@ -177,12 +174,14 @@ if (typeOfMedia === "VIDEO") {
 
 //if the img is a video, display the video
 if (arrayMediaByOrder[index].tagName === "VIDEO") {
-  mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>;`;
+  mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+  `;
 } else {
   console.log(arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent);
     mediaContainer.innerHTML = `
-          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />;
-          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>;
+          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
           `;
      
   }
@@ -201,11 +200,13 @@ if (arrayMediaByOrder[index].tagName === "VIDEO") {
 
     //if the img is a video, display the video
     if (arrayMediaByOrder[index].tagName === "VIDEO") {
-      mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>;`;
+      mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
+      <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+      `;
     } else {
       mediaContainer.innerHTML = `
-          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />;
-          <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p>;
+          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
+          <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p>
           `;
     }
   }
