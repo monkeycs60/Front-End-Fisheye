@@ -10,7 +10,6 @@ const popularity = document.querySelector(".popularity");
 const date = document.querySelector(".date");
 const title = document.querySelector(".title");
 
-let tabDateOrder = [];
 
 async function getPhotographers() {
   let photographers = [];
@@ -133,31 +132,12 @@ async function getPhotographersDate() {
                 `tri par date : ${photoSection.children[j].dataset.order}`
               );
 
-              //push every children in an array
-             
-
-
-              //create an array with children ordered by date
-              // const orderedChildren = Array.from(photoSection.children).sort(
-              //   (a, b) => {
-              //     return a.dataset.order - b.dataset.order;
-              //   }
-              // );
-              //  console.log(orderedChildren);
-              //  //push the orderered children in taborder
-              //   tabDateOrder.push(orderedChildren);
-              //   console.log(tabDateOrder);
-              //replace the children of the photoSection with the ordered children
-          
-              
+     
             }
           }
         }
 
         //for each photo, change the order of the photo in the DOM
-        
-
-
 
         fullList.classList.toggle("down");
         boutonFiltre.innerHTML = `<p>Date</p> <i class="fa-solid fa-chevron-down"></i>`;
@@ -173,14 +153,8 @@ async function getPhotographersDate() {
   };
 }
 
-
-
 getPhotographersDate();
-// function setTri() {
-//   const photoLikes = document.querySelectorAll(".pLikes");
-//   console.log(photoLikes);
-// }
-// setTri();
+
 
 async function displayMedia(photographersMedia) {
   const photoSection = document.querySelector(".photographer_section");
