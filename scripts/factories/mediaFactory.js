@@ -34,7 +34,6 @@
       // img.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
       // img.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
       img.setAttribute("src", `./../../assets/SamplePhotos/${data[index]}`);
-      img.setAttribute("alt", `cool`);
       //add a data-attribute to the img element, equal to its data position in the array
       img.setAttribute("data-image", "true");
       article.appendChild(img);

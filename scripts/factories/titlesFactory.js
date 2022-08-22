@@ -30,6 +30,10 @@ export function titlesPhotographerFactory(data) {
       globalContainer.classList.add("global-container");
       pTitle.innerHTML = `${data[index].title}`;
       pTitle.classList.add("pTitle");
+      //create a const for img element inside article
+      const imgArticle = document.querySelector(".photographer_section").children[index].children[0];
+     //set alt attribute to img element
+      imgArticle.setAttribute("alt", `${data[index].title}`);
       const pLikes = document.createElement("p");
       const pHeart = document.createElement("p");
       pLikes.innerHTML = `${data[index].likes}`;
@@ -171,10 +175,12 @@ if (typeOfMedia === "VIDEO") {
 if (arrayMediaByOrder[index].tagName === "VIDEO") {
   mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>;`;
 } else {
+  console.log(arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent);
     mediaContainer.innerHTML = `
           <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />;
-          <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p>;
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>;
           `;
+     
   }
 }
   );
