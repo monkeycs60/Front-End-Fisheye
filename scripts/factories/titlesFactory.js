@@ -72,14 +72,15 @@ export function titlesPhotographerFactory(data) {
     const closeCross = document.querySelector(".close-cross");
     //create const for all img inside article
     const img = document.querySelectorAll("article img");
-    console.log(img);
     const imgTitle = document.querySelectorAll(".pTitle");
-    console.log(imgTitle);
+ 
 
+   
+    const doubleSelector = document.querySelectorAll("article > video, article > img");
+ 
   
-
     //add event listener to each img
-    img.forEach((img) => {
+    doubleSelector.forEach((img) => {
       img.addEventListener("click", (e) => {
         e.preventDefault();
 
@@ -89,12 +90,10 @@ export function titlesPhotographerFactory(data) {
         //create a const for html
         const wholeDocument = document.querySelector("html");
         const lightboxImage = document.querySelector(".lightbox-image").children[0];
-        console.log(lightboxImage);
-        console.log(lightboxImage.src);
-
         const closeCross = document.querySelector(".fa-xmark");
         const chevronLeft = document.querySelector(".fa-chevron-left");
         const chevronRight = document.querySelector(".fa-chevron-right");
+        const imageActuelle = document.querySelector("#lightboxImage");
 
         //impeed scroll, focus on the lightbox
         wholeDocument.style.overflowY = "hidden";
@@ -106,40 +105,44 @@ export function titlesPhotographerFactory(data) {
         
 
         //set the src of the lightboxImage to the src of the img that was clicked
+        // lightboxImage.src = e.target.src;
 
-//if lightboximage includes a video, play the video
-if (lightboxImage.src.includes(".mp4")) {
-  // is a video, set the src to the video
-  console.log("is a video");
+        console.log(e.target);
+        // console.log(lightboxImage.src);
+        //if lightboximage includes a video, play the video
+const typeOfMedia = e.target.tagName;
+const mediaPlayed = document.querySelector(".lightbox-image").children[0];
+const mediaContainer = document.querySelector(".lightbox-image");
+        console.log(document.querySelector(".lightbox-image").innerHTML);
+
+console.log(typeOfMedia);
+if (typeOfMedia === "VIDEO") {
+  mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video>;
+       <p class="lightboxDescription"></p>
+  `;
+  
+} else {
+  mediaContainer.innerHTML = `<img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}">;
+  <p class="lightboxDescription"></p>
+  `;
 }
-    
-           
-        lightboxImage.src = e.target.src;
-
-        //sort the photos following their style order
-        
-    
-
-        const allArticles = document.querySelectorAll("article");
 
 
-        // const previousImage = e.target.parentNode.previousSibling.children[0].src;
-        // const nextImage = e.target.parentNode.nextSibling.children[0].src;
+
+
+
         let compteur = 0;
         let currentImg = img.dataset.position;
-        console.log(typeof currentImg);
-        console.log(currentImg);
         let nextPosition = parseInt(currentImg) + 1;
         let previousPosition = parseInt(currentImg) - 1;
         let nextImg = document.querySelector(`article img[data-position="${nextPosition}"]`);
         let previousImg = document.querySelector(`article img[data-position="${previousPosition}"]`);
-        console.log(nextImg);
-        console.log(previousImg);
+     
        
        
-        const imageActuelle = document.querySelector("#lightboxImage");
+       
         const longueurTableau = document.querySelectorAll("article img").length;
-        console.log(longueurTableau);
+
 
         // addevent listener to chevron left to see previous image
         chevronLeft.addEventListener("click", (e) => {
@@ -172,12 +175,16 @@ if (lightboxImage.src.includes(".mp4")) {
           //addevent listener to chevron right to see next image
           chevronRight.addEventListener("click", (e) => {
             e.preventDefault();
+
+            const nextImgCarousel = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`);
+            const videoPosition = document.querySelector(`article video[data-position="${nextPosition + compteur}"]`);
+            const imagePosition = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`);
+
             console.log(`compteur fonction ascendante : ${compteur}`);
-            console.log(currentImg);
             console.log(document.querySelector(`article img[data-position="2"]`));
             //add currentImg to compteur
             
-           console.log(parseInt(currentImg) + parseInt(compteur));
+     
 
 
 
@@ -185,35 +192,92 @@ if (lightboxImage.src.includes(".mp4")) {
         
            
             if (parseInt(currentImg) + parseInt(compteur) == longueurTableau ) {
+
+
+              // CONDITION POUR VIDEO
+              //if nextImgCarousel is null, log error
+              console.log(imagePosition);
+//create a const, first position, for the data-position of the first image
+const firstPositionImage = document.querySelector(`article img[data-position="0"]`); 
+const firstPositionVideo = document.querySelector(`article video[data-position="0"]`);
+console.log(firstPositionImage);
+console.log(firstPositionVideo);
+
+if (firstPositionImage == null) {
+  mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${firstPositionVideo.src}" type="video/mp4"></video>;
+  <p class="lightboxDescription"></p>
+`;
+} else {
+  mediaContainer.innerHTML = `<img id="lightboxImage" src="${firstPositionImage.src}" />;
+       <p class="lightboxDescription"></p>`;
+}
+ 
+
+
               console.log("fin du carroussel");
-              imageActuelle.src = document.querySelector(`article img[data-position="0"]`).src
+        
+
+
               compteur = -1;
               currentImg = 0;
               nextPosition = 1;
-              console.log(currentImg);
-              console.log(nextPosition);
+              
             } else if (compteur == 0) {
-              console.log(nextPosition);
-              // console.log(nextImg.src);
+             
 
-              console.log(`deuxième condition, addition next position et compteur bug : ${nextPosition + compteur}`);
-              imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src;
-              // imageActuelle.src = nextImg.src;
+              // CONDITION POUR VIDEO
+              //if nextImgCarousel is null, log error
+              console.log(imagePosition);
+              if (imagePosition == null) {
+                console.log("erreur image non trouvée");
+                console.log(nextPosition + compteur);
+                
+                console.log(videoPosition);
+                mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${videoPosition.src}" type="video/mp4"></video>;
+       <p class="lightboxDescription"></p>
+  `;
+
+               //CONDITION POUR IMAGE
+              } else {
+                console.log("image trouvée");    
+                mediaContainer.innerHTML = `<img id="lightboxImage" src="${imagePosition.src}" />;
+       <p class="lightboxDescription"></p>`;
+                // imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src;
+            
+              }
+
+
             } else if (compteur <= longueurTableau - 1) {
 
-              if (document.querySelector(`article img[data-position="${nextPosition + compteur}"]`) === null) {
-                //if deux images suivantes ont le même data-order, on ne peut pas les afficher
+             
 
+              if (imagePosition == null) {
+                console.log("erreur image non trouvée");
+                console.log(nextPosition + compteur);
                 
-                compteur++;
-                imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src;
-              
-               }
+                console.log(videoPosition);
+                mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${videoPosition.src}" type="video/mp4"></video>;
+       <p class="lightboxDescription"></p>
+  `;
+
+               //CONDITION POUR IMAGE
+              } else {
+                console.log("image trouvée");    
+                mediaContainer.innerHTML = `<img id="lightboxImage" src="${imagePosition.src}" />;
+       <p class="lightboxDescription"></p>`;
+                // imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src;
+            
+              }
+
+
+
+
+
 
               console.log(`troisième condition 190 : ${nextPosition + compteur}`);
               //find the img with the data-order equal to the currentImg - 1
-              imageActuelle.src = document.querySelector(`article img[data-position="${nextPosition + compteur}"]`).src
-              // imageActuelle.src = previousImg.src;
+             
+         
              
             } else {
   

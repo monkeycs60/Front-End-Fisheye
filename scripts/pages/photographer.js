@@ -382,12 +382,9 @@ fullList.children[4].addEventListener("click", (e) => {
     for (let j = 0; j < mediaTitleArray.length; j++) {
       if (mediaTitleArray[index] == mediaTitle[j].innerText) {
         photoSection.children[j].style.order = index;
-        console.log(photoSection.children[j]);
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
-        console.log(
-          `tri par likes : ${photoSection.children[j].dataset.order}`
-        );
+        
       }
     }
   }
