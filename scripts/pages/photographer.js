@@ -140,7 +140,7 @@ async function getPhotographersDate() {
         //for each photo, change the order of the photo in the DOM
 
         fullList.classList.toggle("down");
-        boutonFiltre.innerHTML = `<p>Date</p> <i class="fa-solid fa-chevron-down"></i>`;
+        boutonFiltre.innerHTML = `<span>Date</span> <i class="fa-solid fa-chevron-down"></i>`;
         boutonFiltre.style.display = "block";
       });
     })
@@ -323,7 +323,7 @@ fullList.children[0].addEventListener("click", (e) => {
   }
 
   fullList.classList.toggle("down");
-  boutonFiltre.innerHTML = `<p>Popularité</p> <i class="fa-solid fa-chevron-down"></i>`;
+  boutonFiltre.innerHTML = `<span>Popularité</span> <i class="fa-solid fa-chevron-down"></i>`;
   boutonFiltre.style.display = "block";
 });
 
@@ -364,7 +364,7 @@ fullList.children[4].addEventListener("click", (e) => {
   }
 
   fullList.classList.toggle("down");
-  boutonFiltre.innerHTML = `<p>Titre</p> <i class="fa-solid fa-chevron-down"></i>`;
+  boutonFiltre.innerHTML = `<span>Titre</span> <i class="fa-solid fa-chevron-down"></i>`;
   boutonFiltre.style.display = "block";
 });
 

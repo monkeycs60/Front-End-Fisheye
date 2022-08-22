@@ -133,8 +133,12 @@ if (typeOfMedia === "VIDEO") {
   
 } else {
   mediaContainer.innerHTML = `<img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}">;
-  <p class="lightboxDescription"></p>
+  <p class="lightboxDescription">${e.target.alt}</p>
   `;
+  //set lightboxDescription to the alt of the img that was clicked
+  // const lightboxDescription = document.querySelector(".lightboxDescription");
+  // lightboxDescription.innerHTML = `${e.target.alt}`;
+ 
 }
 
               // CREATION DE L INDEX POUR LA LIGHTBOX ////////////////////////////

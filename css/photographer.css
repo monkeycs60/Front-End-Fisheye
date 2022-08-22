@@ -98,7 +98,7 @@ header p {
   cursor: pointer;
   position: relative;
 }
-.filter button p {
+.filter button span {
   font-family: "DM Sans", sans-serif;
   font-weight: normal;
   position: absolute;
@@ -138,7 +138,7 @@ header p {
   justify-content: space-between;
   font-size: 155%;
 }
-.filter li p {
+.filter li span {
   font-weight: normal;
 }
 .filter li:hover {
