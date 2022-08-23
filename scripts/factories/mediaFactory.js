@@ -1,10 +1,4 @@
 export function mediaPhotographerFactory(data) {
-  // const { image, video } = data;
-  // console.log(image, video, data[0].image);
-
-  // console.log(data);
-  // console.log(`/Front-End-Fisheye/assets/SamplePhotos/${data}`);
-
   // for each data create a new img element
   function createImageFromArray() {
     const photoSection = document.querySelector(".photographer_section");

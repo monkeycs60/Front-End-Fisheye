@@ -5,8 +5,6 @@ export function headerPhotographerFactory(data) {
   const p = document.createElement("p");
   p.innerHTML = `${data.price} € / jour`;
   sticky.appendChild(p);
- 
-
   function infoCard() {
     const infoCardDiv = document.createElement("div");
     infoCardDiv.classList.add("info-card");

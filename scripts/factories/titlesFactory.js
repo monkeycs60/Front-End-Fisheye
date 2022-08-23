@@ -2,15 +2,9 @@
 // import {Photographer} from './../pages/photographer.js';
 
 export function titlesPhotographerFactory(data) {
-  // const { image, video } = data;
-  // console.log(image, video, data[0].image);
-
-  console.log(data);
-
   // for each data create a new img element
   function createTitlesFromArray() {
     const photoSection = document.querySelector(".photographer_section");
-    const gridDiv = document.querySelector(".grid-div ");
     const sticky = document.querySelector(".sticky");
     // define first child of photosection
     let counter = 0;
@@ -77,11 +71,6 @@ export function titlesPhotographerFactory(data) {
 
     // creation LIGHTBOX
     const lightboxContainer = document.querySelector("#lightbox-container");
-    const closeCross = document.querySelector(".close-cross");
-    // create const for all img inside article
-    const img = document.querySelectorAll("article img");
-    const imgTitle = document.querySelectorAll(".pTitle");
-
     const doubleSelector = document.querySelectorAll(
       "article > video, article > img"
     );
@@ -95,13 +84,9 @@ export function titlesPhotographerFactory(data) {
 
         // create a const for html
         const wholeDocument = document.querySelector("html");
-        const lightboxImage =
-          document.querySelector(".lightbox-image").children[0];
         const closeCross = document.querySelector(".fa-xmark");
         const chevronLeft = document.querySelector(".fa-chevron-left");
         const chevronRight = document.querySelector(".fa-chevron-right");
-        const imageActuelle = document.querySelector("#lightboxImage");
-
         // impeed scroll, focus on the lightbox
         wholeDocument.style.overflowY = "hidden";
         wholeDocument.style.overflowX = "hidden";
