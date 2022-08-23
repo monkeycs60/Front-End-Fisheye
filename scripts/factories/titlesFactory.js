@@ -213,7 +213,6 @@ if (arrayMediaByOrder[index].tagName === "VIDEO") {
   );
 
 
-
           //add event listener to closeCross
           closeCross.addEventListener("click", () => {
             //stop propagation of the event
@@ -228,7 +227,6 @@ if (arrayMediaByOrder[index].tagName === "VIDEO") {
             mediaContainer.innerHTML = "";
             //reset index of the currentImg
             
-   
 
           });
       });
