@@ -44,15 +44,14 @@ export function titlesPhotographerFactory(data) {
       div2.appendChild(invisibleDate);
       counter += data[index].likes;
     }
-    console.log(counter);
     const p = document.createElement("p");
     p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
     sticky.appendChild(p);
 
     const icon = document.querySelectorAll(".fa-heart");
     // event listener for each icon
-    icon.forEach((icon) => {
-      icon.addEventListener("click", (e) => {
+    icon.forEach((iconHeart) => {
+      iconHeart.addEventListener("click", (e) => {
         const previous = e.target.parentNode.previousSibling;
         if (icon.classList.contains("fa-solid")) {
           counter--;
@@ -129,11 +128,10 @@ export function titlesPhotographerFactory(data) {
 
         // index of the clicked img display the img src which has the same data-position as the clicked img
         let index = arrayMediaByOrder.indexOf(e.target);
-        console.log(index);
 
         // add event listener on chevronLeft : when clicked, display the previous img in the array
-        chevronLeft.addEventListener("click", (e) => {
-          e.preventDefault();
+        chevronLeft.addEventListener("click", (eChevronLeft) => {
+          eChevronLeft.preventDefault();
           if (index === 0) {
             index = arrayMediaByOrder.length - 1;
           } else {
@@ -146,10 +144,6 @@ export function titlesPhotographerFactory(data) {
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
   `;
           } else {
-            console.log(
-              arrayMediaByOrder[index].nextElementSibling.children[0]
-                .children[0].textContent
-            );
             mediaContainer.innerHTML = `
           <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
           <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
@@ -158,8 +152,8 @@ export function titlesPhotographerFactory(data) {
         });
 
         // add event listener on chevronRight : when clicked, display the next img in the array
-        chevronRight.addEventListener("click", (e) => {
-          e.preventDefault();
+        chevronRight.addEventListener("click", (eChevronRight) => {
+          eChevronRight.preventDefault();
           if (index === arrayMediaByOrder.length - 1) {
             index = 0;
           } else {
@@ -180,9 +174,8 @@ export function titlesPhotographerFactory(data) {
         });
 
         // if you press left arrow, display the previous img in the array
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowLeft") {
-            console.log("fleche gauche");
+        document.addEventListener("keydown", (eKeyLeft) => {
+          if (eKeyLeft.key === "ArrowLeft") {
             if (index === 0) {
               index = arrayMediaByOrder.length - 1;
             } else {
@@ -204,9 +197,8 @@ export function titlesPhotographerFactory(data) {
         });
 
         // if you press right arrow, display the next img in the array
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "ArrowRight") {
-            console.log("fleche droite");
+        document.addEventListener("keydown", (eKeyRight) => {
+          if (eKeyRight.key === "ArrowRight") {
             if (index === arrayMediaByOrder.length - 1) {
               index = 0;
             } else {
@@ -228,8 +220,8 @@ export function titlesPhotographerFactory(data) {
         });
 
         // if you press esc, close the lightbox
-        document.addEventListener("keydown", (e) => {
-          if (e.key === "Escape") {
+        document.addEventListener("keydown", (eEscape) => {
+          if (eEscape.key === "Escape") {
             // make lightbox invisible
             lightboxContainer.style.display = "none";
             // impeed scroll, focus on the page
