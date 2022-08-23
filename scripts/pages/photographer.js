@@ -4,12 +4,8 @@ import { titlesPhotographerFactory } from "../factories/titlesFactory.js";
 
 const photoSection = document.querySelector(".photographer_section");
 const fullList = document.querySelector("ul");
-const listedItems = document.querySelectorAll("li");
 const boutonFiltre = document.querySelector(".filter-button");
 const popularity = document.querySelector(".popularity");
-const date = document.querySelector(".date");
-const title = document.querySelector(".title");
-
 
 async function getPhotographers() {
   let photographers = [];
@@ -32,10 +28,10 @@ async function displayData(photographers) {
   const photoHeader = document.querySelector(".photograph-header");
 
   const photographer = photographers.filter((photographer) => {
-    //search parameter in the url
+    // search parameter in the url
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
-    return photographer.id == id;
+    return photographer.id.toString() === id;
   });
 
   const photographerHeaderInfos = headerPhotographerFactory(photographer[0]);
@@ -54,7 +50,7 @@ async function displayData(photographers) {
   const photographersTagline = photographerHeaderInfos.photographersTagline();
   photographersInfosTxt.appendChild(photographersTagline);
 
-  //append the picture to photoheader
+  // append the picture to photoheader
   const photographersProfilPic =
     photographerHeaderInfos.photographersProfilPic();
   photoHeader.appendChild(photographersProfilPic);
@@ -87,35 +83,29 @@ async function getPhotographersMedia() {
   };
 }
 
-
-
-
 async function getPhotographersDate() {
-  let photographersDate = [];
+  const photographersDate = [];
   // await fetch("/Front-End-Fisheye/data/photographers.json")
   await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
-      //filter the media array to get only the media related to the photographer
+      // filter the media array to get only the media related to the photographer
 
-      //search parameter in the url
+      // search parameter in the url
       const urlParams = new URLSearchParams(window.location.search);
       const id = urlParams.get("id");
 
-      //get the media related to the photographer
-      const photographerMedia = data.media.filter((photographerMedia) => {
-        return photographerMedia.photographerId == id;
-      });
-
-      //create an array with all the dates of the media
-      const photographersDateArray = photographerMedia.map(
-        (photographerMedia) => {
-          return photographerMedia.date;
-        }
+      // get the media related to the photographer
+      const photographerMedia = data.media.filter(
+        (photographerMedia) => photographerMedia.photographerId == id
       );
-    
 
-      //SORT THE PHOTOS BY DATE
+      // create an array with all the dates of the media
+      const photographersDateArray = photographerMedia.map(
+        (photographerMedia) => photographerMedia.date
+      );
+
+      // SORT THE PHOTOS BY DATE
       fullList.children[2].addEventListener("click", (e) => {
         e.preventDefault();
 
@@ -131,13 +121,11 @@ async function getPhotographersDate() {
               console.log(
                 `tri par date : ${photoSection.children[j].dataset.order}`
               );
-
-     
             }
           }
         }
 
-        //for each photo, change the order of the photo in the DOM
+        // for each photo, change the order of the photo in the DOM
 
         fullList.classList.toggle("down");
         boutonFiltre.innerHTML = `<span>Date</span> <i class="fa-solid fa-chevron-down"></i>`;
@@ -155,37 +143,37 @@ async function getPhotographersDate() {
 
 getPhotographersDate();
 
-
 async function displayMedia(photographersMedia) {
   const photoSection = document.querySelector(".photographer_section");
   const gridDiv = document.querySelector(".grid-div ");
-  //log second child of photosection
+  // log second child of photosection
 
-  //if photographer.id = url param, get all the media related to this photographer
+  // if photographer.id = url param, get all the media related to this photographer
   const photographerMedia = photographersMedia.filter((photographerMedia) => {
-    //search parameter in the url
+    // search parameter in the url
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
     return photographerMedia.photographerId == id;
   });
 
-  //make an array with all images contained in photographerMedia
+  // make an array with all images contained in photographerMedia
   const photographersMediaArray = photographerMedia.map((photographerMedia) => {
     if (photographerMedia.image) {
       return photographerMedia.image;
-    } else if (photographerMedia.video) {
+    }
+    if (photographerMedia.video) {
       return photographerMedia.video;
     }
     // return photographerMedia.image
   });
 
-  const photographersTitleArray = photographerMedia.map((photographerMedia) => {
-    return {
+  const photographersTitleArray = photographerMedia.map(
+    (photographerMedia) => ({
       title: photographerMedia.title,
       likes: photographerMedia.likes,
       date: photographerMedia.date,
-    };
-  });
+    })
+  );
 
   const photographerGalleryFirst = mediaPhotographerFactory(
     photographersMediaArray
@@ -200,11 +188,10 @@ async function displayMedia(photographersMedia) {
 
   const likeCount = document.querySelectorAll(".pLikes");
   const likeCountArray = Array.from(likeCount);
- 
 
-  const likeCountArrayInt = likeCountArray.map((likeCount) => {
-    return parseInt(likeCount.textContent);
-  });
+  const likeCountArrayInt = likeCountArray.map((likeCount) =>
+    parseInt(likeCount.textContent)
+  );
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
   console.log(likeCountArraySorted);
@@ -215,56 +202,41 @@ async function displayMedia(photographersMedia) {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
-       
       }
     }
   }
 
+  // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+  // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+  // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
 
+  // create a const for children of article
+  const articleChildren = document.querySelectorAll("article");
+  console.log(articleChildren);
 
+  // for each children push its first child in an array
+  const arrayMedia = [];
+  articleChildren.forEach((child) => {
+    arrayMedia.push(child.children[0]);
+  });
+  console.log(arrayMedia);
 
-           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
-           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
-           // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+  // sort the array by data-order
+  const arrayMediaByOrder = arrayMedia.sort(
+    (a, b) => a.dataset.order - b.dataset.order
+  );
 
-           //create a const for children of article
-           const articleChildren = document.querySelectorAll("article");
-           console.log(articleChildren);
+  console.log(arrayMediaByOrder);
 
-           //for each children push its first child in an array
-           const arrayMedia = [];
-           articleChildren.forEach((child) => {
-             arrayMedia.push(child.children[0]);
-           }
-           );
-           console.log(arrayMedia);
-           
-         
+  for (let index = 0; index < arrayMediaByOrder.length; index++) {
+    // set data-position to the index of the array
+    arrayMediaByOrder[index].dataset.position = index;
+  }
 
-          //sort the array by data-order
-          const arrayMediaByOrder = arrayMedia.sort((a, b) => {
-            return a.dataset.order - b.dataset.order;
-          }
-          );
-
-          console.log(arrayMediaByOrder);
-
-
-
-         
-         for (let index = 0; index < arrayMediaByOrder.length; index++) {
-           //set data-position to the index of the array
-           arrayMediaByOrder[index].dataset.position = index;
-           
-         }
-
-         ////////////////////////////////////////////////////////////////
-         ////////////////////////////////////////////////////////////////
-         ////////////////////////////////////////////////////////////////
-         ////////////////////////////////////////////////////////////////
-      
-
-
+  /// /////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////
+  /// /////////////////////////////////////////////////////////////
 }
 
 async function lastInit() {
@@ -275,23 +247,23 @@ async function lastInit() {
 
 lastInit();
 
-//classe les children de photoSection selon l'ordre alphabetique du titre de l'image
+// classe les children de photoSection selon l'ordre alphabetique du titre de l'image
 
-//add event listener on FILTER pannel
+// add event listener on FILTER pannel
 
 boutonFiltre.addEventListener("click", (e) => {
   e.preventDefault();
 
   boutonFiltre.style.display = "none";
 
-  //change innerHTML of popularity to "Popularity"
+  // change innerHTML of popularity to "Popularity"
   popularity.innerHTML = `Popularité <i class="fa-solid fa-chevron-up"></i>`;
 
   fullList.classList.toggle("down");
 });
 
-//change the order of the grid items
-//add event listener on the third child of the fullList
+// change the order of the grid items
+// add event listener on the third child of the fullList
 
 fullList.children[0].addEventListener("click", (e) => {
   e.preventDefault();
@@ -301,9 +273,9 @@ fullList.children[0].addEventListener("click", (e) => {
   const likeCountArray = Array.from(likeCount);
   console.log(likeCountArray);
 
-  const likeCountArrayInt = likeCountArray.map((likeCount) => {
-    return parseInt(likeCount.textContent);
-  });
+  const likeCountArrayInt = likeCountArray.map((likeCount) =>
+    parseInt(likeCount.textContent)
+  );
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
   console.log(likeCountArraySorted);
@@ -327,7 +299,7 @@ fullList.children[0].addEventListener("click", (e) => {
   boutonFiltre.style.display = "block";
 });
 
-//Listener for TITLE of photos
+// Listener for TITLE of photos
 fullList.children[4].addEventListener("click", (e) => {
   e.preventDefault();
 
@@ -335,11 +307,11 @@ fullList.children[4].addEventListener("click", (e) => {
   const mediaTitleArray = [];
 
   mediaTitle.forEach((mediaTitle) => {
-    //push the title of each media in an array
+    // push the title of each media in an array
     mediaTitleArray.push(mediaTitle.innerText);
   });
 
-  //sort the array by title
+  // sort the array by title
   mediaTitleArray.sort((a, b) => {
     if (a < b) {
       return -1;
@@ -350,7 +322,7 @@ fullList.children[4].addEventListener("click", (e) => {
     return 0;
   });
 
-  //change the order of the grid items following its  title position in the mediaTitleArray
+  // change the order of the grid items following its  title position in the mediaTitleArray
 
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < mediaTitleArray.length; j++) {
@@ -358,7 +330,6 @@ fullList.children[4].addEventListener("click", (e) => {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
-        
       }
     }
   }
@@ -368,7 +339,7 @@ fullList.children[4].addEventListener("click", (e) => {
   boutonFiltre.style.display = "block";
 });
 
-//log each individual like count
+// log each individual like count
 
 /// CONTACT FORM MODAL
 const contactButton = document.querySelector(".contact_button");
@@ -378,7 +349,7 @@ const modalBox = document.querySelector(".modal");
 contactButton.addEventListener("click", (e) => {
   e.preventDefault();
 
-  //add the photographer name to the contact form
+  // add the photographer name to the contact form
   const artistName = document.querySelector(".name").innerText;
   const titre = document.querySelector("h2");
   titre.innerHTML = `Contactez-moi <br> ${artistName}`;
@@ -386,17 +357,17 @@ contactButton.addEventListener("click", (e) => {
   contactModal.style.display = "block";
 
   document.querySelector(".page-container").style.opacity = "0.5";
-  //change pointervent to none on the page container
+  // change pointervent to none on the page container
   document.querySelector(".page-container").style.pointerEvents = "none";
 
-  //FORM VALIDATION
+  // FORM VALIDATION
   const form = document.querySelector("#contactForm");
   const surname = document.querySelector("#surname");
   const name = document.querySelector("#lastname");
   const email = document.querySelector("#mail");
   const message = document.querySelector("#message");
   const submit = document.querySelector("#submitContact");
-  //error messages creation
+  // error messages creation
   const surnameErrorMessage = document.createElement("p");
   const nameErrorMessage = document.createElement("p");
   const emailErrorMessage = document.createElement("p");
@@ -408,46 +379,46 @@ contactButton.addEventListener("click", (e) => {
   message.addEventListener("keyup", validateMessage);
   // message.addEventListener("keyup", validateMessage);
 
-  //fonctions validation
+  // fonctions validation
 
   function validateSurname() {
     const surnameRegExp = /^[a-zA-ZÀ-ÿ-]+$/;
 
     if (surname.value.length < 2) {
-      //add red borders to the input when the value is not valid (i.e. <2 characters)
+      // add red borders to the input when the value is not valid (i.e. <2 characters)
       surname.style.border = "3px solid red";
-      //add an error message if the value is not valid
+      // add an error message if the value is not valid
       surnameErrorMessage.textContent =
         "Votre prénom doit contenir au moins 2 caractères";
-      //apply the css "errorClass" to the error message
+      // apply the css "errorClass" to the error message
       surnameErrorMessage.classList.add("errorClass");
 
-      //add the error message as child of the parent element of input (i.e. the div formData)
+      // add the error message as child of the parent element of input (i.e. the div formData)
       surname.parentElement.appendChild(surnameErrorMessage);
-      //return false in order to impeed form validation
+      // return false in order to impeed form validation
       return false;
-    } else if (!surnameRegExp.test(surname.value)) {
-      //if the value written in the input doesn't match the regexp, add red borders, as above
+    }
+    if (!surnameRegExp.test(surname.value)) {
+      // if the value written in the input doesn't match the regexp, add red borders, as above
       surname.style.border = "3px solid red";
-      //add en error message
+      // add en error message
       surnameErrorMessage.textContent =
         "Le prénom ne peut pas contenir de chiffres, de caractères spéciaux ni d'espace.";
-      //apply the css "errorClass" to the error message
+      // apply the css "errorClass" to the error message
       surnameErrorMessage.classList.add("errorClass");
-      //add the error message as child of the parent element of input (i.e. the div formData)
+      // add the error message as child of the parent element of input (i.e. the div formData)
       surname.parentElement.appendChild(surnameErrorMessage);
-      //return false in order to impeed form validation
+      // return false in order to impeed form validation
       return false;
-    } else {
-      //if none of the negative conditions above are met, it means that the value is valid
-      //so that, add green borders to the input
-      surname.style.border = "3px solid green";
-      //remove the error message
-      surnameErrorMessage.classList.remove("errorClass");
-      surnameErrorMessage.textContent = "";
-      //return true in order to allow form validation
-      return true;
     }
+    // if none of the negative conditions above are met, it means that the value is valid
+    // so that, add green borders to the input
+    surname.style.border = "3px solid green";
+    // remove the error message
+    surnameErrorMessage.classList.remove("errorClass");
+    surnameErrorMessage.textContent = "";
+    // return true in order to allow form validation
+    return true;
   }
 
   function validateNom() {
@@ -460,19 +431,19 @@ contactButton.addEventListener("click", (e) => {
       nameErrorMessage.classList.add("errorClass");
       name.parentElement.appendChild(nameErrorMessage);
       return false;
-    } else if (!nameRegExp.test(name.value)) {
+    }
+    if (!nameRegExp.test(name.value)) {
       name.style.border = "3px solid red";
       nameErrorMessage.textContent =
         "Le nom ne peut contenir ni des chiffres ni des caractères spéciaux";
       nameErrorMessage.classList.add("errorClass");
       name.parentElement.appendChild(nameErrorMessage);
       return false;
-    } else {
-      name.style.border = "3px solid green";
-      nameErrorMessage.classList.remove("errorClass");
-      nameErrorMessage.textContent = "";
-      return true;
     }
+    name.style.border = "3px solid green";
+    nameErrorMessage.classList.remove("errorClass");
+    nameErrorMessage.textContent = "";
+    return true;
   }
 
   function validateEmail() {
@@ -486,12 +457,11 @@ contactButton.addEventListener("click", (e) => {
       emailErrorMessage.classList.add("errorClass");
       email.parentElement.appendChild(emailErrorMessage);
       return false;
-    } else {
-      email.style.border = "3px solid green";
-      emailErrorMessage.classList.remove("errorClass");
-      emailErrorMessage.textContent = "";
-      return true;
     }
+    email.style.border = "3px solid green";
+    emailErrorMessage.classList.remove("errorClass");
+    emailErrorMessage.textContent = "";
+    return true;
   }
 
   function validateMessage() {
@@ -502,43 +472,43 @@ contactButton.addEventListener("click", (e) => {
       messageErrorMessage.classList.add("errorClass");
       message.parentElement.appendChild(messageErrorMessage);
       return false;
-    } else if (message.value.length > 500) {
+    }
+    if (message.value.length > 500) {
       message.style.border = "3px solid red";
       messageErrorMessage.textContent =
         "Votre message doit contenir moins de 500 caractères.";
       messageErrorMessage.classList.add("errorClass");
       message.parentElement.appendChild(messageErrorMessage);
       return false;
-    } else {
-      message.style.border = "3px solid green";
-      messageErrorMessage.classList.remove("errorClass");
-      messageErrorMessage.textContent = "";
-      return true;
     }
+    message.style.border = "3px solid green";
+    messageErrorMessage.classList.remove("errorClass");
+    messageErrorMessage.textContent = "";
+    return true;
   }
 
-  //add event listener to the button submit
-  submit.addEventListener("click", function (event) {
+  // add event listener to the button submit
+  submit.addEventListener("click", (event) => {
     event.preventDefault();
-    //call the functions to validate the form
+    // call the functions to validate the form
     validateSurname();
     validateNom();
     validateEmail();
     validateMessage();
-    //if all the functions return true, the form is submitted
+    // if all the functions return true, the form is submitted
     if (
       validateSurname() &&
       validateNom() &&
       validateEmail() &&
       validateMessage()
     ) {
-      //take the url of the page
-      let url = window.location.href;
-      //split the url to get the id of the page
-      let urlArray = url.split("/");
-      let id = urlArray[urlArray.length - 1];
+      // take the url of the page
+      const url = window.location.href;
+      // split the url to get the id of the page
+      const urlArray = url.split("/");
+      const id = urlArray[urlArray.length - 1];
 
-      //change form action to the same page
+      // change form action to the same page
       form.action = `${url}`;
 
       console.log(`Prénom : ${surname.value}`);
@@ -550,8 +520,8 @@ contactButton.addEventListener("click", (e) => {
 
       closeModalContact();
 
-      //reset the form
-      //set all borders to default
+      // reset the form
+      // set all borders to default
       surname.style.border = "3px solid #ccc";
       name.style.border = "3px solid #ccc";
       email.style.border = "3px solid #ccc";
@@ -565,7 +535,7 @@ contactButton.addEventListener("click", (e) => {
   });
 });
 
-//close the modal
+// close the modal
 const closeButton = document.querySelector(".close-cross");
 closeButton.addEventListener("click", closeModalContact);
 
@@ -574,5 +544,3 @@ function closeModalContact() {
   contactModal.style.display = "none";
   document.querySelector(".page-container").style.pointerEvents = "auto";
 }
-
-
