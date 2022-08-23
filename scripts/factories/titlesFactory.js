@@ -194,9 +194,81 @@ export function titlesPhotographerFactory(data) {
           }
         });
 
+        //if you press left arrow, display the previous img in the array
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowLeft") {
+            console.log("fleche gauche");
+            if (index === 0) {
+              index = arrayMediaByOrder.length - 1;
+            } else {
+              index--;
+            }
+
+            // if the img is a video, display the video
+            if (arrayMediaByOrder[index].tagName === "VIDEO") {
+              mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+  `;
+            } else {
+              mediaContainer.innerHTML = `
+          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+          `;
+            }
+          }
+        });
+
+        //if you press right arrow, display the next img in the array
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "ArrowRight") {
+            console.log("fleche droite");
+            if (index === arrayMediaByOrder.length - 1) {
+              index = 0;
+            } else {
+              index++;
+            }
+
+            // if the img is a video, display the video
+            if (arrayMediaByOrder[index].tagName === "VIDEO") {
+              mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+  `;
+              
+            } else {
+              mediaContainer.innerHTML = `
+          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+          `;
+            }
+          }
+        });
+
+          // if you press esc, close the lightbox
+          document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape") {
+              // make lightbox invisible
+              lightboxContainer.style.display = "none";
+              // impeed scroll, focus on the page
+              wholeDocument.style.overflowY = "scroll";
+              wholeDocument.style.overflowX = "scroll";
+
+              // reset the contenu of the mediaContainer
+              mediaContainer.innerHTML = "";
+            }
+          });
+
+          
+          // if you click on the lightbox, close it
+          // lightbox.addEventListener("click", (e) => {
+          //   if (e.target.id === "lightbox") {
+          //     lightbox.style.display = "none";
+          //   }
+          // });
+
+
+
         // add event listener to closeCross
         closeCross.addEventListener("click", () => {
-          // stop propagation of the event
 
           // make lightbox invisible
           lightboxContainer.style.display = "none";
@@ -206,7 +278,7 @@ export function titlesPhotographerFactory(data) {
 
           // reset the contenu of the mediaContainer
           mediaContainer.innerHTML = "";
-          // reset index of the currentImg
+        
         });
       });
     });
