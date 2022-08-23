@@ -1,36 +1,35 @@
 export function headerPhotographerFactory(data) {
-  const { name, portrait, city, country, tagline, price, id } = data;
+  const { name, portrait, city, country, tagline, id } = data;
   const picture = `assets/photographers/${portrait}`;
   const sticky = document.querySelector(".sticky");
-
   const p = document.createElement("p");
   p.innerHTML = `${data.price} € / jour`;
   sticky.appendChild(p);
-  console.log(data.price);
+ 
 
   function infoCard() {
-    const infoCard = document.createElement("div");
-    infoCard.classList.add("info-card");
-    return infoCard;
+    const infoCardDiv = document.createElement("div");
+    infoCardDiv.classList.add("info-card");
+    return infoCardDiv;
   }
 
   function photographersInfosName() {
-    const p = document.createElement("p");
-    p.textContent = `${name}`;
-    p.classList.add("name");
-    return p;
+    const pName = document.createElement("p");
+    pName.textContent = `${name}`;
+    pName.classList.add("name");
+    return pName;
   }
   function photographersInfosLocation() {
-    const p = document.createElement("p");
-    p.textContent = `${city}, ${country}`;
-    p.classList.add("location");
-    return p;
+    const pLocation = document.createElement("p");
+    pLocation.textContent = `${city}, ${country}`;
+    pLocation.classList.add("location");
+    return pLocation;
   }
   function photographersTagline() {
-    const p = document.createElement("p");
-    p.textContent = `${tagline}`;
-    p.classList.add("tagline");
-    return p;
+    const pTagline = document.createElement("p");
+    pTagline.textContent = `${tagline}`;
+    pTagline.classList.add("tagline");
+    return pTagline;
   }
 
   function photographersProfilPic() {
