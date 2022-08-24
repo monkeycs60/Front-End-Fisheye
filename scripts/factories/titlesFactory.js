@@ -235,7 +235,7 @@ export function titlesPhotographerFactory(data) {
             lightboxContainer.style.display = "none";
             // impeed scroll, focus on the page
             wholeDocument.style.overflowY = "scroll";
-            wholeDocument.style.overflowX = "scroll";
+            // wholeDocument.style.overflowX = "scroll";
 
             // reset the contenu of the mediaContainer
             mediaContainer.innerHTML = "";
@@ -255,7 +255,7 @@ export function titlesPhotographerFactory(data) {
           lightboxContainer.style.display = "none";
           // impeed scroll, focus on the page
           wholeDocument.style.overflowY = "scroll";
-          wholeDocument.style.overflowX = "scroll";
+          // wholeDocument.style.overflowX = "scroll";
 
           // reset the contenu of the mediaContainer
           mediaContainer.innerHTML = "";
