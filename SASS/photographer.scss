@@ -51,8 +51,10 @@ header {
 
 
   img {
-    height: 200px;
-    width: 200px;
+    // height: 200px;
+    // width: 200px;
+    height: 11.5vw;
+    width: 11.5vw;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 1px 5px 20px 5px grey;
@@ -94,6 +96,7 @@ header {
   width: 25vw;
   height: 5vh;
   margin: 2vh 9.5vw;
+  margin-top: 4vh;
   position: relative;
 
   p {
@@ -217,7 +220,7 @@ hr {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4vh 8vw;
   width: 80%;
-  margin: 10vh auto;
+  margin: 8vh auto;
   justify-content: space-between;
   align-items: center;
 
