@@ -199,7 +199,7 @@ header p {
   display: flex;
   justify-content: space-between;
   color: #901C1C;
-  font-size: 24px;
+  font-size: 0.7em;
   width: 20vw;
 }
 
@@ -245,12 +245,12 @@ header p {
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 35px;
+  padding: 1em;
   margin: auto;
   margin-top: 5vh;
   position: fixed;
@@ -258,21 +258,27 @@ header p {
   left: 50%;
   transform: translate(-50%, -15%);
   z-index: 3;
+  overflow-y: scroll;
+  height: 80vh;
 }
 
 .modal header {
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 3vh;
 }
 
 .modal header img {
   cursor: pointer;
+  transform: translateX(-2vw);
 }
 
 .modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+.modal header h2 span {
+  display: block;
 }
 
 form {
@@ -284,7 +290,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 1.1em;
   margin-top: 2vh;
 }
 
@@ -292,44 +298,68 @@ form div {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
 }
 
 form input {
   width: 100%;
-  height: 68px;
+  height: 5vh;
   border: none;
   border-radius: 5px;
+  text-indent: 1vw;
 }
 
-.textmessage {
-  height: 15vh;
+#message {
+  border: none;
+  border-radius: 5px;
+  text-indent: 1vw;
+  position: relative;
+}
+#message::-moz-placeholder {
+  font-family: "DM Sans", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#message:-ms-input-placeholder {
+  font-family: "DM Sans", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#message::placeholder {
+  font-family: "DM Sans", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .center_button {
+  margin-top: 3vh;
   transform: none;
 }
 
 /* éléments JS */
 .name {
   color: #d3573c;
-  font-size: 56px;
+  font-size: 1.6em;
   font-weight: 500;
 }
 
 .location {
   color: #901c1c;
-  font-size: 30px;
+  font-size: 0.8em;
 }
 
 .tagline {
-  font-size: 18px;
+  font-size: 0.5em;
 }
 
 .errorClass {
   color: rgb(139, 27, 27);
-  font-size: 20px;
+  font-size: 0.6em;
 }
 
 #lightbox-container {
@@ -379,10 +409,22 @@ form input {
   max-width: 100%;
   border-radius: 10px;
 }
+@media (max-width: 1500px) {
+  .lightboxImageContainer img {
+    max-height: 600px;
+    max-width: 1200px;
+  }
+}
 .lightboxImageContainer video {
   width: 100%;
   height: 100%;
   border-radius: 10px;
+}
+@media (max-width: 1700px) {
+  .lightboxImageContainer video {
+    max-height: 600px;
+    max-width: 1200px;
+  }
 }
 
 .lightboxDescription {

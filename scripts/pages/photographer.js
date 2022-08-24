@@ -351,7 +351,7 @@ contactButton.addEventListener("click", (e) => {
   // add the photographer name to the contact form
   const artistName = document.querySelector(".name").innerText;
   const titre = document.querySelector("h2");
-  titre.innerHTML = `Contactez-moi <br> ${artistName}`;
+  titre.innerHTML = `<span>Contactez-moi </span> <span> ${artistName} </span>`;
 
   contactModal.style.display = "block";
 
