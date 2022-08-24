@@ -61,12 +61,12 @@ header p {
 }
 
 .contact_button {
-  font-size: 0.6em;
+  font-size: 0.5em;
   font-weight: bold;
   color: white;
   padding: 11px;
-  width: 12vw;
-  height: 8vh;
+  width: 10vw;
+  height: 7vh;
   border: none;
   background-color: #901c1c;
   border-radius: 5px;
