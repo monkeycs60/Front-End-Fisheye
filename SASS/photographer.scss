@@ -8,6 +8,7 @@
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  font-size: calc(2vw + 1.5px);
 }
 
 //header
@@ -228,18 +229,19 @@ hr {
 
   img {
     width: 20vw;
-    height: 30vh;
+    height: 35vh;
     object-fit: cover;
     border-radius: 5px;
   }
 
   video {
     width: 20vw;
-    height: 30vh;
+    height: 35vh;
     border-radius: 5px;
     object-fit: cover;
     
   }
+  
 }
 
 //le bloc description entier
@@ -294,7 +296,7 @@ hr {
   justify-content: space-between;
   align-items: center;
   padding: 0 2vw;
-  font-size: 220%;
+  font-size: 0.6em;
   height: 8vh;
   width: 15vw;
   bottom: 0;
@@ -420,7 +422,7 @@ transform: none;
 
 .lightbox-content {
   margin: auto;
-  width: 90%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -431,7 +433,7 @@ transform: none;
 .fa-xmark {
  position: absolute;
   top: 10%;
-  right: 6%;
+  right: 5%;
   font-size: 70px;
   color: #901C1C;
 }
@@ -441,22 +443,48 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-width: 70%;
-height: 80%;
- img {
-  object-fit: contain;
+}
+
+.lightboxImageContainer {
+ 
+ 
+  img {
+  
+  // width: 100%;
+  // max-height: 1000px;
+
+    margin: 0px auto;
+    object-fit: contain;
+    max-height: 1000px;
+    max-width: 100%;
+    border-radius: 10px;
+}
+ video {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
 }
 }
 
-.chevron {
-width: 15%;
+.lightboxDescription {
+    color: #901C1C;
+    width: 100%;
+    text-align: left;
+  }
+
+
+.chevron-right {
+  position: absolute;
+  right: 5%;
 background: white;
 font-size: 70px;
 color: #901C1C;
-display: flex;
-justify-content: center;
-align-items: center;
 }
 
+.chevron-left {
+  position: absolute;
+  left: 5%;
+background: white;
+font-size: 70px;
+color: #901C1C;
+}

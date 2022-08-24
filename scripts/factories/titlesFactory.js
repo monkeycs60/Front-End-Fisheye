@@ -53,7 +53,7 @@ export function titlesPhotographerFactory(data) {
     icon.forEach((iconHeart) => {
       iconHeart.addEventListener("click", (e) => {
         const previous = e.target.parentNode.previousSibling;
-        if (icon.classList.contains("fa-solid")) {
+        if (iconHeart.classList.contains("fa-solid")) {
           counter--;
           previous.innerHTML = parseInt(previous.innerHTML) - 1;
           p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
@@ -102,13 +102,22 @@ export function titlesPhotographerFactory(data) {
         const mediaContainer = document.querySelector(".lightbox-image");
 
         if (typeOfMedia === "VIDEO") {
-          mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video>
-       <p class="lightboxDescription">${e.target.parentNode.children[1].children[0].children[0].textContent}</p>
+          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video> </div>
+       <p class="lightboxDescription">${e.target.parentNode.children[1].children[0].children[0].textContent}</p> 
   `;
         } else {
-          mediaContainer.innerHTML = `<img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}">
-  <p class="lightboxDescription">${e.target.alt}</p>
+          mediaContainer.innerHTML = `<div class="lightboxImageContainer"> <img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}"> </div>
+  <p class="lightboxDescription">${e.target.alt}</p> 
   `;
+          // set .lightboxDescription width = img width
+          const lightboxDescription = document.querySelector(
+            ".lightboxDescription"
+          );
+          console.log(lightboxDescription.offsetWidth);
+          console.log(e.target.offsetWidth);
+          lightboxDescription.style.width = `${
+            document.querySelector("#lightboxImage").offsetWidth
+          }px`;
         }
 
         // CREATION DE L INDEX POUR LA LIGHTBOX ////////////////////////////
@@ -140,13 +149,13 @@ export function titlesPhotographerFactory(data) {
 
           // if the img is a video, display the video
           if (arrayMediaByOrder[index].tagName === "VIDEO") {
-            mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
-  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
           } else {
             mediaContainer.innerHTML = `
-          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
-          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
           }
         });
@@ -162,13 +171,13 @@ export function titlesPhotographerFactory(data) {
 
           // if the img is a video, display the video
           if (arrayMediaByOrder[index].tagName === "VIDEO") {
-            mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
-      <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+      <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
       `;
           } else {
             mediaContainer.innerHTML = `
-          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
-          <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p>
+          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p> 
           `;
           }
         });
@@ -184,13 +193,13 @@ export function titlesPhotographerFactory(data) {
 
             // if the img is a video, display the video
             if (arrayMediaByOrder[index].tagName === "VIDEO") {
-              mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
-  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+              mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
             } else {
               mediaContainer.innerHTML = `
-          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
-          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
             }
           }
@@ -207,13 +216,13 @@ export function titlesPhotographerFactory(data) {
 
             // if the img is a video, display the video
             if (arrayMediaByOrder[index].tagName === "VIDEO") {
-              mediaContainer.innerHTML = `<video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video>
-  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+              mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
             } else {
               mediaContainer.innerHTML = `
-          <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" />
-          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p>
+           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
             }
           }

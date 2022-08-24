@@ -145,7 +145,6 @@ getPhotographersDate();
 
 async function displayMedia(photographersMedia) {
   const photoSection = document.querySelector(".photographer_section");
-  const gridDiv = document.querySelector(".grid-div ");
   // log second child of photosection
 
   // if photographer.id = url param, get all the media related to this photographer
