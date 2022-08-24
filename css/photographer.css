@@ -61,12 +61,12 @@ header p {
 }
 
 .contact_button {
-  font-size: 20px;
+  font-size: 0.6em;
   font-weight: bold;
   color: white;
   padding: 11px;
-  width: 170px;
-  height: 70px;
+  width: 12vw;
+  height: 8vh;
   border: none;
   background-color: #901c1c;
   border-radius: 5px;
@@ -85,17 +85,17 @@ header p {
   position: relative;
 }
 .filter p {
-  font-size: 20px;
+  font-size: 0.6em;
   font-weight: bold;
 }
 .filter button {
   background: #901C1C;
   color: white;
-  font-size: 20px;
+  font-size: 0.6em;
   border-radius: 5px;
   border: none;
-  width: 8vw;
-  height: 6vh;
+  width: 10vw;
+  height: 7.5vh;
   cursor: pointer;
   position: relative;
 }
@@ -105,13 +105,13 @@ header p {
   position: absolute;
   top: 28%;
   left: 8%;
-  font-size: 125%;
+  font-size: 0.9em;
 }
 .filter button i {
   position: absolute;
-  top: 35%;
-  left: 70%;
-  font-size: 110%;
+  top: 30%;
+  left: 60%;
+  font-size: 0.9em;
 }
 .filter button:hover {
   background: #D3573C;
@@ -123,24 +123,31 @@ header p {
   border-radius: 10px;
 }
 .filter ul {
-  transform: translateY(31%);
+  transform: translateY(33.5%);
   width: 8vw;
   position: relative;
 }
 .filter li {
+  position: relative;
   cursor: pointer;
   list-style-type: none;
   background: #901C1C;
-  padding: 20px;
+  width: 10vw;
+  height: 7.5vh;
   color: white;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 155%;
+  font-size: 0.54em;
 }
 .filter li span {
   font-weight: normal;
+  position: absolute;
+  top: 28%;
+  left: 8%;
+}
+.filter li i {
+  position: absolute;
+  top: 30%;
+  left: 60%;
+  font-size: 1em;
 }
 .filter li:hover {
   background: #D3573C;
@@ -157,12 +164,6 @@ header p {
 .filter .popularity {
   position: relative;
   border-radius: 5px 5px 0 0;
-}
-.filter .popularity i {
-  position: absolute;
-  font-size: 95%;
-  top: 40%;
-  left: 70%;
 }
 .filter .title {
   border-radius: 0 0 5px 5px;

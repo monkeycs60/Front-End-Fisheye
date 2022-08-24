@@ -106,7 +106,7 @@ async function getPhotographersDate() {
       );
 
       // SORT THE PHOTOS BY DATE
-      fullList.children[2].addEventListener("click", (e) => {
+      fullList.children[1].addEventListener("click", (e) => {
         e.preventDefault();
 
         const dateInvisible = document.querySelectorAll(".invisibleDate");
@@ -256,7 +256,7 @@ boutonFiltre.addEventListener("click", (e) => {
   boutonFiltre.style.display = "none";
 
   // change innerHTML of popularity to "Popularity"
-  popularity.innerHTML = `Popularité <i class="fa-solid fa-chevron-up"></i>`;
+  popularity.innerHTML = `<span> Popularité </span> <i class="fa-solid fa-chevron-up"></i>`;
 
   fullList.classList.toggle("down");
 });
@@ -299,7 +299,7 @@ fullList.children[0].addEventListener("click", (e) => {
 });
 
 // Listener for TITLE of photos
-fullList.children[4].addEventListener("click", (e) => {
+fullList.children[2].addEventListener("click", (e) => {
   e.preventDefault();
 
   const mediaTitle = document.querySelectorAll(".pTitle");
