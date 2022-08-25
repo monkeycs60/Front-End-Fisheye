@@ -550,24 +550,21 @@ contactButton.addEventListener("click", (e) => {
       // reset the error messages
 
       surnameErrorMessage.remove();
-      surname.style.border = "3px solid grey";
       surnameErrorMessage.textContent = "";
       surnameErrorMessage.classList.remove("errorClass");
 
       nameErrorMessage.remove();
-      name.style.border = "3px solid grey";
       nameErrorMessage.textContent = "";
       nameErrorMessage.classList.remove("errorClass");
 
       emailErrorMessage.remove();
-      email.style.border = "3px solid grey";
       emailErrorMessage.textContent = "";
       emailErrorMessage.classList.remove("errorClass");
 
       messageErrorMessage.remove();
-       message.style.border = "3px solid grey";
        messageErrorMessage.textContent = "";
        messageErrorMessage.classList.remove("errorClass");
+
 
       form.reset();
       closeModalContact();
@@ -582,15 +579,7 @@ const closeButton = document.querySelector(".close-cross");
 closeButton.addEventListener("click", closeModalContact);
 
 function closeModalContact() {
-  // const errorMessageAll = document.querySelectorAll(".errorClass");
-  // errorMessageAll.forEach((errorMessage) => {
-  //   errorMessage.remove();
-  // }
-  // );
- 
   document.querySelector(".page-container").style.opacity = "1";
   contactModal.style.display = "none";
   document.querySelector(".page-container").style.pointerEvents = "auto";
-
-
 }

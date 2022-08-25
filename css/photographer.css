@@ -127,6 +127,7 @@ header p {
   transform: translateY(33.5%);
   width: 8vw;
   position: relative;
+  z-index: 5;
 }
 .filter li {
   position: relative;
@@ -137,6 +138,7 @@ header p {
   height: 7.5vh;
   color: white;
   font-size: 0.54em;
+  z-index: 5;
 }
 .filter li span {
   font-weight: normal;

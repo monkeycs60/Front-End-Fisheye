@@ -153,6 +153,7 @@ header {
     transform: translateY(33.5%);
     width: 8vw;
     position: relative;
+    z-index: 5;
   }
 
 
@@ -166,6 +167,8 @@ header {
     height: 7.5vh;
     color: white;
     font-size: calc(0.6em * 0.9);
+    z-index: 5;
+
     
 
     span {
@@ -186,6 +189,7 @@ header {
 
     &:hover {
       background: #D3573C;
+     
     }
   }
 
@@ -227,7 +231,6 @@ hr {
 
 //div child of grid (img + description)
 .grid-div {
-
   img {
     width: 20vw;
     height: 35vh;
