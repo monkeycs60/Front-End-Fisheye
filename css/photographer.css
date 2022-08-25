@@ -44,8 +44,8 @@ header p {
   align-items: center;
 }
 .photograph-header img {
-  height: 11.5vw;
-  width: 11.5vw;
+  height: 10vw;
+  width: 10vw;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -111,7 +111,7 @@ header p {
 .filter button i {
   position: absolute;
   top: 30%;
-  left: 60%;
+  left: 65%;
   font-size: 0.9em;
 }
 .filter button:hover {
@@ -147,7 +147,7 @@ header p {
 .filter li i {
   position: absolute;
   top: 30%;
-  left: 60%;
+  left: 65%;
   font-size: 1em;
 }
 .filter li:hover {
@@ -291,7 +291,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 1.1em;
+  font-size: 0.9em;
   margin-top: 2vh;
 }
 
@@ -310,6 +310,7 @@ form input {
 }
 
 #message {
+  font-family: "DM Sans", sans-serif;
   border: none;
   border-radius: 5px;
   text-indent: 1vw;

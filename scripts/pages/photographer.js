@@ -382,8 +382,9 @@ contactButton.addEventListener("click", (e) => {
 
   function validateSurname() {
     const surnameRegExp = /^[a-zA-ZÀ-ÿ-]+$/;
+ 
 
-    if (surname.value.length < 2) {
+      if (surname.value.length < 2) {
       // add red borders to the input when the value is not valid (i.e. <2 characters)
       surname.style.border = "3px solid red";
       // add an error message if the value is not valid
@@ -393,11 +394,12 @@ contactButton.addEventListener("click", (e) => {
       surnameErrorMessage.classList.add("errorClass");
 
       // add the error message as child of the parent element of input (i.e. the div formData)
+      if (surname.parentElement.children.length === 2) {
       surname.parentElement.appendChild(surnameErrorMessage);
+      }
       // return false in order to impeed form validation
       return false;
-    }
-    if (!surnameRegExp.test(surname.value)) {
+    } else if (!surnameRegExp.test(surname.value)) {
       // if the value written in the input doesn't match the regexp, add red borders, as above
       surname.style.border = "3px solid red";
       // add en error message
@@ -406,43 +408,54 @@ contactButton.addEventListener("click", (e) => {
       // apply the css "errorClass" to the error message
       surnameErrorMessage.classList.add("errorClass");
       // add the error message as child of the parent element of input (i.e. the div formData)
-      surname.parentElement.appendChild(surnameErrorMessage);
+      if (surname.parentElement.children.length === 2) {
+        surname.parentElement.appendChild(surnameErrorMessage);
+      }
       // return false in order to impeed form validation
       return false;
+    } else {
+      // remove the error message
+      surnameErrorMessage.remove();
+      surnameErrorMessage.textContent = "";
+      surnameErrorMessage.classList.remove("errorClass");
+      // if none of the negative conditions above are met, it means that the value is valid
+      // so that, add green borders to the input
+      surname.style.border = "3px solid green";
+      // return true in order to allow form validation
+      return true;
     }
-    // if none of the negative conditions above are met, it means that the value is valid
-    // so that, add green borders to the input
-    surname.style.border = "3px solid green";
-    // remove the error message
-    surnameErrorMessage.classList.remove("errorClass");
-    surnameErrorMessage.textContent = "";
-    // return true in order to allow form validation
-    return true;
-  }
+}
 
   function validateNom() {
     const nameRegExp = /^[a-zA-ZÀ-ÿ- ]+$/;
 
-    if (name.value.length < 2) {
-      name.style.border = "3px solid red";
-      nameErrorMessage.textContent =
-        "Votre nom doit contenir au moins 2 caractères";
-      nameErrorMessage.classList.add("errorClass");
-      name.parentElement.appendChild(nameErrorMessage);
-      return false;
-    }
-    if (!nameRegExp.test(name.value)) {
-      name.style.border = "3px solid red";
-      nameErrorMessage.textContent =
-        "Le nom ne peut contenir ni des chiffres ni des caractères spéciaux";
-      nameErrorMessage.classList.add("errorClass");
-      name.parentElement.appendChild(nameErrorMessage);
-      return false;
-    }
-    name.style.border = "3px solid green";
-    nameErrorMessage.classList.remove("errorClass");
-    nameErrorMessage.textContent = "";
-    return true;
+
+      if (name.value.length < 2) {
+       name.style.border = "3px solid red";
+       nameErrorMessage.textContent =
+         "Votre nom doit contenir au moins 2 caractères";
+       nameErrorMessage.classList.add("errorClass");
+
+         if (name.parentElement.children.length === 2) {
+           name.parentElement.appendChild(nameErrorMessage);
+         }
+       return false;
+     } else if (!nameRegExp.test(name.value)) {
+       name.style.border = "3px solid red";
+       nameErrorMessage.textContent =
+         "Le nom ne peut contenir ni des chiffres ni des caractères spéciaux";
+       nameErrorMessage.classList.add("errorClass");
+       if (name.parentElement.children.length === 2) {
+         name.parentElement.appendChild(nameErrorMessage);
+       }
+       return false;
+     } else {
+       nameErrorMessage.remove();
+       nameErrorMessage.textContent = "";
+       nameErrorMessage.classList.remove("errorClass");
+       name.style.border = "3px solid green";
+       return true;
+     }
   }
 
   function validateEmail() {
@@ -454,13 +467,17 @@ contactButton.addEventListener("click", (e) => {
       emailErrorMessage.textContent =
         "Veuillez entrer une adresse email valide.";
       emailErrorMessage.classList.add("errorClass");
-      email.parentElement.appendChild(emailErrorMessage);
+      if (email.parentElement.children.length === 2) {
+        email.parentElement.appendChild(emailErrorMessage);
+      }
       return false;
-    }
+    } else {
+      emailErrorMessage.remove();
     email.style.border = "3px solid green";
     emailErrorMessage.classList.remove("errorClass");
     emailErrorMessage.textContent = "";
     return true;
+    }
   }
 
   function validateMessage() {
@@ -469,21 +486,27 @@ contactButton.addEventListener("click", (e) => {
       messageErrorMessage.textContent =
         "Votre message doit contenir au moins 10 caractères.";
       messageErrorMessage.classList.add("errorClass");
-      message.parentElement.appendChild(messageErrorMessage);
+       if (message.parentElement.children.length === 2) {
+         message.parentElement.appendChild(messageErrorMessage);
+       }
       return false;
-    }
-    if (message.value.length > 500) {
+    } else if (message.value.length > 500) {
       message.style.border = "3px solid red";
       messageErrorMessage.textContent =
         "Votre message doit contenir moins de 500 caractères.";
       messageErrorMessage.classList.add("errorClass");
-      message.parentElement.appendChild(messageErrorMessage);
+      if (message.parentElement.children.length === 2) {
+        message.parentElement.appendChild(messageErrorMessage);
+      }
       return false;
     }
+    else {
+      messageErrorMessage.remove();
     message.style.border = "3px solid green";
     messageErrorMessage.classList.remove("errorClass");
     messageErrorMessage.textContent = "";
     return true;
+    }
   }
 
   // add event listener to the button submit
@@ -501,23 +524,16 @@ contactButton.addEventListener("click", (e) => {
       validateEmail() &&
       validateMessage()
     ) {
-      // take the url of the page
-      const url = window.location.href;
-      // split the url to get the id of the page
-      const urlArray = url.split("/");
-      const id = urlArray[urlArray.length - 1];
+      
 
-      // change form action to the same page
-      form.action = `${url}`;
 
       console.log(`Prénom : ${surname.value}`);
       console.log(`Nom : ${name.value}`);
       console.log(`Email : ${mail.value}`);
       console.log(`Message : ${message.value}`);
 
-      // form.submit();
 
-      closeModalContact();
+      
 
       // reset the form
       // set all borders to default
@@ -529,7 +545,34 @@ contactButton.addEventListener("click", (e) => {
       name.value = "";
       email.value = "";
       message.value = "";
+
+
+      // reset the error messages
+
+      surnameErrorMessage.remove();
+      surname.style.border = "3px solid grey";
+      surnameErrorMessage.textContent = "";
+      surnameErrorMessage.classList.remove("errorClass");
+
+      nameErrorMessage.remove();
+      name.style.border = "3px solid grey";
+      nameErrorMessage.textContent = "";
+      nameErrorMessage.classList.remove("errorClass");
+
+      emailErrorMessage.remove();
+      email.style.border = "3px solid grey";
+      emailErrorMessage.textContent = "";
+      emailErrorMessage.classList.remove("errorClass");
+
+      messageErrorMessage.remove();
+       message.style.border = "3px solid grey";
+       messageErrorMessage.textContent = "";
+       messageErrorMessage.classList.remove("errorClass");
+
       form.reset();
+      closeModalContact();
+    } else {
+      return false;
     }
   });
 });
@@ -539,7 +582,15 @@ const closeButton = document.querySelector(".close-cross");
 closeButton.addEventListener("click", closeModalContact);
 
 function closeModalContact() {
+  // const errorMessageAll = document.querySelectorAll(".errorClass");
+  // errorMessageAll.forEach((errorMessage) => {
+  //   errorMessage.remove();
+  // }
+  // );
+ 
   document.querySelector(".page-container").style.opacity = "1";
   contactModal.style.display = "none";
   document.querySelector(".page-container").style.pointerEvents = "auto";
+
+
 }

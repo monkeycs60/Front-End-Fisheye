@@ -53,8 +53,8 @@ header {
   img {
     // height: 200px;
     // width: 200px;
-    height: 11.5vw;
-    width: 11.5vw;
+    height: 10vw;
+    width: 10vw;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 1px 5px 20px 5px grey;
@@ -106,7 +106,6 @@ header {
 
   button {
     background: #901C1C;
-    // padding: 20px;
     color: white;
     font-size: 0.6em;
     border-radius: 5px;
@@ -131,7 +130,7 @@ header {
     i {
       position: absolute;
       top: 30%;
-      left: 60%;
+      left: 65%;
       font-size: 0.9em;
 
     }
@@ -178,7 +177,7 @@ header {
        i {
       position: absolute;
       top: 30%;
-      left: 60%;
+      left: 65%;
       font-size: 1em;
 
     }
@@ -325,7 +324,6 @@ hr {
   left: 50%;
   transform: translate(-50%, -15%);
   z-index: 3;
-  //allow scroll
   overflow-y: scroll;
   height: 80vh;
   
@@ -359,7 +357,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 1.1em;
+  font-size: 0.9em;
   margin-top: 2vh;
 }
 
@@ -378,6 +376,7 @@ form input {
 }
 
 #message  {
+  font-family: "DM Sans", sans-serif;
   border: none;
   border-radius: 5px;
   text-indent: 1vw;
