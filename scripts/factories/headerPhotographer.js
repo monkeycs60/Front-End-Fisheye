@@ -33,7 +33,7 @@ export function headerPhotographerFactory(data) {
   function photographersProfilPic() {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", `photo de profil de ${name}`);
+    img.setAttribute("alt", `${name}`);
     return img;
   }
 

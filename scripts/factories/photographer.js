@@ -9,7 +9,7 @@ export function photographerFactory(data) {
     const img = document.createElement("img");
     const h2 = document.createElement("h2");
     img.setAttribute("src", picture);
-    img.setAttribute("alt", `photo de profil de ${name}`);
+    // img.setAttribute("alt", `photo de profil de ${name}`);
     h2.textContent = name;
     h2.classList.add("name");
     link.appendChild(img);

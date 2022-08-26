@@ -74,6 +74,10 @@ header p {
   order: 2;
   transform: translateX(-5vw);
 }
+.contact_button:hover {
+  background-color: #D3573C;
+  color: black;
+}
 
 .filter {
   display: flex;
@@ -91,7 +95,7 @@ header p {
 }
 .filter button {
   background: #901C1C;
-  color: white;
+  color: #FAFAFA;
   font-size: 0.6em;
   border-radius: 5px;
   border: none;
@@ -136,9 +140,10 @@ header p {
   background: #901C1C;
   width: 10vw;
   height: 7.5vh;
-  color: white;
+  color: #FAFAFA;
   font-size: 0.54em;
   z-index: 5;
+  border: none;
 }
 .filter li span {
   font-weight: normal;
@@ -160,13 +165,31 @@ header p {
   background: #901C1C;
 }
 .filter i {
-  color: white;
+  color: #FAFAFA;
   font-size: 20px;
   margin-left: 25px;
 }
 .filter .popularity {
   position: relative;
   border-radius: 5px 5px 0 0;
+}
+.filter .popularity::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 0.1vh;
+  background: #FAFAFA;
+}
+.filter .date::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 0.1vh;
+  background: #FAFAFA;
 }
 .filter .title {
   border-radius: 0 0 5px 5px;
@@ -373,7 +396,7 @@ form input {
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: #FAFAFA;
   z-index: 5;
   margin: auto;
   justify-content: center;
@@ -440,7 +463,7 @@ form input {
 .chevron-right {
   position: absolute;
   right: 5%;
-  background: white;
+  background: #FAFAFA;
   font-size: 70px;
   color: #901C1C;
 }
@@ -448,7 +471,7 @@ form input {
 .chevron-left {
   position: absolute;
   left: 5%;
-  background: white;
+  background: #FAFAFA;
   font-size: 70px;
   color: #901C1C;
 }/*# sourceMappingURL=photographer.css.map */

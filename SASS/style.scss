@@ -21,16 +21,12 @@ header {
     width: 80%;
     margin: 2vh auto;
  
-
     a {
         position: relative;
-        display: flex;
-        // transform: translateX(10vw);
-      
+        display: flex;   
     }
 
     img {
-  
             height: 50px;
     }
 
@@ -41,7 +37,6 @@ header {
 
     h1 {
         color: #901C1C;
-        // transform: translateX(-10vw);
     }
 }
 
