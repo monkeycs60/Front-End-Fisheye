@@ -119,6 +119,30 @@ async function getPhotographersDate() {
         e.preventDefault();
 
         const dateInvisible = document.querySelectorAll(".invisibleDate");
+        console.log(dateInvisible);
+        const dateInvisibleArray = Array.from(dateInvisible);
+        console.log(dateInvisibleArray);
+        //for each element of dateInvisibleArray, log its parent element
+        const DateImageArray = [];
+        const dateLikeArray = [];
+        const dateTitleArray = [];
+
+        dateInvisibleArray.forEach((date) => {
+          console.log(date.parentElement.parentElement.parentElement.children[0]);
+          dateLikeArray.push(date.parentElement.children[1].children[0]);
+          dateTitleArray.push(
+            date.parentElement.parentElement.children[0].children[0]
+          );
+          DateImageArray.push(
+            date.parentElement.parentElement.parentElement.children[0]
+          );
+        });
+
+        for (let j = 0; j < DateImageArray.length; j++) {
+          DateImageArray[j].setAttribute("tabindex", j * 3 + 8);
+          dateTitleArray[j].setAttribute("tabindex", j * 3 + 8 + 1);
+          dateLikeArray[j].setAttribute("tabindex", j * 3 + 8 + 2);
+        }
 
         for (let index = 0; index < photoSection.children.length; index++) {
           for (let j = 0; j < photographersDateArray.length; j++) {
@@ -127,9 +151,6 @@ async function getPhotographersDate() {
               console.log(photoSection.children[j]);
               photoSection.children[j].dataset.order = index;
               photoSection.children[j].children[0].dataset.order = index;
-              console.log(
-                `tri par date : ${photoSection.children[j].dataset.order}`
-              );
             }
           }
         }
@@ -244,21 +265,17 @@ async function displayMedia(photographersMedia) {
 
   // log parent of each photo
   const titleOrder = [];
+  const likeButton = [];
   arrayMediaByOrder.forEach((child) => {
     titleOrder.push(
       child.parentNode.children[1].children[0].children[0]
     );
-  }
-  );
-  
-  const likeButton = [];
-  arrayMediaByOrder.forEach((child) => {
     likeButton.push(
       child.parentNode.children[1].children[1].children[1].children[0]
     );
   }
   );
-  console.log(likeButton);
+  
 
 
   for (let index = 0; index < arrayMediaByOrder.length; index++) {
@@ -327,21 +344,37 @@ fullList.children[0].addEventListener("click", (e) => {
   );
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
-  console.log(likeCountArraySorted);
+
+console.log(likeCountArraySorted);
+
+//create an array with the img children of photoSection sorted by data-position
+const arrayMediaLike = [];
+const articleChildrenLike = document.querySelectorAll("article");
+articleChildrenLike.forEach((child) => {
+  arrayMediaLike.push(child.children[0]);
+});
+console.log(arrayMediaLike);
+//sort the array by data-position
+const arrayMediaByOrderLike = arrayMediaLike.sort(
+  (a, b) => a.dataset.position - b.dataset.position
+);
+
+ 
+for (let j = 0; j < arrayMediaByOrderLike.length; j++) {
+  arrayMediaByOrderLike[j].setAttribute("tabindex", `${8 + j * 3}`);
+  console.log(arrayMediaByOrderLike[j].parentNode.children[1].children[1].children[1].children[0]); 
+  arrayMediaByOrderLike[j].parentNode.children[1].children[0].children[0].setAttribute("tabindex", `${8 + j * 3 + 1}`);
+  arrayMediaByOrderLike[j].parentNode.children[1].children[1].children[1].children[0].setAttribute("tabindex", `${8 + j * 3 + 2}`);
+}
+
 
 
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
       if (likeCountArraySorted[index] == likeCount[j].innerText) {
         photoSection.children[j].style.order = index;
-        console.log(photoSection.children[j]);
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
-        console.log(
-          `tri par likes : ${photoSection.children[j].dataset.order}`
-        );
-
-        
       }
     }
   }
