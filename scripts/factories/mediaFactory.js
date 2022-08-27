@@ -20,7 +20,6 @@ export function mediaPhotographerFactory(data) {
         // add a data-attribute to the video element, equal to its data position in the array
         video.setAttribute("data-video", "true");
         // tabindex 0 for the video element
-            
       } else {
         const img = document.createElement("img");
         // img.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
@@ -29,7 +28,6 @@ export function mediaPhotographerFactory(data) {
         // add a data-attribute to the img element, equal to its data position in the array
         img.setAttribute("data-image", "true");
         article.appendChild(img);
-
       }
     }
   }

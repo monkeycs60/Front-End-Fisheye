@@ -29,11 +29,11 @@ async function getPhotographers() {
 async function displayData(photographers) {
   const photoHeader = document.querySelector(".photograph-header");
 
-  const photographer = photographers.filter((photographer) => {
+  const photographer = photographers.filter((photographerId) => {
     // search parameter in the url
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
-    return photographer.id.toString() === id;
+    return photographerId.id.toString() === id;
   });
 
   const photographerHeaderInfos = headerPhotographerFactory(photographer[0]);
@@ -57,12 +57,10 @@ async function displayData(photographers) {
     photographerHeaderInfos.photographersProfilPic();
   photoHeader.appendChild(photographersProfilPic);
 
-  //switch the DOM place of the button contact_button with the div info_card
+  // switch the DOM place of the button contact_button with the div info_card
   const contactButton = document.querySelector(".contact_button");
   const infoCard = document.querySelector(".info-card");
   photoHeader.insertBefore(infoCard, contactButton);
-
-
 }
 
 async function init() {
@@ -106,7 +104,7 @@ async function getPhotographersDate() {
 
       // get the media related to the photographer
       const photographerMedia = data.media.filter(
-        (photographerMedia) => photographerMedia.photographerId == id
+        (photographerMediaGetId) => photographerMediaGetId.photographerId == id
       );
 
       // create an array with all the dates of the media
@@ -122,13 +120,15 @@ async function getPhotographersDate() {
         console.log(dateInvisible);
         const dateInvisibleArray = Array.from(dateInvisible);
         console.log(dateInvisibleArray);
-        //for each element of dateInvisibleArray, log its parent element
+        // for each element of dateInvisibleArray, log its parent element
         const DateImageArray = [];
         const dateLikeArray = [];
         const dateTitleArray = [];
 
         dateInvisibleArray.forEach((date) => {
-          console.log(date.parentElement.parentElement.parentElement.children[0]);
+          console.log(
+            date.parentElement.parentElement.parentElement.children[0]
+          );
           dateLikeArray.push(date.parentElement.children[1].children[0]);
           dateTitleArray.push(
             date.parentElement.parentElement.children[0].children[0]
@@ -161,11 +161,11 @@ async function getPhotographersDate() {
         boutonFiltre.innerHTML = `<span>Date</span> <i class="fa-solid fa-chevron-down"></i>`;
         boutonFiltre.style.display = "block";
         boutonFiltre.setAttribute("aria-expanded", "false");
-        //change aria selected to true
+        // change aria selected to true
         popularity.setAttribute("aria-selected", "false");
         title.setAttribute("aria-selected", "false");
         date.setAttribute("aria-selected", "true");
-        //change aria activedescendant of fulllist to date
+        // change aria activedescendant of fulllist to date
         fullList.setAttribute("aria-activedescendant", "date");
       });
     })
@@ -249,57 +249,40 @@ async function displayMedia(photographersMedia) {
   // create a const for children of article
   const articleChildren = document.querySelectorAll("article");
 
-
   // for each children push its first child in an array
   const arrayMedia = [];
   articleChildren.forEach((child) => {
     arrayMedia.push(child.children[0]);
   });
-  
 
   // sort the array by data-order
   const arrayMediaByOrder = arrayMedia.sort(
     (a, b) => a.dataset.order - b.dataset.order
   );
 
-
   // log parent of each photo
   const titleOrder = [];
   const likeButton = [];
   arrayMediaByOrder.forEach((child) => {
-    titleOrder.push(
-      child.parentNode.children[1].children[0].children[0]
-    );
+    titleOrder.push(child.parentNode.children[1].children[0].children[0]);
     likeButton.push(
       child.parentNode.children[1].children[1].children[1].children[0]
     );
-  }
-  );
-  
-
+  });
 
   for (let index = 0; index < arrayMediaByOrder.length; index++) {
-    
     // set data-position to the index of the array
     arrayMediaByOrder[index].dataset.position = index;
-    //set attribute tabindex according to the index of the array + 8 + index*2
-    arrayMediaByOrder[index].setAttribute("tabindex", index*3 + 8);
+    // set attribute tabindex according to the index of the array + 8 + index*2
+    arrayMediaByOrder[index].setAttribute("tabindex", index * 3 + 8);
 
-    titleOrder[index].setAttribute(
-      "tabindex",
-      `${8 + index*3 + 1}`
-    );
-    likeButton[index].setAttribute(
-      "tabindex",
-      `${8 + index*3 + 2}`
-    );
-  
+    titleOrder[index].setAttribute("tabindex", `${8 + index * 3 + 1}`);
+    likeButton[index].setAttribute("tabindex", `${8 + index * 3 + 2}`);
 
     // titleOrder[index].setAttribute("tabindex", `${8 + index * 2}`);
   }
 
-
-  //////////////////////////////////////////////////////////
+  /// ///////////////////////////////////////////////////////
 }
 
 async function lastInit() {
@@ -318,9 +301,8 @@ boutonFiltre.addEventListener("click", (e) => {
   e.preventDefault();
 
   boutonFiltre.style.display = "none";
-  //set aria expanded to true
+  // set aria expanded to true
   boutonFiltre.setAttribute("aria-expanded", "true");
-  
 
   // change innerHTML of popularity to "Popularity"
   popularity.innerHTML = `<span> Popularité </span> <i class="fa-solid fa-chevron-up"></i>`;
@@ -345,29 +327,39 @@ fullList.children[0].addEventListener("click", (e) => {
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
 
-console.log(likeCountArraySorted);
+  console.log(likeCountArraySorted);
 
-//create an array with the img children of photoSection sorted by data-position
-const arrayMediaLike = [];
-const articleChildrenLike = document.querySelectorAll("article");
-articleChildrenLike.forEach((child) => {
-  arrayMediaLike.push(child.children[0]);
-});
-console.log(arrayMediaLike);
-//sort the array by data-position
-const arrayMediaByOrderLike = arrayMediaLike.sort(
-  (a, b) => a.dataset.position - b.dataset.position
-);
+  // create an array with the img children of photoSection sorted by data-position
+  const arrayMediaLike = [];
+  const articleChildrenLike = document.querySelectorAll("article");
+  articleChildrenLike.forEach((child) => {
+    arrayMediaLike.push(child.children[0]);
+  });
+  console.log(arrayMediaLike);
+  // sort the array by data-position
+  const arrayMediaByOrderLike = arrayMediaLike.sort(
+    (a, b) => a.dataset.position - b.dataset.position
+  );
 
- 
-for (let j = 0; j < arrayMediaByOrderLike.length; j++) {
-  arrayMediaByOrderLike[j].setAttribute("tabindex", `${8 + j * 3}`);
-  console.log(arrayMediaByOrderLike[j].parentNode.children[1].children[1].children[1].children[0]); 
-  arrayMediaByOrderLike[j].parentNode.children[1].children[0].children[0].setAttribute("tabindex", `${8 + j * 3 + 1}`);
-  arrayMediaByOrderLike[j].parentNode.children[1].children[1].children[1].children[0].setAttribute("tabindex", `${8 + j * 3 + 2}`);
-}
-
-
+  for (let j = 0; j < arrayMediaByOrderLike.length; j++) {
+    arrayMediaByOrderLike[j].setAttribute("tabindex", `${8 + j * 3}`);
+    console.log(
+      arrayMediaByOrderLike[j].parentNode.children[1].children[1].children[1]
+        .children[0]
+    );
+    arrayMediaByOrderLike[
+      j
+    ].parentNode.children[1].children[0].children[0].setAttribute(
+      "tabindex",
+      `${8 + j * 3 + 1}`
+    );
+    arrayMediaByOrderLike[
+      j
+    ].parentNode.children[1].children[1].children[1].children[0].setAttribute(
+      "tabindex",
+      `${8 + j * 3 + 2}`
+    );
+  }
 
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
@@ -418,7 +410,7 @@ fullList.children[2].addEventListener("click", (e) => {
     return 0;
   });
 
-  //sort the array by title
+  // sort the array by title
   mediaTitleArrayParent.sort((a, b) => {
     if (a.innerText < b.innerText) {
       return -1;
@@ -427,9 +419,7 @@ fullList.children[2].addEventListener("click", (e) => {
       return 1;
     }
     return 0;
-  }
-  );
- 
+  });
 
   // change the order of the grid items following its  title position in the mediaTitleArray
 
@@ -443,9 +433,7 @@ fullList.children[2].addEventListener("click", (e) => {
     }
   }
 
-
-
-  //get the images and video sorted by title
+  // get the images and video sorted by title
   const mediaTitleImageElement = [];
   const mediaTitleSubElement = [];
   const mediaLikeElement = [];
@@ -465,14 +453,12 @@ fullList.children[2].addEventListener("click", (e) => {
   console.log(mediaLikeElement);
   console.log(mediaTitleSubElement);
 
-for (let j = 0; j < mediaTitleImageElement.length; j++) {
-  // set data-position to the index of the array
-  mediaTitleImageElement[j].setAttribute("tabindex", j * 3 + 8);
-  mediaTitleSubElement[j].setAttribute("tabindex", `${8 + j * 3 + 1}`);
-  mediaLikeElement[j].setAttribute("tabindex", `${8 + j * 3 + 2}`);
-
-}
-
+  for (let j = 0; j < mediaTitleImageElement.length; j++) {
+    // set data-position to the index of the array
+    mediaTitleImageElement[j].setAttribute("tabindex", j * 3 + 8);
+    mediaTitleSubElement[j].setAttribute("tabindex", `${8 + j * 3 + 1}`);
+    mediaLikeElement[j].setAttribute("tabindex", `${8 + j * 3 + 2}`);
+  }
 
   fullList.classList.toggle("down");
   boutonFiltre.innerHTML = `<span>Titre</span> <i class="fa-solid fa-chevron-down"></i>`;
@@ -493,9 +479,8 @@ const modalBox = document.querySelector(".modal");
 
 contactButton.addEventListener("click", (e) => {
   e.preventDefault();
-  //add aria-label to the contact modal with the name of the photographer
-  
-  
+  // add aria-label to the contact modal with the name of the photographer
+
   contactModal.setAttribute("aria-label", "formulaire de contact");
   // add the photographer name to the contact form
   const artistName = document.querySelector(".name").innerText;
@@ -532,9 +517,8 @@ contactButton.addEventListener("click", (e) => {
 
   function validateSurname() {
     const surnameRegExp = /^[a-zA-ZÀ-ÿ-]+$/;
- 
 
-      if (surname.value.length < 2) {
+    if (surname.value.length < 2) {
       // add red borders to the input when the value is not valid (i.e. <2 characters)
       surname.style.border = "3px solid red";
       // add an error message if the value is not valid
@@ -545,11 +529,12 @@ contactButton.addEventListener("click", (e) => {
 
       // add the error message as child of the parent element of input (i.e. the div formData)
       if (surname.parentElement.children.length === 2) {
-      surname.parentElement.appendChild(surnameErrorMessage);
+        surname.parentElement.appendChild(surnameErrorMessage);
       }
       // return false in order to impeed form validation
       return false;
-    } else if (!surnameRegExp.test(surname.value)) {
+    }
+    if (!surnameRegExp.test(surname.value)) {
       // if the value written in the input doesn't match the regexp, add red borders, as above
       surname.style.border = "3px solid red";
       // add en error message
@@ -563,49 +548,47 @@ contactButton.addEventListener("click", (e) => {
       }
       // return false in order to impeed form validation
       return false;
-    } else {
-      // remove the error message
-      surnameErrorMessage.remove();
-      surnameErrorMessage.textContent = "";
-      surnameErrorMessage.classList.remove("errorClass");
-      // if none of the negative conditions above are met, it means that the value is valid
-      // so that, add green borders to the input
-      surname.style.border = "3px solid green";
-      // return true in order to allow form validation
-      return true;
     }
-}
+    // remove the error message
+    surnameErrorMessage.remove();
+    surnameErrorMessage.textContent = "";
+    surnameErrorMessage.classList.remove("errorClass");
+    // if none of the negative conditions above are met, it means that the value is valid
+    // so that, add green borders to the input
+    surname.style.border = "3px solid green";
+    // return true in order to allow form validation
+    return true;
+  }
 
   function validateNom() {
     const nameRegExp = /^[a-zA-ZÀ-ÿ- ]+$/;
 
+    if (name.value.length < 2) {
+      name.style.border = "3px solid red";
+      nameErrorMessage.textContent =
+        "Votre nom doit contenir au moins 2 caractères";
+      nameErrorMessage.classList.add("errorClass");
 
-      if (name.value.length < 2) {
-       name.style.border = "3px solid red";
-       nameErrorMessage.textContent =
-         "Votre nom doit contenir au moins 2 caractères";
-       nameErrorMessage.classList.add("errorClass");
-
-         if (name.parentElement.children.length === 2) {
-           name.parentElement.appendChild(nameErrorMessage);
-         }
-       return false;
-     } else if (!nameRegExp.test(name.value)) {
-       name.style.border = "3px solid red";
-       nameErrorMessage.textContent =
-         "Le nom ne peut contenir ni des chiffres ni des caractères spéciaux";
-       nameErrorMessage.classList.add("errorClass");
-       if (name.parentElement.children.length === 2) {
-         name.parentElement.appendChild(nameErrorMessage);
-       }
-       return false;
-     } else {
-       nameErrorMessage.remove();
-       nameErrorMessage.textContent = "";
-       nameErrorMessage.classList.remove("errorClass");
-       name.style.border = "3px solid green";
-       return true;
-     }
+      if (name.parentElement.children.length === 2) {
+        name.parentElement.appendChild(nameErrorMessage);
+      }
+      return false;
+    }
+    if (!nameRegExp.test(name.value)) {
+      name.style.border = "3px solid red";
+      nameErrorMessage.textContent =
+        "Le nom ne peut contenir ni des chiffres ni des caractères spéciaux";
+      nameErrorMessage.classList.add("errorClass");
+      if (name.parentElement.children.length === 2) {
+        name.parentElement.appendChild(nameErrorMessage);
+      }
+      return false;
+    }
+    nameErrorMessage.remove();
+    nameErrorMessage.textContent = "";
+    nameErrorMessage.classList.remove("errorClass");
+    name.style.border = "3px solid green";
+    return true;
   }
 
   function validateEmail() {
@@ -621,13 +604,12 @@ contactButton.addEventListener("click", (e) => {
         email.parentElement.appendChild(emailErrorMessage);
       }
       return false;
-    } else {
-      emailErrorMessage.remove();
+    }
+    emailErrorMessage.remove();
     email.style.border = "3px solid green";
     emailErrorMessage.classList.remove("errorClass");
     emailErrorMessage.textContent = "";
     return true;
-    }
   }
 
   function validateMessage() {
@@ -636,11 +618,12 @@ contactButton.addEventListener("click", (e) => {
       messageErrorMessage.textContent =
         "Votre message doit contenir au moins 10 caractères.";
       messageErrorMessage.classList.add("errorClass");
-       if (message.parentElement.children.length === 2) {
-         message.parentElement.appendChild(messageErrorMessage);
-       }
+      if (message.parentElement.children.length === 2) {
+        message.parentElement.appendChild(messageErrorMessage);
+      }
       return false;
-    } else if (message.value.length > 500) {
+    }
+    if (message.value.length > 500) {
       message.style.border = "3px solid red";
       messageErrorMessage.textContent =
         "Votre message doit contenir moins de 500 caractères.";
@@ -650,13 +633,12 @@ contactButton.addEventListener("click", (e) => {
       }
       return false;
     }
-    else {
-      messageErrorMessage.remove();
+
+    messageErrorMessage.remove();
     message.style.border = "3px solid green";
     messageErrorMessage.classList.remove("errorClass");
     messageErrorMessage.textContent = "";
     return true;
-    }
   }
 
   // add event listener to the button submit
@@ -674,16 +656,10 @@ contactButton.addEventListener("click", (e) => {
       validateEmail() &&
       validateMessage()
     ) {
-      
-
-
       console.log(`Prénom : ${surname.value}`);
       console.log(`Nom : ${name.value}`);
       console.log(`Email : ${mail.value}`);
       console.log(`Message : ${message.value}`);
-
-
-      
 
       // reset the form
       // set all borders to default
@@ -695,7 +671,6 @@ contactButton.addEventListener("click", (e) => {
       name.value = "";
       email.value = "";
       message.value = "";
-
 
       // reset the error messages
 
@@ -712,9 +687,8 @@ contactButton.addEventListener("click", (e) => {
       emailErrorMessage.classList.remove("errorClass");
 
       messageErrorMessage.remove();
-       messageErrorMessage.textContent = "";
-       messageErrorMessage.classList.remove("errorClass");
-
+      messageErrorMessage.textContent = "";
+      messageErrorMessage.classList.remove("errorClass");
 
       form.reset();
       closeModalContact();
