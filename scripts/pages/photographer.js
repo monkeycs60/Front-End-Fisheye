@@ -104,12 +104,12 @@ async function getPhotographersDate() {
 
       // get the media related to the photographer
       const photographerMedia = data.media.filter(
-        (photographerMediaGetId) => photographerMediaGetId.photographerId == id
+        (photographerMediaGetId) => photographerMediaGetId.photographerId.toString() === id
       );
 
       // create an array with all the dates of the media
       const photographersDateArray = photographerMedia.map(
-        (photographerMedia) => photographerMedia.date
+        (photographerMediaDate) => photographerMediaDate.date
       );
 
       // SORT THE PHOTOS BY DATE
@@ -125,16 +125,14 @@ async function getPhotographersDate() {
         const dateLikeArray = [];
         const dateTitleArray = [];
 
-        dateInvisibleArray.forEach((date) => {
-          console.log(
-            date.parentElement.parentElement.parentElement.children[0]
-          );
-          dateLikeArray.push(date.parentElement.children[1].children[0]);
+        dateInvisibleArray.forEach((dates) => {
+         
+          dateLikeArray.push(dates.parentElement.children[1].children[0]);
           dateTitleArray.push(
-            date.parentElement.parentElement.children[0].children[0]
+            dates.parentElement.parentElement.children[0].children[0]
           );
           DateImageArray.push(
-            date.parentElement.parentElement.parentElement.children[0]
+            dates.parentElement.parentElement.parentElement.children[0]
           );
         });
 
@@ -146,7 +144,9 @@ async function getPhotographersDate() {
 
         for (let index = 0; index < photoSection.children.length; index++) {
           for (let j = 0; j < photographersDateArray.length; j++) {
-            if (photographersDateArray[index] == dateInvisible[j].innerText) {
+            if (photographersDateArray[index] === dateInvisible[j].innerText) {
+              console.log(typeof photographersDateArray[index]);
+              console.log(typeof dateInvisible[j].innerText);
               photoSection.children[j].style.order = index;
               console.log(photoSection.children[j]);
               photoSection.children[j].dataset.order = index;
@@ -181,33 +181,30 @@ async function getPhotographersDate() {
 getPhotographersDate();
 
 async function displayMedia(photographersMedia) {
-  const photoSection = document.querySelector(".photographer_section");
-  // log second child of photosection
-
   // if photographer.id = url param, get all the media related to this photographer
-  const photographerMedia = photographersMedia.filter((photographerMedia) => {
+  const photographerMedia = photographersMedia.filter((photographerMediaId) => {
     // search parameter in the url
     const urlParams = new URLSearchParams(window.location.search);
     const id = urlParams.get("id");
-    return photographerMedia.photographerId == id;
+    return photographerMediaId.photographerId.toString() === id;
   });
 
   // make an array with all images contained in photographerMedia
-  const photographersMediaArray = photographerMedia.map((photographerMedia) => {
-    if (photographerMedia.image) {
-      return photographerMedia.image;
+  const photographersMediaArray = photographerMedia.map((photographerMediaType) => {
+    if (photographerMediaType.image) {
+      return photographerMediaType.image;
     }
-    if (photographerMedia.video) {
-      return photographerMedia.video;
+    if (photographerMediaType.video) {
+      return photographerMediaType.video;
     }
     // return photographerMedia.image
   });
 
   const photographersTitleArray = photographerMedia.map(
-    (photographerMedia) => ({
-      title: photographerMedia.title,
-      likes: photographerMedia.likes,
-      date: photographerMedia.date,
+    (photographerMediaInformation) => ({
+      title: photographerMediaInformation.title,
+      likes: photographerMediaInformation.likes,
+      date: photographerMediaInformation.date,
     })
   );
 
