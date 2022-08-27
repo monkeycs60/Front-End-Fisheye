@@ -6,6 +6,8 @@ const photoSection = document.querySelector(".photographer_section");
 const fullList = document.querySelector("ul");
 const boutonFiltre = document.querySelector(".filter-button");
 const popularity = document.querySelector(".popularity");
+const date = document.querySelector(".date");
+const title = document.querySelector(".title");
 
 async function getPhotographers() {
   let photographers = [];
@@ -54,6 +56,13 @@ async function displayData(photographers) {
   const photographersProfilPic =
     photographerHeaderInfos.photographersProfilPic();
   photoHeader.appendChild(photographersProfilPic);
+
+  //switch the DOM place of the button contact_button with the div info_card
+  const contactButton = document.querySelector(".contact_button");
+  const infoCard = document.querySelector(".info-card");
+  photoHeader.insertBefore(infoCard, contactButton);
+
+
 }
 
 async function init() {
@@ -130,6 +139,13 @@ async function getPhotographersDate() {
         fullList.classList.toggle("down");
         boutonFiltre.innerHTML = `<span>Date</span> <i class="fa-solid fa-chevron-down"></i>`;
         boutonFiltre.style.display = "block";
+        boutonFiltre.setAttribute("aria-expanded", "false");
+        //change aria selected to true
+        popularity.setAttribute("aria-selected", "false");
+        title.setAttribute("aria-selected", "false");
+        date.setAttribute("aria-selected", "true");
+        //change aria activedescendant of fulllist to date
+        fullList.setAttribute("aria-activedescendant", "date");
       });
     })
     .catch((error) => {
@@ -211,31 +227,62 @@ async function displayMedia(photographersMedia) {
 
   // create a const for children of article
   const articleChildren = document.querySelectorAll("article");
-  console.log(articleChildren);
+
 
   // for each children push its first child in an array
   const arrayMedia = [];
   articleChildren.forEach((child) => {
     arrayMedia.push(child.children[0]);
   });
-  console.log(arrayMedia);
+  
 
   // sort the array by data-order
   const arrayMediaByOrder = arrayMedia.sort(
     (a, b) => a.dataset.order - b.dataset.order
   );
 
-  console.log(arrayMediaByOrder);
+
+  // log parent of each photo
+  const titleOrder = [];
+  arrayMediaByOrder.forEach((child) => {
+    titleOrder.push(
+      child.parentNode.children[1].children[0].children[0]
+    );
+  }
+  );
+  
+  const likeButton = [];
+  arrayMediaByOrder.forEach((child) => {
+    likeButton.push(
+      child.parentNode.children[1].children[1].children[1].children[0]
+    );
+  }
+  );
+  console.log(likeButton);
+
 
   for (let index = 0; index < arrayMediaByOrder.length; index++) {
+    
     // set data-position to the index of the array
     arrayMediaByOrder[index].dataset.position = index;
+    //set attribute tabindex according to the index of the array + 8 + index*2
+    arrayMediaByOrder[index].setAttribute("tabindex", index*3 + 8);
+
+    titleOrder[index].setAttribute(
+      "tabindex",
+      `${8 + index*3 + 1}`
+    );
+    likeButton[index].setAttribute(
+      "tabindex",
+      `${8 + index*3 + 2}`
+    );
+  
+
+    // titleOrder[index].setAttribute("tabindex", `${8 + index * 2}`);
   }
 
-  /// /////////////////////////////////////////////////////////////
-  /// /////////////////////////////////////////////////////////////
-  /// /////////////////////////////////////////////////////////////
-  /// /////////////////////////////////////////////////////////////
+
+  //////////////////////////////////////////////////////////
 }
 
 async function lastInit() {
@@ -254,6 +301,9 @@ boutonFiltre.addEventListener("click", (e) => {
   e.preventDefault();
 
   boutonFiltre.style.display = "none";
+  //set aria expanded to true
+  boutonFiltre.setAttribute("aria-expanded", "true");
+  
 
   // change innerHTML of popularity to "Popularity"
   popularity.innerHTML = `<span> Popularité </span> <i class="fa-solid fa-chevron-up"></i>`;
@@ -279,6 +329,7 @@ fullList.children[0].addEventListener("click", (e) => {
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
   console.log(likeCountArraySorted);
 
+
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
       if (likeCountArraySorted[index] == likeCount[j].innerText) {
@@ -289,6 +340,8 @@ fullList.children[0].addEventListener("click", (e) => {
         console.log(
           `tri par likes : ${photoSection.children[j].dataset.order}`
         );
+
+        
       }
     }
   }
@@ -296,6 +349,11 @@ fullList.children[0].addEventListener("click", (e) => {
   fullList.classList.toggle("down");
   boutonFiltre.innerHTML = `<span>Popularité</span> <i class="fa-solid fa-chevron-down"></i>`;
   boutonFiltre.style.display = "block";
+  boutonFiltre.setAttribute("aria-expanded", "false");
+  popularity.setAttribute("aria-selected", "true");
+  title.setAttribute("aria-selected", "false");
+  date.setAttribute("aria-selected", "false");
+  fullList.setAttribute("aria-activedescendant", "popularity");
 });
 
 // Listener for TITLE of photos
@@ -321,6 +379,7 @@ fullList.children[2].addEventListener("click", (e) => {
     return 0;
   });
 
+
   // change the order of the grid items following its  title position in the mediaTitleArray
 
   for (let index = 0; index < photoSection.children.length; index++) {
@@ -329,6 +388,7 @@ fullList.children[2].addEventListener("click", (e) => {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
+       
       }
     }
   }
@@ -336,6 +396,11 @@ fullList.children[2].addEventListener("click", (e) => {
   fullList.classList.toggle("down");
   boutonFiltre.innerHTML = `<span>Titre</span> <i class="fa-solid fa-chevron-down"></i>`;
   boutonFiltre.style.display = "block";
+  boutonFiltre.setAttribute("aria-expanded", "false");
+  popularity.setAttribute("aria-selected", "false");
+  title.setAttribute("aria-selected", "true");
+  date.setAttribute("aria-selected", "false");
+  fullList.setAttribute("aria-activedescendant", "title");
 });
 
 // log each individual like count
@@ -347,9 +412,13 @@ const modalBox = document.querySelector(".modal");
 
 contactButton.addEventListener("click", (e) => {
   e.preventDefault();
-
+  //add aria-label to the contact modal with the name of the photographer
+  
+  
+  contactModal.setAttribute("aria-label", "formulaire de contact");
   // add the photographer name to the contact form
   const artistName = document.querySelector(".name").innerText;
+  contactModal.setAttribute("aria-label", `Contactez ${artistName} `);
   const titre = document.querySelector("h2");
   titre.innerHTML = `<span>Contactez-moi </span> <span> ${artistName} </span>`;
 

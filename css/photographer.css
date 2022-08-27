@@ -74,7 +74,7 @@ header p {
   order: 2;
   transform: translateX(-5vw);
 }
-.contact_button:hover {
+.contact_button:hover, .contact_button:focus {
   background-color: #D3573C;
   color: black;
 }
@@ -118,7 +118,7 @@ header p {
   left: 65%;
   font-size: 0.9em;
 }
-.filter button:hover {
+.filter button:hover, .filter button:focus {
   background: #D3573C;
 }
 .filter .down {
@@ -157,7 +157,7 @@ header p {
   left: 65%;
   font-size: 1em;
 }
-.filter li:hover {
+.filter li:hover, .filter li:focus {
   background: #D3573C;
 }
 .filter hr {

@@ -51,8 +51,6 @@ header {
 
 
   img {
-    // height: 200px;
-    // width: 200px;
     height: 10vw;
     width: 10vw;
     object-fit: cover;
@@ -87,7 +85,7 @@ header {
   order: 2;
   transform: translateX(-5vw);
 
-  &:hover {
+  &:hover, &:focus {
     background-color: #D3573C;
     color: black;
   }
@@ -140,7 +138,7 @@ header {
 
     }
 
-    &:hover {
+    &:hover, &:focus {
       background: #D3573C;
     }
 
@@ -192,7 +190,7 @@ header {
    
 
 
-    &:hover {
+    &:hover, &:focus {
       background: #D3573C;
      
     }

@@ -27,15 +27,19 @@ export function titlesPhotographerFactory(data) {
         .children[index].children[0];
       // set alt attribute to img element
       imgArticle.setAttribute("alt", `${data[index].title}`);
+      //add aria-label attribute to img element
+      imgArticle.setAttribute("aria-label", `${data[index].title}, Ouvrir en grand`);
       const pLikes = document.createElement("p");
-      const pHeart = document.createElement("p");
+      const pHeart = document.createElement("div");
+      //creat a const that creates i
       pLikes.innerHTML = `${data[index].likes}`;
       pLikes.classList.add("pLikes");
+      pLikes.setAttribute("aria-label", `nombre de likes`);
       pHeart.innerHTML = `<i class="coeur fa-regular fa-heart"></i>`;
+      pHeart.children[0].setAttribute("aria-label", `Ajouter à mes favoris`);
       invisibleDate.innerHTML = `${data[index].date}`;
       invisibleDate.classList.add("invisibleDate");
       photoSection.children[index].appendChild(globalContainer);
-      // photoSection.children[index].appendChild(div2);
       globalContainer.appendChild(div);
       globalContainer.appendChild(div2);
       div.appendChild(pTitle);
@@ -105,6 +109,7 @@ export function titlesPhotographerFactory(data) {
           mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video> </div>
        <p class="lightboxDescription">${e.target.parentNode.children[1].children[0].children[0].textContent}</p> 
   `;
+          mediaContainer.children[0].children[0].setAttribute("aria-label", `${e.target.parentNode.children[1].children[0].children[0].textContent}`);
         } else {
           mediaContainer.innerHTML = `<div class="lightboxImageContainer"> <img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}"> </div>
   <p class="lightboxDescription">${e.target.alt}</p> 
@@ -152,11 +157,15 @@ export function titlesPhotographerFactory(data) {
             mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
+            //add an aria label with name of the video 
+            mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`);
           } else {
             mediaContainer.innerHTML = `
            <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
+            //add an aria label with name of the img
+            mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`);
           }
         });
 
@@ -174,11 +183,15 @@ export function titlesPhotographerFactory(data) {
             mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
       <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
       `;
+            //add an aria label with name of the video
+            mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`);
           } else {
             mediaContainer.innerHTML = `
           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p> 
           `;
+            //add an aria label with name of the img
+            mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].alt}`);
           }
         });
 
@@ -196,11 +209,15 @@ export function titlesPhotographerFactory(data) {
               mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
+              //add an aria label with name of the video
+              mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`);
             } else {
               mediaContainer.innerHTML = `
           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
+              //add an aria label with name of the img
+              mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`);
             }
           }
         });
@@ -219,11 +236,15 @@ export function titlesPhotographerFactory(data) {
               mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
+              //add an aria label with name of the video
+              mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`);
             } else {
               mediaContainer.innerHTML = `
            <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
+              //add an aria label with name of the img
+              mediaContainer.children[0].children[0].setAttribute("aria-label", `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`);
             }
           }
         });
@@ -242,13 +263,7 @@ export function titlesPhotographerFactory(data) {
           }
         });
 
-        // if you click on the lightbox, close it
-        // lightbox.addEventListener("click", (e) => {
-        //   if (e.target.id === "lightbox") {
-        //     lightbox.style.display = "none";
-        //   }
-        // });
-
+     
         // add event listener to closeCross
         closeCross.addEventListener("click", () => {
           // make lightbox invisible
