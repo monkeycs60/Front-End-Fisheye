@@ -362,10 +362,16 @@ fullList.children[2].addEventListener("click", (e) => {
 
   const mediaTitle = document.querySelectorAll(".pTitle");
   const mediaTitleArray = [];
+  const mediaTitleArrayParent = [];
 
   mediaTitle.forEach((mediaTitle) => {
     // push the title of each media in an array
     mediaTitleArray.push(mediaTitle.innerText);
+  });
+
+  mediaTitle.forEach((mediaTitleParent) => {
+    // push the title of each media in an array
+    mediaTitleArrayParent.push(mediaTitleParent);
   });
 
   // sort the array by title
@@ -379,6 +385,18 @@ fullList.children[2].addEventListener("click", (e) => {
     return 0;
   });
 
+  //sort the array by title
+  mediaTitleArrayParent.sort((a, b) => {
+    if (a.innerText < b.innerText) {
+      return -1;
+    }
+    if (a.innerText > b.innerText) {
+      return 1;
+    }
+    return 0;
+  }
+  );
+ 
 
   // change the order of the grid items following its  title position in the mediaTitleArray
 
@@ -388,10 +406,40 @@ fullList.children[2].addEventListener("click", (e) => {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
-       
       }
     }
   }
+
+
+
+  //get the images and video sorted by title
+  const mediaTitleImageElement = [];
+  const mediaTitleSubElement = [];
+  const mediaLikeElement = [];
+
+  mediaTitleArrayParent.forEach((list) => {
+    console.log(list);
+    mediaTitleImageElement.push(
+      list.parentNode.parentNode.parentNode.children[0]
+    );
+    mediaLikeElement.push(
+      list.parentNode.parentNode.parentNode.children[1].children[1].children[1]
+        .children[0]
+    );
+    mediaTitleSubElement.push(list.parentNode.children[0]);
+  });
+  console.log(mediaTitleImageElement);
+  console.log(mediaLikeElement);
+  console.log(mediaTitleSubElement);
+
+for (let j = 0; j < mediaTitleImageElement.length; j++) {
+  // set data-position to the index of the array
+  mediaTitleImageElement[j].setAttribute("tabindex", j * 3 + 8);
+  mediaTitleSubElement[j].setAttribute("tabindex", `${8 + j * 3 + 1}`);
+  mediaLikeElement[j].setAttribute("tabindex", `${8 + j * 3 + 2}`);
+
+}
+
 
   fullList.classList.toggle("down");
   boutonFiltre.innerHTML = `<span>Titre</span> <i class="fa-solid fa-chevron-down"></i>`;
