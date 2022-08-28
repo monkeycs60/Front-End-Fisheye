@@ -1,7 +1,7 @@
-//import the script from factories/photographer.js
+// import the script from factories/photographer.js
 import { photographerFactory } from "../factories/photographer.js";
 
- async function getPhotographers() {
+async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json
 
   let photographers = [];
@@ -9,7 +9,6 @@ import { photographerFactory } from "../factories/photographer.js";
   await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
-  
       photographers = data.photographers;
     })
     .catch((error) => {
@@ -22,9 +21,7 @@ import { photographerFactory } from "../factories/photographer.js";
   };
 }
 
-
- async function displayData(photographers) {
-
+async function displayData(photographers) {
   const photographersSection = document.querySelector(".photographer_section");
 
   photographers.forEach((photographer) => {
@@ -44,7 +41,7 @@ import { photographerFactory } from "../factories/photographer.js";
   });
 }
 
- async function init() {
+async function init() {
   // Récupère les datas des photographes
   const { photographers } = await getPhotographers();
   displayData(photographers);

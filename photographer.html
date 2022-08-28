@@ -20,7 +20,7 @@
     <header>
       <a href="./index.html" tabindex="-1" aria-label="lien vers la page d'accueil">
         <p>Lien vers la page d'accueil</p>
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" tabindex="1" />
       </a>
     </header>
 
@@ -30,7 +30,7 @@
 
 
       <div class="photograph-header">
-        <button class="contact_button">Contactez-moi</button>
+        <button class="contact_button" tabindex="5">Contactez-moi</button>
       </div>
 
 
@@ -39,16 +39,14 @@
 
 
         <div class="filter-section">
-          <button class="filter-button">
+          <button class="filter-button" id="buttonTrigger" role="combobox" tabindex="7" aria-label="Tri par catégorie" aria-haspopup=”listbox” aria-controls="menuTri" aria-expanded="false">
             <span class="filter-text-button">Popularité</span>
             <i class="fa-solid fa-chevron-down"></i>
           </button>
-          <ul class="specs down">
-            <li class="popularity" tabindex="0">Popularité</li>
-            <hr>
-            <li class="date" tabindex="0">Date</li>
-            <hr>
-            <li class="title" tabindex="0">Titre</li>
+          <ul class="specs down" id="menuTri" role="listbox" tabindex="-1"  aria-labelledby="buttonTrigger" aria-activedescendant="popularity">
+            <li class="popularity" id="popularity" role="option" aria-label="Popularité" tabindex="0" aria-selected="true"> <span> Popularité </span></li>
+            <li class="date" id="date" role="option" aria-label="Date" tabindex="0" aria-selected="false"><span> Date </span></li>
+            <li class="title" id="title" role="option" aria-label="Titre" tabindex="0" aria-selected="false"><span> Titre </span></li>
           </ul>
 
         </div>
@@ -63,11 +61,11 @@
 
 
 
-  <div id="contact_modal">
+  <div id="contact_modal" aria-labelledby="popupTitle">
     <div class="modal">
       <header>
         <h2 id="popupTitle">Contactez-moi</h2>
-        <img class="close-cross" src="assets/icons/close.svg" alt="close cross" aria-label="close the form" />
+        <img class="close-cross" src="assets/icons/close.svg" alt="close cross" aria-label="Fermer la fenêtre contact" />
       </header>
 
 
@@ -76,33 +74,34 @@
         <div>
 
           <div class="formData">
-            <label for="surname">Prénom</label>
-            <input type="text" class="inputText" id="surname" name="surname" aria-label="first name field"
-              placeholder="Entrez un prénom valide (entre 2 et 20 caractères non-numériques et non spéciaux)" />
+            <label for="surname" id="surname-input">Prénom</label>
+            <input type="text" class="inputText" id="surname" name="surname" aria-label="first name field" aria-required="true"
+              aria-labelledby="surname-input"  tabindex="0" placeholder="Entrez un prénom valide (entre 2 et 20 caractères non-numériques et non spéciaux)"  />
           </div>
 
           <div class="formData">
-            <label for="lastname">Nom</label>
+            <label for="lastname" id="name input">Nom</label>
             <input type="text" class="inputText" id="lastname" name="lastname" aria-label="last name field"
-              placeholder="Entrez un nom valide (entre 2 et 20 caractères non-numériques et non spéciaux)" />
+             aria-labelledby="name input" placeholder="Entrez un nom valide (entre 2 et 20 caractères non-numériques et non spéciaux)" aria-required="true"
+                tabindex="0" />
           </div>
 
           <div class="formData">
-            <label for="mail">Email</label>
-            <input type="email" class="inputText" id="mail" name="mail" aria-label="email field"
+            <label for="mail" id="email-input">Email</label>
+            <input type="email" class="inputText" id="mail" name="mail" aria-label="email field" aria-required="true"
+             aria-labelledby="email-input"  tabindex="0"
               placeholder="Entrez une adresse mail valide" />
           </div>
 
           <div class="formData">
-            <label for="message">Votre message</label>
-            <!-- <textarea aria-label="message field" rows="10" cols="150"></textarea> -->
-            <input type="text" class="textmessage" id="message" name="message" aria-label="email field"
-              placeholder="Entrez entre 10 et 500 caractères" />
+            <label for="message" id="message-input">Votre message</label>
+            <textarea aria-label="message field" id="message" name="message" rows="10" placeholder="Entrez entre 10 et 500 caractères" aria-required="true"
+              aria-labelledby="message-input"  tabindex="0"></textarea>
           </div>
 
         </div>
 
-        <button class="contact_button center_button" id="submitContact">Envoyer</button>
+        <button class="contact_button center_button" aria-label="Envoyer" id="submitContact">Envoyer</button>
 
       </form>
 
@@ -111,25 +110,21 @@
 
 
   <!-- LIGHTBOX -->
-  <div id="lightbox-container">
+  <div id="lightbox-container" aria-label="Gallerie image taille réelle">
 
     <div class="lightbox-content">
 
-      <!-- <div class="lightbox-cross">
-    <img class="close-cross" src="./assets/icons/close.svg" alt="close cross" aria-label="close the form" />
-  </div> -->
-      <i class="fa-solid fa-xmark"></i>
+   
+      <i class="fa-solid fa-xmark" aria-label="Fermer la gallerie" tabindex="0"></i>
 
       <div class="chevron-left chevron">
-        <i class="fa-solid fa-chevron-left"></i>
+        <i class="fa-solid fa-chevron-left" aria-label="Image précédente"  tabindex="0"></i>
       </div>
       <div class="lightbox-image">
-        <!-- <img id="lightboxImage" src="#" alt="" /> -->
-        <!-- <video id="lightboxVideo" src="#" alt="" /> -->
-        <!-- <p class="lightboxDescription"></p> -->
+
       </div>
       <div class="chevron-right chevron">
-        <i class="fa-solid fa-chevron-right"></i>
+        <i class="fa-solid fa-chevron-right" aria-label="Image suivante" tabindex="0"></i>
       </div>
 
 
@@ -143,7 +138,6 @@
 
   <!-- <script type="module" src="/Front-End-Fisheye/scripts/pages/photographer.js"></script> -->
   <script type="module" src="./scripts/pages/photographer.js"></script>
-  <!-- <script src="/scripts/utils/contactForm.js"></script> -->
 </body>
 
 </html>

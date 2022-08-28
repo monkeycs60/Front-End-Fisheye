@@ -8,6 +8,7 @@
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  font-size: calc(2vw + 1.5px);
 }
 
 //header
@@ -50,8 +51,8 @@ header {
 
 
   img {
-    height: 200px;
-    width: 200px;
+    height: 10vw;
+    width: 10vw;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 1px 5px 20px 5px grey;
@@ -68,22 +69,26 @@ header {
   display: flex;
   flex-direction: column;
   gap: 15px;
-
 }
 
 .contact_button {
-  font-size: 20px;
+  font-size: 0.5em;
   font-weight: bold;
   color: white;
   padding: 11px;
-  width: 170px;
-  height: 70px;
+  width: 10vw;
+  height: 7vh;
   border: none;
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
   order: 2;
   transform: translateX(-5vw);
+
+  &:hover, &:focus {
+    background-color: #D3573C;
+    color: black;
+  }
 }
 
 //partie filter
@@ -94,22 +99,22 @@ header {
   width: 25vw;
   height: 5vh;
   margin: 2vh 9.5vw;
+  margin-top: 4vh;
   position: relative;
 
   p {
-    font-size: 20px;
+    font-size: 0.6em;
     font-weight: bold;
   }
 
   button {
     background: #901C1C;
-    // padding: 20px;
-    color: white;
-    font-size: 20px;
+    color: #FAFAFA;
+    font-size: 0.6em;
     border-radius: 5px;
     border: none;
-    width: 8vw;
-    height: 6vh;
+    width: 10vw;
+    height: 7.5vh;
     cursor: pointer;
     position: relative;
  
@@ -120,20 +125,20 @@ header {
       position: absolute;
       top: 28%;
       left: 8%;
-      font-size: 125%;
+      font-size: 0.9em;
       
 
     }
 
     i {
       position: absolute;
-      top: 35%;
-      left: 70%;
-      font-size: 110%;
+      top: 30%;
+      left: 65%;
+      font-size: 0.9em;
 
     }
 
-    &:hover {
+    &:hover, &:focus {
       background: #D3573C;
     }
 
@@ -148,35 +153,46 @@ header {
   }
 
   ul {
-    transform: translateY(31%);
+    transform: translateY(33.5%);
     width: 8vw;
     position: relative;
-    // position: absolute;
-    // top: -7%;
+    z-index: 5;
   }
 
 
   li {
 
+    position: relative;
     cursor: pointer;
     list-style-type: none;
     background: #901C1C;
-    padding: 20px;
-    color: white;
-    font-size: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 155%;
+    width: 10vw;
+    height: 7.5vh;
+    color: #FAFAFA;
+    font-size: calc(0.6em * 0.9);
+    z-index: 5;
+        border: none;
+    
 
     span {
       font-weight: normal;
-      // font-size: 130%;
+      position: absolute;
+      top: 28%;
+      left: 8%;
     }
+       i {
+      position: absolute;
+      top: 30%;
+      left: 65%;
+      font-size: 1em;
+
+    }
+   
 
 
-    &:hover {
+    &:hover, &:focus {
       background: #D3573C;
+     
     }
   }
 
@@ -188,7 +204,7 @@ hr {
 }
   i {
 
-    color: white;
+    color: #FAFAFA;
     font-size: 20px;
     margin-left: 25px;
   }
@@ -196,12 +212,28 @@ hr {
   .popularity {
     position: relative;
     border-radius: 5px 5px 0 0;
-    i {
+    &::after {
+      content: "";
       position: absolute;
-      font-size: 95%;
-      top: 40%;
-      left: 70%;
+      bottom: 0;
+      left: 10%;
+      width: 80%;
+      height: 0.1vh;
+      background: #FAFAFA;
+      
+    }
+  }
 
+  .date {
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 10%;
+      width: 80%;
+      height: 0.1vh;
+      background: #FAFAFA;
+      
     }
   }
 
@@ -217,7 +249,7 @@ hr {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4vh 8vw;
   width: 80%;
-  margin: 10vh auto;
+  margin: 8vh auto;
   justify-content: space-between;
   align-items: center;
 
@@ -225,21 +257,20 @@ hr {
 
 //div child of grid (img + description)
 .grid-div {
-
   img {
     width: 20vw;
-    height: 30vh;
+    height: 35vh;
     object-fit: cover;
     border-radius: 5px;
   }
 
   video {
     width: 20vw;
-    height: 30vh;
+    height: 35vh;
     border-radius: 5px;
     object-fit: cover;
-    
   }
+  
 }
 
 //le bloc description entier
@@ -248,7 +279,7 @@ hr {
   display: flex;
   justify-content: space-between;
   color: #901C1C;
-  font-size: 24px;
+  font-size: 0.7em;
   width: 20vw;
 }
 
@@ -294,7 +325,7 @@ hr {
   justify-content: space-between;
   align-items: center;
   padding: 0 2vw;
-  font-size: 220%;
+  font-size: 0.6em;
   height: 8vh;
   width: 15vw;
   bottom: 0;
@@ -309,12 +340,12 @@ hr {
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 35px;
+  padding: 1em;
   margin: auto;
   margin-top: 5vh;
   position: fixed;
@@ -322,21 +353,28 @@ hr {
   left: 50%;
   transform: translate(-50%, -15%);
   z-index: 3;
+  overflow-y: scroll;
+  height: 80vh;
+  
 }
 
 .modal header {
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 3vh;
 }
 
 .modal header img {
   cursor: pointer;
+  transform: translateX(-2vw);
 }
 
 .modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+  span {
+    display: block;
+  }
 }
 
 form {
@@ -348,7 +386,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 0.9em;
   margin-top: 2vh;
 }
 
@@ -356,24 +394,35 @@ form div {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
 }
 
 form input {
   width: 100%;
-  height: 68px;
+  height: 5vh;
   border: none;
   border-radius: 5px;
+  text-indent: 1vw;
 }
 
-.textmessage {
-  height: 15vh;
+#message  {
+  font-family: "DM Sans", sans-serif;
+  border: none;
+  border-radius: 5px;
+  text-indent: 1vw;
+  position: relative;
+  &::placeholder {
+    font-family: "DM Sans", sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
 
 
 .center_button {
-transform: none;
+   margin-top: 3vh;
+  transform: none;
 }
 
 
@@ -381,24 +430,24 @@ transform: none;
 
 .name {
   color: #d3573c;
-  font-size: 56px;
+  font-size: 1.6em;
   font-weight: 500;
 }
 
 .location {
   color: #901c1c;
-  font-size: 30px;
+  font-size: 0.8em;
 }
 
 .tagline {
-  font-size: 18px;
+  font-size: 0.5em;
 }
 
 //formulaire contactez-moi
 
 .errorClass {
   color: rgb(139, 27, 27);
-  font-size: 20px;
+  font-size: 0.6em;
 }
 
 
@@ -411,7 +460,7 @@ transform: none;
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: #FAFAFA;
   z-index: 5;
   margin: auto;
   justify-content: center;
@@ -420,7 +469,7 @@ transform: none;
 
 .lightbox-content {
   margin: auto;
-  width: 90%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -431,7 +480,7 @@ transform: none;
 .fa-xmark {
  position: absolute;
   top: 10%;
-  right: 6%;
+  right: 5%;
   font-size: 70px;
   color: #901C1C;
 }
@@ -441,22 +490,54 @@ display: flex;
 justify-content: center;
 align-items: center;
 flex-direction: column;
-width: 70%;
-height: 80%;
- img {
-  object-fit: contain;
+}
+
+.lightboxImageContainer {
+ 
+ 
+  img {
+    margin: 0px auto;
+    object-fit: contain;
+    max-height: 1000px;
+    max-width: 100%;
+    border-radius: 10px;
+
+    @media (max-width: 1500px) {
+         max-height: 600px;
+    max-width: 1200px;
+    }
+}
+ video {
   width: 100%;
   height: 100%;
+  border-radius: 10px;
+
+   @media (max-width: 1700px) {
+         max-height: 600px;
+          max-width: 1200px;
+    }
 }
 }
 
-.chevron {
-width: 15%;
-background: white;
-font-size: 70px;
-color: #901C1C;
-display: flex;
-justify-content: center;
-align-items: center;
+.lightboxDescription {
+    color: #901C1C;
+    width: 100%;
+    text-align: left;
+  }
+
+
+.chevron-right {
+  position: absolute;
+  right: 5%;
+  background: #FAFAFA;
+  font-size: 70px;
+  color: #901C1C;
 }
 
+.chevron-left {
+  position: absolute;
+  left: 5%;
+  background: #FAFAFA;
+  font-size: 70px;
+  color: #901C1C;
+}

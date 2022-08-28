@@ -9,6 +9,7 @@
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;
+  font-size: calc(2vw + 1.5px);
 }
 
 header {
@@ -43,8 +44,8 @@ header p {
   align-items: center;
 }
 .photograph-header img {
-  height: 200px;
-  width: 200px;
+  height: 10vw;
+  width: 10vw;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -60,18 +61,22 @@ header p {
 }
 
 .contact_button {
-  font-size: 20px;
+  font-size: 0.5em;
   font-weight: bold;
   color: white;
   padding: 11px;
-  width: 170px;
-  height: 70px;
+  width: 10vw;
+  height: 7vh;
   border: none;
   background-color: #901c1c;
   border-radius: 5px;
   cursor: pointer;
   order: 2;
   transform: translateX(-5vw);
+}
+.contact_button:hover, .contact_button:focus {
+  background-color: #D3573C;
+  color: black;
 }
 
 .filter {
@@ -81,20 +86,21 @@ header p {
   width: 25vw;
   height: 5vh;
   margin: 2vh 9.5vw;
+  margin-top: 4vh;
   position: relative;
 }
 .filter p {
-  font-size: 20px;
+  font-size: 0.6em;
   font-weight: bold;
 }
 .filter button {
   background: #901C1C;
-  color: white;
-  font-size: 20px;
+  color: #FAFAFA;
+  font-size: 0.6em;
   border-radius: 5px;
   border: none;
-  width: 8vw;
-  height: 6vh;
+  width: 10vw;
+  height: 7.5vh;
   cursor: pointer;
   position: relative;
 }
@@ -104,15 +110,15 @@ header p {
   position: absolute;
   top: 28%;
   left: 8%;
-  font-size: 125%;
+  font-size: 0.9em;
 }
 .filter button i {
   position: absolute;
-  top: 35%;
-  left: 70%;
-  font-size: 110%;
+  top: 30%;
+  left: 65%;
+  font-size: 0.9em;
 }
-.filter button:hover {
+.filter button:hover, .filter button:focus {
   background: #D3573C;
 }
 .filter .down {
@@ -122,26 +128,36 @@ header p {
   border-radius: 10px;
 }
 .filter ul {
-  transform: translateY(31%);
+  transform: translateY(33.5%);
   width: 8vw;
   position: relative;
+  z-index: 5;
 }
 .filter li {
+  position: relative;
   cursor: pointer;
   list-style-type: none;
   background: #901C1C;
-  padding: 20px;
-  color: white;
-  font-size: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 155%;
+  width: 10vw;
+  height: 7.5vh;
+  color: #FAFAFA;
+  font-size: 0.54em;
+  z-index: 5;
+  border: none;
 }
 .filter li span {
   font-weight: normal;
+  position: absolute;
+  top: 28%;
+  left: 8%;
 }
-.filter li:hover {
+.filter li i {
+  position: absolute;
+  top: 30%;
+  left: 65%;
+  font-size: 1em;
+}
+.filter li:hover, .filter li:focus {
   background: #D3573C;
 }
 .filter hr {
@@ -149,7 +165,7 @@ header p {
   background: #901C1C;
 }
 .filter i {
-  color: white;
+  color: #FAFAFA;
   font-size: 20px;
   margin-left: 25px;
 }
@@ -157,11 +173,23 @@ header p {
   position: relative;
   border-radius: 5px 5px 0 0;
 }
-.filter .popularity i {
+.filter .popularity::after {
+  content: "";
   position: absolute;
-  font-size: 95%;
-  top: 40%;
-  left: 70%;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 0.1vh;
+  background: #FAFAFA;
+}
+.filter .date::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 10%;
+  width: 80%;
+  height: 0.1vh;
+  background: #FAFAFA;
 }
 .filter .title {
   border-radius: 0 0 5px 5px;
@@ -172,21 +200,21 @@ header p {
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4vh 8vw;
   width: 80%;
-  margin: 10vh auto;
+  margin: 8vh auto;
   justify-content: space-between;
   align-items: center;
 }
 
 .grid-div img {
   width: 20vw;
-  height: 30vh;
+  height: 35vh;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
 }
 .grid-div video {
   width: 20vw;
-  height: 30vh;
+  height: 35vh;
   border-radius: 5px;
   -o-object-fit: cover;
      object-fit: cover;
@@ -197,7 +225,7 @@ header p {
   display: flex;
   justify-content: space-between;
   color: #901C1C;
-  font-size: 24px;
+  font-size: 0.7em;
   width: 20vw;
 }
 
@@ -230,7 +258,7 @@ header p {
   justify-content: space-between;
   align-items: center;
   padding: 0 2vw;
-  font-size: 220%;
+  font-size: 0.6em;
   height: 8vh;
   width: 15vw;
   bottom: 0;
@@ -243,12 +271,12 @@ header p {
 .modal {
   border-radius: 5px;
   background-color: #db8876;
-  width: 50%;
+  width: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 35px;
+  padding: 1em;
   margin: auto;
   margin-top: 5vh;
   position: fixed;
@@ -256,21 +284,27 @@ header p {
   left: 50%;
   transform: translate(-50%, -15%);
   z-index: 3;
+  overflow-y: scroll;
+  height: 80vh;
 }
 
 .modal header {
   justify-content: space-between;
   width: 100%;
+  margin-bottom: 3vh;
 }
 
 .modal header img {
   cursor: pointer;
+  transform: translateX(-2vw);
 }
 
 .modal header h2 {
-  font-size: 64px;
-  font-weight: normal;
-  text-align: center;
+  font-size: 1.6em;
+  font-weight: bold;
+}
+.modal header h2 span {
+  display: block;
 }
 
 form {
@@ -282,7 +316,7 @@ form {
 
 form label {
   color: #312e2e;
-  font-size: 36px;
+  font-size: 0.9em;
   margin-top: 2vh;
 }
 
@@ -290,44 +324,69 @@ form div {
   display: flex;
   flex-direction: column;
   width: 100%;
-  align-items: self-start;
-  margin-bottom: 26px;
 }
 
 form input {
   width: 100%;
-  height: 68px;
+  height: 5vh;
   border: none;
   border-radius: 5px;
+  text-indent: 1vw;
 }
 
-.textmessage {
-  height: 15vh;
+#message {
+  font-family: "DM Sans", sans-serif;
+  border: none;
+  border-radius: 5px;
+  text-indent: 1vw;
+  position: relative;
+}
+#message::-moz-placeholder {
+  font-family: "DM Sans", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#message:-ms-input-placeholder {
+  font-family: "DM Sans", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#message::placeholder {
+  font-family: "DM Sans", sans-serif;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .center_button {
+  margin-top: 3vh;
   transform: none;
 }
 
 /* éléments JS */
 .name {
   color: #d3573c;
-  font-size: 56px;
+  font-size: 1.6em;
   font-weight: 500;
 }
 
 .location {
   color: #901c1c;
-  font-size: 30px;
+  font-size: 0.8em;
 }
 
 .tagline {
-  font-size: 18px;
+  font-size: 0.5em;
 }
 
 .errorClass {
   color: rgb(139, 27, 27);
-  font-size: 20px;
+  font-size: 0.6em;
 }
 
 #lightbox-container {
@@ -337,7 +396,7 @@ form input {
   left: 0;
   width: 100%;
   height: 100%;
-  background: white;
+  background: #FAFAFA;
   z-index: 5;
   margin: auto;
   justify-content: center;
@@ -346,7 +405,7 @@ form input {
 
 .lightbox-content {
   margin: auto;
-  width: 90%;
+  width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
@@ -357,7 +416,7 @@ form input {
 .fa-xmark {
   position: absolute;
   top: 10%;
-  right: 6%;
+  right: 5%;
   font-size: 70px;
   color: #901C1C;
 }
@@ -367,22 +426,52 @@ form input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 70%;
-  height: 80%;
-}
-.lightbox-image img {
-  -o-object-fit: contain;
-     object-fit: contain;
-  width: 100%;
-  height: 100%;
 }
 
-.chevron {
-  width: 15%;
-  background: white;
+.lightboxImageContainer img {
+  margin: 0px auto;
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-height: 1000px;
+  max-width: 100%;
+  border-radius: 10px;
+}
+@media (max-width: 1500px) {
+  .lightboxImageContainer img {
+    max-height: 600px;
+    max-width: 1200px;
+  }
+}
+.lightboxImageContainer video {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+@media (max-width: 1700px) {
+  .lightboxImageContainer video {
+    max-height: 600px;
+    max-width: 1200px;
+  }
+}
+
+.lightboxDescription {
+  color: #901C1C;
+  width: 100%;
+  text-align: left;
+}
+
+.chevron-right {
+  position: absolute;
+  right: 5%;
+  background: #FAFAFA;
   font-size: 70px;
   color: #901C1C;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.chevron-left {
+  position: absolute;
+  left: 5%;
+  background: #FAFAFA;
+  font-size: 70px;
+  color: #901C1C;
 }/*# sourceMappingURL=photographer.css.map */
