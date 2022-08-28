@@ -78,7 +78,6 @@ async function getPhotographersMedia() {
   await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       photographersMedia = data.media;
     })
     .catch((error) => {
@@ -118,9 +117,7 @@ async function getPhotographersDate() {
         e.preventDefault();
 
         const dateInvisible = document.querySelectorAll(".invisibleDate");
-        console.log(dateInvisible);
         const dateInvisibleArray = Array.from(dateInvisible);
-        console.log(dateInvisibleArray);
         // for each element of dateInvisibleArray, log its parent element
         const DateImageArray = [];
         const dateLikeArray = [];
@@ -145,10 +142,7 @@ async function getPhotographersDate() {
         for (let index = 0; index < photoSection.children.length; index++) {
           for (let j = 0; j < photographersDateArray.length; j++) {
             if (photographersDateArray[index] === dateInvisible[j].innerText) {
-              console.log(typeof photographersDateArray[index]);
-              console.log(typeof dateInvisible[j].innerText);
               photoSection.children[j].style.order = index;
-              console.log(photoSection.children[j]);
               photoSection.children[j].dataset.order = index;
               photoSection.children[j].children[0].dataset.order = index;
             }
@@ -224,16 +218,15 @@ async function displayMedia(photographersMedia) {
   const likeCount = document.querySelectorAll(".pLikes");
   const likeCountArray = Array.from(likeCount);
 
-  const likeCountArrayInt = likeCountArray.map((likeCount) =>
-    parseInt(likeCount.textContent)
+  const likeCountArrayInt = likeCountArray.map((likeCountNumber) =>
+    parseInt(likeCountNumber.textContent)
   );
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
-  console.log(likeCountArraySorted);
 
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
-      if (likeCountArraySorted[index] == likeCount[j].innerText) {
+      if (likeCountArraySorted[index].toString === likeCount[j].innerText) {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
@@ -316,17 +309,13 @@ fullList.children[0].addEventListener("click", (e) => {
   e.preventDefault();
 
   const likeCount = document.querySelectorAll(".pLikes");
-  console.log(likeCount);
   const likeCountArray = Array.from(likeCount);
-  console.log(likeCountArray);
 
-  const likeCountArrayInt = likeCountArray.map((likeCount) =>
-    parseInt(likeCount.textContent)
+  const likeCountArrayInt = likeCountArray.map((likeCountText) =>
+    parseInt(likeCountText.textContent)
   );
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
-
-  console.log(likeCountArraySorted);
 
   // create an array with the img children of photoSection sorted by data-position
   const arrayMediaLike = [];
@@ -334,7 +323,6 @@ fullList.children[0].addEventListener("click", (e) => {
   articleChildrenLike.forEach((child) => {
     arrayMediaLike.push(child.children[0]);
   });
-  console.log(arrayMediaLike);
   // sort the array by data-position
   const arrayMediaByOrderLike = arrayMediaLike.sort(
     (a, b) => a.dataset.position - b.dataset.position
@@ -342,10 +330,6 @@ fullList.children[0].addEventListener("click", (e) => {
 
   for (let j = 0; j < arrayMediaByOrderLike.length; j++) {
     arrayMediaByOrderLike[j].setAttribute("tabindex", `${8 + j * 3}`);
-    console.log(
-      arrayMediaByOrderLike[j].parentNode.children[1].children[1].children[1]
-        .children[0]
-    );
     arrayMediaByOrderLike[
       j
     ].parentNode.children[1].children[0].children[0].setAttribute(
@@ -362,7 +346,7 @@ fullList.children[0].addEventListener("click", (e) => {
 
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
-      if (likeCountArraySorted[index] == likeCount[j].innerText) {
+      if (likeCountArraySorted[index].toString() === likeCount[j].innerText) {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
@@ -388,9 +372,9 @@ fullList.children[2].addEventListener("click", (e) => {
   const mediaTitleArray = [];
   const mediaTitleArrayParent = [];
 
-  mediaTitle.forEach((mediaTitle) => {
+  mediaTitle.forEach((mediaTitleText) => {
     // push the title of each media in an array
-    mediaTitleArray.push(mediaTitle.innerText);
+    mediaTitleArray.push(mediaTitleText.innerText);
   });
 
   mediaTitle.forEach((mediaTitleParent) => {
@@ -424,7 +408,7 @@ fullList.children[2].addEventListener("click", (e) => {
 
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < mediaTitleArray.length; j++) {
-      if (mediaTitleArray[index] == mediaTitle[j].innerText) {
+      if (mediaTitleArray[index].toString() === mediaTitle[j].innerText) {
         photoSection.children[j].style.order = index;
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
@@ -438,7 +422,6 @@ fullList.children[2].addEventListener("click", (e) => {
   const mediaLikeElement = [];
 
   mediaTitleArrayParent.forEach((list) => {
-    console.log(list);
     mediaTitleImageElement.push(
       list.parentNode.parentNode.parentNode.children[0]
     );
@@ -448,9 +431,6 @@ fullList.children[2].addEventListener("click", (e) => {
     );
     mediaTitleSubElement.push(list.parentNode.children[0]);
   });
-  console.log(mediaTitleImageElement);
-  console.log(mediaLikeElement);
-  console.log(mediaTitleSubElement);
 
   for (let j = 0; j < mediaTitleImageElement.length; j++) {
     // set data-position to the index of the array
@@ -474,7 +454,13 @@ fullList.children[2].addEventListener("click", (e) => {
 /// CONTACT FORM MODAL
 const contactButton = document.querySelector(".contact_button");
 const contactModal = document.querySelector("#contact_modal");
-const modalBox = document.querySelector(".modal");
+
+// close modal
+function closeModalContact() {
+  document.querySelector(".page-container").style.opacity = "1";
+  contactModal.style.display = "none";
+  document.querySelector(".page-container").style.pointerEvents = "auto";
+}
 
 contactButton.addEventListener("click", (e) => {
   e.preventDefault();
@@ -634,27 +620,26 @@ contactButton.addEventListener("click", (e) => {
     return true;
   }
 
-  //event listeners on the form inputs
+  // event listeners on the form inputs
   surname.addEventListener("keyup", validateSurname);
   email.addEventListener("keyup", validateEmail);
   name.addEventListener("keyup", validateNom);
   message.addEventListener("keyup", validateMessage);
 
   // add event listener to the button submit
-  submit.addEventListener("click", (event) => {
-    event.preventDefault();
-    // call the functions to validate the form
-    validateSurname();
-    validateNom();
-    validateEmail();
-    validateMessage();
-    // if all the functions return true, the form is submitted
+  function SubmitForm(envoiForm) {
+    envoiForm.preventDefault();
     if (
       validateSurname() &&
       validateNom() &&
       validateEmail() &&
       validateMessage()
     ) {
+      console.log(`surname: ${surname.value}`);
+      console.log(`name: ${name.value}`);
+      console.log(`email: ${email.value}`);
+      console.log(`message: ${message.value}`);
+
       // reset the form
       // set all borders to default
       surname.style.border = "3px solid #ccc";
@@ -665,8 +650,6 @@ contactButton.addEventListener("click", (e) => {
       name.value = "";
       email.value = "";
       message.value = "";
-
-      // reset the error messages
 
       surnameErrorMessage.remove();
       surnameErrorMessage.textContent = "";
@@ -687,20 +670,70 @@ contactButton.addEventListener("click", (e) => {
       form.reset();
       closeModalContact();
     } else {
-      return false;
+      // alert("Veuillez remplir tous les champs");
+      validateSurname();
+      validateNom();
+      validateEmail();
+      validateMessage();
     }
-  });
+  }
+  submit.addEventListener("click", SubmitForm);
+
+  // {
+  //   event.preventDefault();
+  //   // call the functions to validate the form
+  //   validateSurname();
+  //   validateNom();
+  //   validateEmail();
+  //   validateMessage();
+  //   // if all the functions return true, the form is submitted
+  //   if (
+  //     validateSurname() &&
+  //     validateNom() &&
+  //     validateEmail() &&
+  //     validateMessage()
+  //   ) {
+  //     console.log(`surname: ${surname.value}`);
+  //     console.log(`name: ${name.value}`);
+  //     console.log(`email: ${email.value}`);
+  //     console.log(`message: ${message.value}`);
+  //     // reset the form
+  //     // set all borders to default
+  //     surname.style.border = "3px solid #ccc";
+  //     name.style.border = "3px solid #ccc";
+  //     email.style.border = "3px solid #ccc";
+  //     message.style.border = "3px solid #ccc";
+  //     surname.value = "";
+  //     name.value = "";
+  //     email.value = "";
+  //     message.value = "";
+
+  //     // reset the error messages
+
+  //     surnameErrorMessage.remove();
+  //     surnameErrorMessage.textContent = "";
+  //     surnameErrorMessage.classList.remove("errorClass");
+
+  //     nameErrorMessage.remove();
+  //     nameErrorMessage.textContent = "";
+  //     nameErrorMessage.classList.remove("errorClass");
+
+  //     emailErrorMessage.remove();
+  //     emailErrorMessage.textContent = "";
+  //     emailErrorMessage.classList.remove("errorClass");
+
+  //     messageErrorMessage.remove();
+  //     messageErrorMessage.textContent = "";
+  //     messageErrorMessage.classList.remove("errorClass");
+
+  //     form.reset();
+  //     closeModalContact();
+  //   } else {
+  //     return false;
+  //   }
+  // });
 });
-
-
-
 
 // close the modal
 const closeButton = document.querySelector(".close-cross");
 closeButton.addEventListener("click", closeModalContact);
-
-function closeModalContact() {
-  document.querySelector(".page-container").style.opacity = "1";
-  contactModal.style.display = "none";
-  document.querySelector(".page-container").style.pointerEvents = "auto";
-}

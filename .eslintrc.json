@@ -31,6 +31,7 @@
    ],
     "no-plusplus": "off",
     "import/prefer-default-export": "off",
-    "radix": "off"
+    "radix": "off",
+    "no-console": "off"
     }
 }
