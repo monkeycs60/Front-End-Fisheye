@@ -29,7 +29,7 @@ export function defaultSortByPopularity() {
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
 
-  // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
+
 
   // create a const for children of article
   const articleChildren = document.querySelectorAll("article");
@@ -63,26 +63,32 @@ export function defaultSortByPopularity() {
 
     titleOrder[index].setAttribute("tabindex", "0");
     likeButton[index].setAttribute("tabindex", "0");
-
-  
   }
-
+  let tableauArticleLike = [];
+console.log(likeCountArraySorted);
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
       if (likeCountArraySorted[index].toString() === likeCount[j].innerText) {
-        photoSection.children[j].style.order = index;
+        tableauArticleLike.push(photoSection.children[j]);
         photoSection.children[j].dataset.order = index;
         photoSection.children[j].children[0].dataset.order = index;
       }
     }
   }
+ 
+//place the children in the dom, as child of the photoSection, according to its place in the array
+  for (let index = 0; index < tableauArticleLike.length; index++) {
+    photoSection.appendChild(tableauArticleLike[index]);
+  }
+
 
 //for each children of photoSection, log its dataset.order
 for (let index = 0; index < photoSection.children.length; index++) {
   console.log(photoSection.children[index].dataset, photoSection.children [index]);
 }
 console.log(DOMStringMap);
-//change DOM ORDER according its data position attribute
+
+
 
 }
 
@@ -127,15 +133,20 @@ export function sortByPopularity() {
         "0"
       );
     }
-
+    let tableauArticleLikeSort = [];
     for (let index = 0; index < photoSection.children.length; index++) {
       for (let j = 0; j < likeCountArraySorted.length; j++) {
         if (likeCountArraySorted[index].toString() === likeCount[j].innerText) {
-          photoSection.children[j].style.order = index;
-          photoSection.children[j].dataset.order = index;
-          photoSection.children[j].children[0].dataset.order = index;
+          tableauArticleLikeSort.push(photoSection.children[j]);
+          // photoSection.children[j].style.order = index;
+          // photoSection.children[j].dataset.order = index;
+          // photoSection.children[j].children[0].dataset.order = index;
         }
       }
+    }
+    for (let k = 0; k < tableauArticleLikeSort.length; k++) {
+      photoSection.appendChild(tableauArticleLikeSort[k]);
+      tableauArticleLikeSort[k].style.order = k;
     }
 
     fullList.classList.toggle("down");
@@ -200,15 +211,18 @@ export async function sortByDate() {
           dateLikeArray[j].setAttribute("tabindex", "0");
         }
 
+        let tableauArticleDateSort = [];
         for (let index = 0; index < photoSection.children.length; index++) {
           for (let j = 0; j < photographersDateArray.length; j++) {
             if (photographersDateArray[index] === dateInvisible[j].innerText) {
-              photoSection.children[j].style.order = index;
-              photoSection.children[j].dataset.order = index;
-              photoSection.children[j].children[0].dataset.order = index;
+              tableauArticleDateSort.push(photoSection.children[j]);
             }
           }
         }
+         for (let j = 0; j < tableauArticleDateSort.length; j++) {
+           photoSection.appendChild(tableauArticleDateSort[j]);
+           tableauArticleDateSort[j].style.order = j;
+         }
 
         // for each photo, change the order of the photo in the DOM
 
@@ -272,16 +286,21 @@ export function sortByTitle() {
     });
 
     // change the order of the grid items following its  title position in the mediaTitleArray
-
+let tableauArticleTitleSort = [];
     for (let index = 0; index < photoSection.children.length; index++) {
       for (let j = 0; j < mediaTitleArray.length; j++) {
         if (mediaTitleArray[index].toString() === mediaTitle[j].innerText) {
-          photoSection.children[j].style.order = index;
-          photoSection.children[j].dataset.order = index;
-          photoSection.children[j].children[0].dataset.order = index;
+           tableauArticleTitleSort.push(photoSection.children[j]);
+          // photoSection.children[j].style.order = index;
+          // photoSection.children[j].dataset.order = index;
+          // photoSection.children[j].children[0].dataset.order = index;
         }
       }
     }
+     for (let l = 0; l < tableauArticleTitleSort.length; l++) {
+       photoSection.appendChild(tableauArticleTitleSort[l]);
+       tableauArticleTitleSort[l].style.order = l;
+     }
 
     // get the images and video sorted by title
     const mediaTitleImageElement = [];
