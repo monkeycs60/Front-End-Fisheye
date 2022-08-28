@@ -104,7 +104,8 @@ async function getPhotographersDate() {
 
       // get the media related to the photographer
       const photographerMedia = data.media.filter(
-        (photographerMediaGetId) => photographerMediaGetId.photographerId.toString() === id
+        (photographerMediaGetId) =>
+          photographerMediaGetId.photographerId.toString() === id
       );
 
       // create an array with all the dates of the media
@@ -126,7 +127,6 @@ async function getPhotographersDate() {
         const dateTitleArray = [];
 
         dateInvisibleArray.forEach((dates) => {
-         
           dateLikeArray.push(dates.parentElement.children[1].children[0]);
           dateTitleArray.push(
             dates.parentElement.parentElement.children[0].children[0]
@@ -190,15 +190,17 @@ async function displayMedia(photographersMedia) {
   });
 
   // make an array with all images contained in photographerMedia
-  const photographersMediaArray = photographerMedia.map((photographerMediaType) => {
-    if (photographerMediaType.image) {
-      return photographerMediaType.image;
+  const photographersMediaArray = photographerMedia.map(
+    (photographerMediaType) => {
+      if (photographerMediaType.image) {
+        return photographerMediaType.image;
+      }
+      if (photographerMediaType.video) {
+        return photographerMediaType.video;
+      }
+      return photographerMedia.image;
     }
-    if (photographerMediaType.video) {
-      return photographerMediaType.video;
-    }
-    // return photographerMedia.image
-  });
+  );
 
   const photographersTitleArray = photographerMedia.map(
     (photographerMediaInformation) => ({
@@ -504,12 +506,6 @@ contactButton.addEventListener("click", (e) => {
   const emailErrorMessage = document.createElement("p");
   const messageErrorMessage = document.createElement("p");
 
-  surname.addEventListener("keyup", validateSurname);
-  email.addEventListener("keyup", validateEmail);
-  name.addEventListener("keyup", validateNom);
-  message.addEventListener("keyup", validateMessage);
-  // message.addEventListener("keyup", validateMessage);
-
   // fonctions validation
 
   function validateSurname() {
@@ -590,7 +586,7 @@ contactButton.addEventListener("click", (e) => {
 
   function validateEmail() {
     const emailRegExp =
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     if (!emailRegExp.test(email.value)) {
       email.style.border = "3px solid red";
@@ -638,6 +634,12 @@ contactButton.addEventListener("click", (e) => {
     return true;
   }
 
+  //event listeners on the form inputs
+  surname.addEventListener("keyup", validateSurname);
+  email.addEventListener("keyup", validateEmail);
+  name.addEventListener("keyup", validateNom);
+  message.addEventListener("keyup", validateMessage);
+
   // add event listener to the button submit
   submit.addEventListener("click", (event) => {
     event.preventDefault();
@@ -653,11 +655,6 @@ contactButton.addEventListener("click", (e) => {
       validateEmail() &&
       validateMessage()
     ) {
-      console.log(`Prénom : ${surname.value}`);
-      console.log(`Nom : ${name.value}`);
-      console.log(`Email : ${mail.value}`);
-      console.log(`Message : ${message.value}`);
-
       // reset the form
       // set all borders to default
       surname.style.border = "3px solid #ccc";
@@ -694,6 +691,9 @@ contactButton.addEventListener("click", (e) => {
     }
   });
 });
+
+
+
 
 // close the modal
 const closeButton = document.querySelector(".close-cross");
