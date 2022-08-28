@@ -1,7 +1,7 @@
 import { headerPhotographerFactory } from "../factories/2headerphotographer.js";
 import { mediaPhotographerFactory } from "../factories/3mediatypefactory.js";
 import { titlesPhotographerFactory } from "../factories/4cardfactory.js";
-import { FormValidation } from "../modules/formcontent.js";
+import { FormValidation, OpenAndCloseContactModal } from "../modules/formcontent.js";
 import { lightboxDisplay } from "../modules/lightboxcontent.js";
 import {
   defaultSortByPopularity,
@@ -174,41 +174,10 @@ sortByTitle();
 
 
 
-/// CONTACT FORM MODAL
-const contactButton = document.querySelector(".contact_button");
-const contactModal = document.querySelector("#contact_modal");
+// formulaire
 
-// close modal
-export function closeModalContact() {
-  document.querySelector(".page-container").style.opacity = "1";
-  contactModal.style.display = "none";
-  document.querySelector(".page-container").style.pointerEvents = "auto";
-}
+// validation du formulaire
+FormValidation();
+// ouvre la modal de contact ou la ferme
+OpenAndCloseContactModal();
 
-function activateContactButton(e) {
-  e.preventDefault();
-  // add aria-label to the contact modal with the name of the photographer
-
-  contactModal.setAttribute("aria-label", "formulaire de contact");
-  // add the photographer name to the contact form
-  const artistName = document.querySelector(".name").innerText;
-  contactModal.setAttribute("aria-label", `Contactez ${artistName} `);
-  const titre = document.querySelector("h2");
-  titre.innerHTML = `<span>Contactez-moi </span> <span> ${artistName} </span>`;
-
-  contactModal.style.display = "block";
-
-  document.querySelector(".page-container").style.opacity = "0.5";
-  // change pointervent to none on the page container
-  document.querySelector(".page-container").style.pointerEvents = "none";
-
-  FormValidation();
-}
-
-contactButton.addEventListener("click", activateContactButton);
-
-// close the modal
-const closeButton = document.querySelector(".close-cross");
-closeButton.addEventListener("click", closeModalContact);
-
-// lightboxDisplay();
