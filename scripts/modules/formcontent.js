@@ -152,8 +152,6 @@ export function closeModalContact() {
 // add event listener to the button submit
 export function SubmitForm(envoiForm) {
   envoiForm.preventDefault();
-  const errors = document.querySelectorAll(".errorClass");
-  console.log(errors);
 
   if (
     validateSurname() &&
@@ -176,27 +174,6 @@ export function SubmitForm(envoiForm) {
     name.value = "";
     email.value = "";
     message.value = "";
-
-    surnameErrorMessage.remove();
-    surnameErrorMessage.textContent = "";
-    surnameErrorMessage.classList.remove("errorClass");
-
-    nameErrorMessage.remove();
-    nameErrorMessage.textContent = "";
-    nameErrorMessage.classList.remove("errorClass");
-
-    emailErrorMessage.remove();
-    emailErrorMessage.textContent = "";
-    emailErrorMessage.classList.remove("errorClass");
-
-    messageErrorMessage.remove();
-    messageErrorMessage.textContent = "";
-    messageErrorMessage.classList.remove("errorClass");
-
-    // reset errors
-    errors.forEach((error) => {
-      error.remove();
-    });
 
     closeModalContact();
   } else {
