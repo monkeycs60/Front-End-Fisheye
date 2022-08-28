@@ -33,7 +33,7 @@ export function lightboxDisplay() {
       const mediaContainer = document.querySelector(".lightbox-image");
 
       if (typeOfMedia === "VIDEO") {
-        mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video> </div>
+        mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 tabindex="0"><source src="${e.target.src}" type="video/mp4"></video> </div>
        <p class="lightboxDescription">${e.target.parentNode.children[1].children[0].children[0].textContent}</p> 
   `;
         mediaContainer.children[0].children[0].setAttribute(
@@ -41,7 +41,7 @@ export function lightboxDisplay() {
           `${e.target.parentNode.children[1].children[0].children[0].textContent}`
         );
       } else {
-        mediaContainer.innerHTML = `<div class="lightboxImageContainer"> <img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}"> </div>
+        mediaContainer.innerHTML = `<div class="lightboxImageContainer"> <img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}" tabindex="0"> </div>
   <p class="lightboxDescription">${e.target.alt}</p> 
   `;
         // set .lightboxDescription width = img width
@@ -82,7 +82,7 @@ export function lightboxDisplay() {
 
         // if the img is a video, display the video
         if (arrayMediaByOrder[index].tagName === "VIDEO") {
-          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 tabindex="0"><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
           // add an aria label with name of the video
@@ -92,7 +92,7 @@ export function lightboxDisplay() {
           );
         } else {
           mediaContainer.innerHTML = `
-           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" tabindex="0"/> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
           // add an aria label with name of the img
@@ -114,7 +114,7 @@ export function lightboxDisplay() {
 
         // if the img is a video, display the video
         if (arrayMediaByOrder[index].tagName === "VIDEO") {
-          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 tabindex="0"><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
       <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
       `;
           // add an aria label with name of the video
@@ -124,7 +124,7 @@ export function lightboxDisplay() {
           );
         } else {
           mediaContainer.innerHTML = `
-          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" tabindex="0" /> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p> 
           `;
           // add an aria label with name of the img
@@ -146,7 +146,7 @@ export function lightboxDisplay() {
 
           // if the img is a video, display the video
           if (arrayMediaByOrder[index].tagName === "VIDEO") {
-            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 tabindex="0"><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
             // add an aria label with name of the video
@@ -156,7 +156,7 @@ export function lightboxDisplay() {
             );
           } else {
             mediaContainer.innerHTML = `
-          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" tabindex="0" /> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
             // add an aria label with name of the img
@@ -179,7 +179,7 @@ export function lightboxDisplay() {
 
           // if the img is a video, display the video
           if (arrayMediaByOrder[index].tagName === "VIDEO") {
-            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 tabindex="0"><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
             // add an aria label with name of the video
@@ -189,7 +189,7 @@ export function lightboxDisplay() {
             );
           } else {
             mediaContainer.innerHTML = `
-           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" tabindex="0"/> </div>
           <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
           `;
             // add an aria label with name of the img
@@ -226,6 +226,44 @@ export function lightboxDisplay() {
         // reset the contenu of the mediaContainer
         mediaContainer.innerHTML = "";
       });
+
+
+      // ACTIVATE FOCUS ON LIGHTBOX WHEN OPENED
+      function focusOnLightboxModal() {
+        
+        const allFocusableElements = lightboxContainer.querySelectorAll(
+          '[tabindex="0"]'
+        );
+        console.log(allFocusableElements);
+        const firstFocusableElement = allFocusableElements[0];
+        console.log(firstFocusableElement);
+        const lastFocusableElement =
+          allFocusableElements[allFocusableElements.length - 1]; // get last element to be focused inside modal
+        console.log(lastFocusableElement);
+    
+        document.addEventListener("keydown", function (e) {
+          let isTabPressed = e.key === "Tab";
+          if (!isTabPressed) {
+            return;
+          }
+          if (e.shiftKey) {
+            // if shift key pressed for shift + tab combination
+            if (document.activeElement === firstFocusableElement) {
+              lastFocusableElement.focus(); // add focus for the last focusable element
+              e.preventDefault();
+            }
+          } else {
+            // if tab key is pressed
+            if (document.activeElement === lastFocusableElement) {
+              // if focused has reached to last focusable element then focus first focusable element after pressing tab
+              firstFocusableElement.focus(); // add focus for the first focusable element
+              e.preventDefault();
+            }
+          }
+        });
+        firstFocusableElement.focus();
+      }
+      focusOnLightboxModal();
     });
   });
 }

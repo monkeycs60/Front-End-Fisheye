@@ -26,46 +26,9 @@ export function defaultSortByPopularity() {
   const likeCountArrayInt = likeCountArray.map((likeCountNumber) =>
     parseInt(likeCountNumber.textContent)
   );
-
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
 
-
-
-  // create a const for children of article
-  const articleChildren = document.querySelectorAll("article");
-
-  // for each children push its first child in an array
-  const arrayMedia = [];
-  articleChildren.forEach((child) => {
-    arrayMedia.push(child.children[0]);
-  });
-
-  // sort the array by data-order
-  const arrayMediaByOrder = arrayMedia.sort(
-    (a, b) => a.dataset.order - b.dataset.order
-  );
-
-  // log parent of each photo
-  const titleOrder = [];
-  const likeButton = [];
-  arrayMediaByOrder.forEach((child) => {
-    titleOrder.push(child.parentNode.children[1].children[0].children[0]);
-    likeButton.push(
-      child.parentNode.children[1].children[1].children[1].children[0]
-    );
-  });
-
-  for (let index = 0; index < arrayMediaByOrder.length; index++) {
-    // set data-position to the index of the array
-    arrayMediaByOrder[index].dataset.position = index;
-    // set attribute tabindex according to the index of the array + 8 + index*2
-    arrayMediaByOrder[index].setAttribute("tabindex", "0");
-
-    titleOrder[index].setAttribute("tabindex", "0");
-    likeButton[index].setAttribute("tabindex", "0");
-  }
-  let tableauArticleLike = [];
-console.log(likeCountArraySorted);
+  const tableauArticleLike = [];
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
       if (likeCountArraySorted[index].toString() === likeCount[j].innerText) {
@@ -75,21 +38,23 @@ console.log(likeCountArraySorted);
       }
     }
   }
- 
-//place the children in the dom, as child of the photoSection, according to its place in the array
+  // place the children in the dom, as child of the photoSection, according to its place in the array
   for (let index = 0; index < tableauArticleLike.length; index++) {
     photoSection.appendChild(tableauArticleLike[index]);
   }
 
-
-//for each children of photoSection, log its dataset.order
-for (let index = 0; index < photoSection.children.length; index++) {
-  console.log(photoSection.children[index].dataset, photoSection.children [index]);
-}
-console.log(DOMStringMap);
-
-
-
+  // set tabindex to 0 for all the key elements of photographer page
+  const childrenTabindex = [
+    document.querySelectorAll(".photographer_section img"),
+    document.querySelectorAll(".photographer_section video"),
+    document.querySelectorAll(".pTitle"),
+    document.querySelectorAll(".coeur"),
+  ];
+  childrenTabindex.forEach((children) => {
+    children.forEach((child) => {
+      child.setAttribute("tabindex", 0);
+    });
+  });
 }
 
 // LISTENERS POUR LES 3 BOUTONS DE TRI
@@ -105,42 +70,13 @@ export function sortByPopularity() {
     const likeCountArrayInt = likeCountArray.map((likeCountText) =>
       parseInt(likeCountText.textContent)
     );
-
     const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
 
-    // create an array with the img children of photoSection sorted by data-position
-    const arrayMediaLike = [];
-    const articleChildrenLike = document.querySelectorAll("article");
-    articleChildrenLike.forEach((child) => {
-      arrayMediaLike.push(child.children[0]);
-    });
-    // sort the array by data-position
-    const arrayMediaByOrderLike = arrayMediaLike.sort(
-      (a, b) => a.dataset.position - b.dataset.position
-    );
-    for (let j = 0; j < arrayMediaByOrderLike.length; j++) {
-      arrayMediaByOrderLike[j].setAttribute("tabindex", "0");
-      arrayMediaByOrderLike[
-        j
-      ].parentNode.children[1].children[0].children[0].setAttribute(
-        "tabindex",
-        "0"
-      );
-      arrayMediaByOrderLike[
-        j
-      ].parentNode.children[1].children[1].children[1].children[0].setAttribute(
-        "tabindex",
-        "0"
-      );
-    }
-    let tableauArticleLikeSort = [];
+    const tableauArticleLikeSort = [];
     for (let index = 0; index < photoSection.children.length; index++) {
       for (let j = 0; j < likeCountArraySorted.length; j++) {
         if (likeCountArraySorted[index].toString() === likeCount[j].innerText) {
           tableauArticleLikeSort.push(photoSection.children[j]);
-          // photoSection.children[j].style.order = index;
-          // photoSection.children[j].dataset.order = index;
-          // photoSection.children[j].children[0].dataset.order = index;
         }
       }
     }
@@ -187,44 +123,26 @@ export async function sortByDate() {
       // SORT THE PHOTOS BY DATE
       function ButtonDatePress(e) {
         e.preventDefault();
-
         const dateInvisible = document.querySelectorAll(".invisibleDate");
-        const dateInvisibleArray = Array.from(dateInvisible);
-        // for each element of dateInvisibleArray, log its parent element
-        const DateImageArray = [];
-        const dateLikeArray = [];
-        const dateTitleArray = [];
+        // SORT the date in another array
+        const photographersDateArraySorted = photographersDateArray
+          .sort((a, b) => new Date(a) - new Date(b))
+          .reverse();
 
-        dateInvisibleArray.forEach((dates) => {
-          dateLikeArray.push(dates.parentElement.children[1].children[0]);
-          dateTitleArray.push(
-            dates.parentElement.parentElement.children[0].children[0]
-          );
-          DateImageArray.push(
-            dates.parentElement.parentElement.parentElement.children[0]
-          );
-        });
-
-        for (let j = 0; j < DateImageArray.length; j++) {
-          DateImageArray[j].setAttribute("tabindex", "0");
-          dateTitleArray[j].setAttribute("tabindex", "0");
-          dateLikeArray[j].setAttribute("tabindex", "0");
-        }
-
-        let tableauArticleDateSort = [];
+        const tableauArticleDateSort = [];
         for (let index = 0; index < photoSection.children.length; index++) {
-          for (let j = 0; j < photographersDateArray.length; j++) {
-            if (photographersDateArray[index] === dateInvisible[j].innerText) {
+          for (let j = 0; j < photographersDateArraySorted.length; j++) {
+            if (
+              photographersDateArraySorted[index] === dateInvisible[j].innerText
+            ) {
               tableauArticleDateSort.push(photoSection.children[j]);
             }
           }
         }
-         for (let j = 0; j < tableauArticleDateSort.length; j++) {
-           photoSection.appendChild(tableauArticleDateSort[j]);
-           tableauArticleDateSort[j].style.order = j;
-         }
-
-        // for each photo, change the order of the photo in the DOM
+        for (let j = 0; j < tableauArticleDateSort.length; j++) {
+          photoSection.appendChild(tableauArticleDateSort[j]);
+          tableauArticleDateSort[j].style.order = j;
+        }
 
         fullList.classList.toggle("down");
         boutonFiltre.innerHTML = `<span>Date</span> <i class="fa-solid fa-chevron-down"></i>`;
@@ -274,55 +192,18 @@ export function sortByTitle() {
       return 0;
     });
 
-    // sort the array by title
-    mediaTitleArrayParent.sort((a, b) => {
-      if (a.innerText < b.innerText) {
-        return -1;
-      }
-      if (a.innerText > b.innerText) {
-        return 1;
-      }
-      return 0;
-    });
-
     // change the order of the grid items following its  title position in the mediaTitleArray
-let tableauArticleTitleSort = [];
+    const tableauArticleTitleSort = [];
     for (let index = 0; index < photoSection.children.length; index++) {
       for (let j = 0; j < mediaTitleArray.length; j++) {
         if (mediaTitleArray[index].toString() === mediaTitle[j].innerText) {
-           tableauArticleTitleSort.push(photoSection.children[j]);
-          // photoSection.children[j].style.order = index;
-          // photoSection.children[j].dataset.order = index;
-          // photoSection.children[j].children[0].dataset.order = index;
+          tableauArticleTitleSort.push(photoSection.children[j]);
         }
       }
     }
-     for (let l = 0; l < tableauArticleTitleSort.length; l++) {
-       photoSection.appendChild(tableauArticleTitleSort[l]);
-       tableauArticleTitleSort[l].style.order = l;
-     }
-
-    // get the images and video sorted by title
-    const mediaTitleImageElement = [];
-    const mediaTitleSubElement = [];
-    const mediaLikeElement = [];
-
-    mediaTitleArrayParent.forEach((list) => {
-      mediaTitleImageElement.push(
-        list.parentNode.parentNode.parentNode.children[0]
-      );
-      mediaLikeElement.push(
-        list.parentNode.parentNode.parentNode.children[1].children[1]
-          .children[1].children[0]
-      );
-      mediaTitleSubElement.push(list.parentNode.children[0]);
-    });
-
-    for (let j = 0; j < mediaTitleImageElement.length; j++) {
-      // set data-position to the index of the array
-      mediaTitleImageElement[j].setAttribute("tabindex", "0");
-      mediaTitleSubElement[j].setAttribute("tabindex", "0");
-      mediaLikeElement[j].setAttribute("tabindex", "0");
+    for (let l = 0; l < tableauArticleTitleSort.length; l++) {
+      photoSection.appendChild(tableauArticleTitleSort[l]);
+      tableauArticleTitleSort[l].style.order = l;
     }
 
     fullList.classList.toggle("down");
