@@ -629,6 +629,10 @@ contactButton.addEventListener("click", (e) => {
   // add event listener to the button submit
   function SubmitForm(envoiForm) {
     envoiForm.preventDefault();
+const errors = document.querySelectorAll(".errorClass");
+console.log(errors);
+
+
     if (
       validateSurname() &&
       validateNom() &&
@@ -642,10 +646,10 @@ contactButton.addEventListener("click", (e) => {
 
       // reset the form
       // set all borders to default
-      surname.style.border = "3px solid #ccc";
-      name.style.border = "3px solid #ccc";
-      email.style.border = "3px solid #ccc";
-      message.style.border = "3px solid #ccc";
+      surname.style.border = "none";
+      name.style.border = "none";
+      email.style.border = "none";
+      message.style.border = "none";
       surname.value = "";
       name.value = "";
       email.value = "";
@@ -667,71 +671,20 @@ contactButton.addEventListener("click", (e) => {
       messageErrorMessage.textContent = "";
       messageErrorMessage.classList.remove("errorClass");
 
-      form.reset();
+      //reset errors 
+      errors.forEach(error => {
+        error.remove();
+      } );
+
       closeModalContact();
     } else {
-      // alert("Veuillez remplir tous les champs");
       validateSurname();
       validateNom();
       validateEmail();
       validateMessage();
     }
   }
-  submit.addEventListener("click", SubmitForm);
-
-  // {
-  //   event.preventDefault();
-  //   // call the functions to validate the form
-  //   validateSurname();
-  //   validateNom();
-  //   validateEmail();
-  //   validateMessage();
-  //   // if all the functions return true, the form is submitted
-  //   if (
-  //     validateSurname() &&
-  //     validateNom() &&
-  //     validateEmail() &&
-  //     validateMessage()
-  //   ) {
-  //     console.log(`surname: ${surname.value}`);
-  //     console.log(`name: ${name.value}`);
-  //     console.log(`email: ${email.value}`);
-  //     console.log(`message: ${message.value}`);
-  //     // reset the form
-  //     // set all borders to default
-  //     surname.style.border = "3px solid #ccc";
-  //     name.style.border = "3px solid #ccc";
-  //     email.style.border = "3px solid #ccc";
-  //     message.style.border = "3px solid #ccc";
-  //     surname.value = "";
-  //     name.value = "";
-  //     email.value = "";
-  //     message.value = "";
-
-  //     // reset the error messages
-
-  //     surnameErrorMessage.remove();
-  //     surnameErrorMessage.textContent = "";
-  //     surnameErrorMessage.classList.remove("errorClass");
-
-  //     nameErrorMessage.remove();
-  //     nameErrorMessage.textContent = "";
-  //     nameErrorMessage.classList.remove("errorClass");
-
-  //     emailErrorMessage.remove();
-  //     emailErrorMessage.textContent = "";
-  //     emailErrorMessage.classList.remove("errorClass");
-
-  //     messageErrorMessage.remove();
-  //     messageErrorMessage.textContent = "";
-  //     messageErrorMessage.classList.remove("errorClass");
-
-  //     form.reset();
-  //     closeModalContact();
-  //   } else {
-  //     return false;
-  //   }
-  // });
+  submit.addEventListener("click", SubmitForm, {"once": true});
 });
 
 // close the modal
