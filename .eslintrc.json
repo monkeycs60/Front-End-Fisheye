@@ -33,6 +33,7 @@
     "import/prefer-default-export": "off",
     "radix": "off",
     "no-console": "off",
-    "import/no-cycle": "off"
+    "import/no-cycle": "off",
+    "no-lonely-if": "off"
     }
 }

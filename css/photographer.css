@@ -302,6 +302,10 @@ header p {
   right: 5%;
   top: 5%;
 }
+.modal img:hover {
+  transform: scale(1.1);
+  color: black;
+}
 
 .modal header h2 {
   font-size: 1.6em;
@@ -478,4 +482,11 @@ form input {
   background: #FAFAFA;
   font-size: 70px;
   color: #901C1C;
+}
+
+.fa-xmark, .chevron-left, .chevron-right, .lightboxDescription {
+  cursor: pointer;
+}
+.fa-xmark:hover, .fa-xmark:focus, .chevron-left:hover, .chevron-left:focus, .chevron-right:hover, .chevron-right:focus, .lightboxDescription:hover, .lightboxDescription:focus {
+  color: #d3573c;
 }/*# sourceMappingURL=photographer.css.map */

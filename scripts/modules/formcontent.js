@@ -197,8 +197,8 @@ export function FormValidation() {
 
 function activateContactButton(e) {
   e.preventDefault();
-  // add aria-label to the contact modal with the name of the photographer
 
+  // add aria-label to the contact modal with the name of the photographer
   contactModal.setAttribute("aria-label", "formulaire de contact");
   // add the photographer name to the contact form
   const artistName = document.querySelector(".name").innerText;
@@ -212,6 +212,37 @@ function activateContactButton(e) {
   // change pointervent to none on the page container
   document.querySelector(".page-container").style.pointerEvents = "none";
 
+  // add all the elements inside modal which you want to make focusable
+  function focusOnContactModal() {
+    const focusableElements = contactModal.querySelectorAll('[tabindex="0"]');
+    const firstFocusableElement = focusableElements[0]; // get first element to be focused inside modal
+    const lastFocusableElement =
+      focusableElements[focusableElements.length - 1]; // get last element to be focused inside modal
+
+    document.addEventListener("keydown", (tab) => {
+      const isTabPressed = tab.key === "Tab";
+      if (!isTabPressed) {
+        return;
+      }
+
+      if (tab.shiftKey) {
+        // if shift key pressed for shift + tab combination
+        if (document.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus(); // add focus for the last focusable element
+          tab.preventDefault();
+        }
+      } else {
+        // if tab key is pressed
+        if (document.activeElement === lastFocusableElement) {
+          // if focused has reached to last focusable element then focus first focusable element after pressing tab
+          firstFocusableElement.focus(); // add focus for the first focusable element
+          tab.preventDefault();
+        }
+      }
+    });
+    firstFocusableElement.focus();
+  }
+  focusOnContactModal();
   FormValidation();
 }
 

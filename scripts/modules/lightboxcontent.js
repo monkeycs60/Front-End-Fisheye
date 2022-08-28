@@ -227,37 +227,31 @@ export function lightboxDisplay() {
         mediaContainer.innerHTML = "";
       });
 
-
       // ACTIVATE FOCUS ON LIGHTBOX WHEN OPENED
       function focusOnLightboxModal() {
-        
-        const allFocusableElements = lightboxContainer.querySelectorAll(
-          '[tabindex="0"]'
-        );
-        console.log(allFocusableElements);
+        const allFocusableElements =
+          lightboxContainer.querySelectorAll('[tabindex="0"]');
         const firstFocusableElement = allFocusableElements[0];
-        console.log(firstFocusableElement);
         const lastFocusableElement =
           allFocusableElements[allFocusableElements.length - 1]; // get last element to be focused inside modal
-        console.log(lastFocusableElement);
-    
-        document.addEventListener("keydown", function (e) {
-          let isTabPressed = e.key === "Tab";
+
+        document.addEventListener("keydown", (tabkey) => {
+          const isTabPressed = tabkey.key === "Tab";
           if (!isTabPressed) {
             return;
           }
-          if (e.shiftKey) {
+          if (tabkey.shiftKey) {
             // if shift key pressed for shift + tab combination
             if (document.activeElement === firstFocusableElement) {
               lastFocusableElement.focus(); // add focus for the last focusable element
-              e.preventDefault();
+              tabkey.preventDefault();
             }
           } else {
             // if tab key is pressed
             if (document.activeElement === lastFocusableElement) {
               // if focused has reached to last focusable element then focus first focusable element after pressing tab
               firstFocusableElement.focus(); // add focus for the first focusable element
-              e.preventDefault();
+              tabkey.preventDefault();
             }
           }
         });
