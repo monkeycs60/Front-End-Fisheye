@@ -1,145 +1,81 @@
 // creation LIGHTBOX
 export function lightboxDisplay() {
-const lightboxContainer = document.querySelector("#lightbox-container");
-const doubleSelector = document.querySelectorAll(
-  "article > video, article > img"
-);
+  const lightboxContainer = document.querySelector("#lightbox-container");
+  const doubleSelector = document.querySelectorAll(
+    "article > video, article > img"
+  );
 
-// add event listener to each img
-doubleSelector.forEach((img) => {
-  img.addEventListener("click", (e) => {
-    e.preventDefault();
+  // add event listener to each img
+  doubleSelector.forEach((img) => {
+    img.addEventListener("click", (e) => {
+      e.preventDefault();
 
-    window.scrollTo(0, 0);
+      window.scrollTo(0, 0);
 
-    // create a const for html
-    const wholeDocument = document.querySelector("html");
-    const closeCross = document.querySelector(".fa-xmark");
-    const chevronLeft = document.querySelector(".fa-chevron-left");
-    const chevronRight = document.querySelector(".fa-chevron-right");
-    // impeed scroll, focus on the lightbox
-    wholeDocument.style.overflowY = "hidden";
-    wholeDocument.style.overflowX = "hidden";
-    //
+      // create a const for html
+      const wholeDocument = document.querySelector("html");
+      const closeCross = document.querySelector(".fa-xmark");
+      const chevronLeft = document.querySelector(".fa-chevron-left");
+      const chevronRight = document.querySelector(".fa-chevron-right");
+      // impeed scroll, focus on the lightbox
+      wholeDocument.style.overflowY = "hidden";
+      wholeDocument.style.overflowX = "hidden";
+      //
 
-    // make lightbox visible
-    lightboxContainer.style.display = "flex";
+      // make lightbox visible
+      lightboxContainer.style.display = "flex";
 
-    // set the src of the lightboxImage to the src of the img that was clicked
+      // set the src of the lightboxImage to the src of the img that was clicked
 
-    // console.log(lightboxImage.src);
+      // console.log(lightboxImage.src);
 
-    const typeOfMedia = e.target.tagName;
-    const mediaContainer = document.querySelector(".lightbox-image");
+      const typeOfMedia = e.target.tagName;
+      const mediaContainer = document.querySelector(".lightbox-image");
 
-    if (typeOfMedia === "VIDEO") {
-      mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video> </div>
+      if (typeOfMedia === "VIDEO") {
+        mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${e.target.src}" type="video/mp4"></video> </div>
        <p class="lightboxDescription">${e.target.parentNode.children[1].children[0].children[0].textContent}</p> 
   `;
-      mediaContainer.children[0].children[0].setAttribute(
-        "aria-label",
-        `${e.target.parentNode.children[1].children[0].children[0].textContent}`
-      );
-    } else {
-      mediaContainer.innerHTML = `<div class="lightboxImageContainer"> <img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}"> </div>
+        mediaContainer.children[0].children[0].setAttribute(
+          "aria-label",
+          `${e.target.parentNode.children[1].children[0].children[0].textContent}`
+        );
+      } else {
+        mediaContainer.innerHTML = `<div class="lightboxImageContainer"> <img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}"> </div>
   <p class="lightboxDescription">${e.target.alt}</p> 
   `;
-      // set .lightboxDescription width = img width
-      const lightboxDescription = document.querySelector(
-        ".lightboxDescription"
+        // set .lightboxDescription width = img width
+        const lightboxDescription = document.querySelector(
+          ".lightboxDescription"
+        );
+        console.log(lightboxDescription.offsetWidth);
+        console.log(e.target.offsetWidth);
+        lightboxDescription.style.width = `${
+          document.querySelector("#lightboxImage").offsetWidth
+        }px`;
+      }
+
+      // CREATION DE L INDEX POUR LA LIGHTBOX ////////////////////////////
+
+      // create a const for children of article
+      const articleChildren = document.querySelectorAll("article");
+      // for each children push its first child in an array
+      const arrayMedia = [];
+      articleChildren.forEach((child) => {
+        arrayMedia.push(child.children[0]);
+      });
+
+      // sort the array by data-order
+      const arrayMediaByOrder = arrayMedia.sort(
+        (a, b) => a.dataset.order - b.dataset.order
       );
-      console.log(lightboxDescription.offsetWidth);
-      console.log(e.target.offsetWidth);
-      lightboxDescription.style.width = `${
-        document.querySelector("#lightboxImage").offsetWidth
-      }px`;
-    }
 
-    // CREATION DE L INDEX POUR LA LIGHTBOX ////////////////////////////
+      // index of the clicked img display the img src which has the same data-position as the clicked img
+      let index = arrayMediaByOrder.indexOf(e.target);
 
-    // create a const for children of article
-    const articleChildren = document.querySelectorAll("article");
-    // for each children push its first child in an array
-    const arrayMedia = [];
-    articleChildren.forEach((child) => {
-      arrayMedia.push(child.children[0]);
-    });
-
-    // sort the array by data-order
-    const arrayMediaByOrder = arrayMedia.sort(
-      (a, b) => a.dataset.order - b.dataset.order
-    );
-
-    // index of the clicked img display the img src which has the same data-position as the clicked img
-    let index = arrayMediaByOrder.indexOf(e.target);
-
-    // add event listener on chevronLeft : when clicked, display the previous img in the array
-    chevronLeft.addEventListener("click", (eChevronLeft) => {
-      eChevronLeft.preventDefault();
-      if (index === 0) {
-        index = arrayMediaByOrder.length - 1;
-      } else {
-        index--;
-      }
-
-      // if the img is a video, display the video
-      if (arrayMediaByOrder[index].tagName === "VIDEO") {
-        mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
-  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
-  `;
-        // add an aria label with name of the video
-        mediaContainer.children[0].children[0].setAttribute(
-          "aria-label",
-          `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
-        );
-      } else {
-        mediaContainer.innerHTML = `
-           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
-          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
-          `;
-        // add an aria label with name of the img
-        mediaContainer.children[0].children[0].setAttribute(
-          "aria-label",
-          `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
-        );
-      }
-    });
-
-    // add event listener on chevronRight : when clicked, display the next img in the array
-    chevronRight.addEventListener("click", (eChevronRight) => {
-      eChevronRight.preventDefault();
-      if (index === arrayMediaByOrder.length - 1) {
-        index = 0;
-      } else {
-        index++;
-      }
-
-      // if the img is a video, display the video
-      if (arrayMediaByOrder[index].tagName === "VIDEO") {
-        mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
-      <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
-      `;
-        // add an aria label with name of the video
-        mediaContainer.children[0].children[0].setAttribute(
-          "aria-label",
-          `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
-        );
-      } else {
-        mediaContainer.innerHTML = `
-          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
-          <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p> 
-          `;
-        // add an aria label with name of the img
-        mediaContainer.children[0].children[0].setAttribute(
-          "aria-label",
-          `${arrayMediaByOrder[index].alt}`
-        );
-      }
-    });
-
-    // if you press left arrow, display the previous img in the array
-    document.addEventListener("keydown", (eKeyLeft) => {
-      if (eKeyLeft.key === "ArrowLeft") {
+      // add event listener on chevronLeft : when clicked, display the previous img in the array
+      chevronLeft.addEventListener("click", (eChevronLeft) => {
+        eChevronLeft.preventDefault();
         if (index === 0) {
           index = arrayMediaByOrder.length - 1;
         } else {
@@ -148,40 +84,7 @@ doubleSelector.forEach((img) => {
 
         // if the img is a video, display the video
         if (arrayMediaByOrder[index].tagName === "VIDEO") {
-          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
-  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
-  `;
-          // add an aria label with name of the video
-          mediaContainer.children[0].children[0].setAttribute(
-            "aria-label",
-            `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
-          );
-        } else {
-          mediaContainer.innerHTML = `
-          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
-          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
-          `;
-          // add an aria label with name of the img
-          mediaContainer.children[0].children[0].setAttribute(
-            "aria-label",
-            `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
-          );
-        }
-      }
-    });
-
-    // if you press right arrow, display the next img in the array
-    document.addEventListener("keydown", (eKeyRight) => {
-      if (eKeyRight.key === "ArrowRight") {
-        if (index === arrayMediaByOrder.length - 1) {
-          index = 0;
-        } else {
-          index++;
-        }
-
-        // if the img is a video, display the video
-        if (arrayMediaByOrder[index].tagName === "VIDEO") {
-          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
   <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
   `;
           // add an aria label with name of the video
@@ -200,12 +103,122 @@ doubleSelector.forEach((img) => {
             `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
           );
         }
-      }
-    });
+      });
 
-    // if you press esc, close the lightbox
-    document.addEventListener("keydown", (eEscape) => {
-      if (eEscape.key === "Escape") {
+      // add event listener on chevronRight : when clicked, display the next img in the array
+      chevronRight.addEventListener("click", (eChevronRight) => {
+        eChevronRight.preventDefault();
+        if (index === arrayMediaByOrder.length - 1) {
+          index = 0;
+        } else {
+          index++;
+        }
+
+        // if the img is a video, display the video
+        if (arrayMediaByOrder[index].tagName === "VIDEO") {
+          mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+      <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
+      `;
+          // add an aria label with name of the video
+          mediaContainer.children[0].children[0].setAttribute(
+            "aria-label",
+            `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
+          );
+        } else {
+          mediaContainer.innerHTML = `
+          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <p class="lightboxDescription">${arrayMediaByOrder[index].alt}</p> 
+          `;
+          // add an aria label with name of the img
+          mediaContainer.children[0].children[0].setAttribute(
+            "aria-label",
+            `${arrayMediaByOrder[index].alt}`
+          );
+        }
+      });
+
+      // if you press left arrow, display the previous img in the array
+      document.addEventListener("keydown", (eKeyLeft) => {
+        if (eKeyLeft.key === "ArrowLeft") {
+          if (index === 0) {
+            index = arrayMediaByOrder.length - 1;
+          } else {
+            index--;
+          }
+
+          // if the img is a video, display the video
+          if (arrayMediaByOrder[index].tagName === "VIDEO") {
+            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
+  `;
+            // add an aria label with name of the video
+            mediaContainer.children[0].children[0].setAttribute(
+              "aria-label",
+              `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
+            );
+          } else {
+            mediaContainer.innerHTML = `
+          <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
+          `;
+            // add an aria label with name of the img
+            mediaContainer.children[0].children[0].setAttribute(
+              "aria-label",
+              `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
+            );
+          }
+        }
+      });
+
+      // if you press right arrow, display the next img in the array
+      document.addEventListener("keydown", (eKeyRight) => {
+        if (eKeyRight.key === "ArrowRight") {
+          if (index === arrayMediaByOrder.length - 1) {
+            index = 0;
+          } else {
+            index++;
+          }
+
+          // if the img is a video, display the video
+          if (arrayMediaByOrder[index].tagName === "VIDEO") {
+            mediaContainer.innerHTML = ` <div class="lightboxImageContainer"><video id="lightboxImage" controls autoplay loop width=500 ><source src="${arrayMediaByOrder[index].src}" type="video/mp4"></video> </div>
+  <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
+  `;
+            // add an aria label with name of the video
+            mediaContainer.children[0].children[0].setAttribute(
+              "aria-label",
+              `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
+            );
+          } else {
+            mediaContainer.innerHTML = `
+           <div class="lightboxImageContainer"> <img id="lightboxImage" src="${arrayMediaByOrder[index].src}" /> </div>
+          <p class="lightboxDescription">${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}</p> 
+          `;
+            // add an aria label with name of the img
+            mediaContainer.children[0].children[0].setAttribute(
+              "aria-label",
+              `${arrayMediaByOrder[index].nextElementSibling.children[0].children[0].textContent}`
+            );
+          }
+        }
+      });
+
+      // if you press esc, close the lightbox
+      document.addEventListener("keydown", (eEscape) => {
+        if (eEscape.key === "Escape") {
+          // make lightbox invisible
+          lightboxContainer.style.display = "none";
+          // impeed scroll, focus on the page
+          wholeDocument.style.overflowY = "scroll";
+          // wholeDocument.style.overflowX = "scroll";
+
+          // reset the contenu of the mediaContainer
+          mediaContainer.innerHTML = "";
+        }
+      });
+
+      // add event listener to closeCross
+      closeCross.addEventListener("click", () => {
         // make lightbox invisible
         lightboxContainer.style.display = "none";
         // impeed scroll, focus on the page
@@ -214,20 +227,7 @@ doubleSelector.forEach((img) => {
 
         // reset the contenu of the mediaContainer
         mediaContainer.innerHTML = "";
-      }
-    });
-
-    // add event listener to closeCross
-    closeCross.addEventListener("click", () => {
-      // make lightbox invisible
-      lightboxContainer.style.display = "none";
-      // impeed scroll, focus on the page
-      wholeDocument.style.overflowY = "scroll";
-      // wholeDocument.style.overflowX = "scroll";
-
-      // reset the contenu of the mediaContainer
-      mediaContainer.innerHTML = "";
+      });
     });
   });
-});
 }

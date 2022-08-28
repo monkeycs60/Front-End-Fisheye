@@ -209,17 +209,14 @@ async function displayMedia(photographersMedia) {
   const photographerGalleryFirst = mediaPhotographerFactory(
     photographersMediaArray
   );
-  const photographersMediaDOM = photographerGalleryFirst.createImageFromArray();
+  photographerGalleryFirst.createImageFromArray();
 
   const photographerTitlesGallery = titlesPhotographerFactory(
     photographersTitleArray
   );
-  const photographersTitlesDOM =
-    photographerTitlesGallery.createTitlesFromArray();
+  photographerTitlesGallery.createTitlesFromArray();
 
-    lightboxDisplay();
-
-
+  lightboxDisplay();
 
   const likeCount = document.querySelectorAll(".pLikes");
   const likeCountArray = Array.from(likeCount);
@@ -502,6 +499,5 @@ contactButton.addEventListener("click", activateContactButton);
 // close the modal
 const closeButton = document.querySelector(".close-cross");
 closeButton.addEventListener("click", closeModalContact);
-
 
 lightboxDisplay();

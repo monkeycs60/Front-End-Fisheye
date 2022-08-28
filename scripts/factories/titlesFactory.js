@@ -74,8 +74,6 @@ export function titlesPhotographerFactory(data) {
         e.target.classList.toggle("fa-regular");
       });
     });
-
-   
   }
 
   return { createTitlesFromArray };
