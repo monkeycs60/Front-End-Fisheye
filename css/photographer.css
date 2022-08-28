@@ -462,17 +462,17 @@ form input {
   text-align: left;
 }
 
-.chevron-right {
+.chevron-left {
   position: absolute;
-  right: 5%;
+  left: 5%;
   background: #FAFAFA;
   font-size: 70px;
   color: #901C1C;
 }
 
-.chevron-left {
+.chevron-right {
   position: absolute;
-  left: 5%;
+  right: 5%;
   background: #FAFAFA;
   font-size: 70px;
   color: #901C1C;

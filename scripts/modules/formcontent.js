@@ -148,7 +148,6 @@ export function closeModalContact() {
   document.querySelector(".page-container").style.pointerEvents = "auto";
 }
 
-
 // add event listener to the button submit
 export function SubmitForm(envoiForm) {
   envoiForm.preventDefault();
@@ -217,6 +216,6 @@ function activateContactButton(e) {
 }
 
 export function OpenAndCloseContactModal() {
-contactButton.addEventListener("click", activateContactButton);
-closeButton.addEventListener("click", closeModalContact);
+  contactButton.addEventListener("click", activateContactButton);
+  closeButton.addEventListener("click", closeModalContact);
 }

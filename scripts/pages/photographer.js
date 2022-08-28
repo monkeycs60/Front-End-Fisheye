@@ -1,18 +1,18 @@
 import { headerPhotographerFactory } from "../factories/2headerphotographer.js";
 import { mediaPhotographerFactory } from "../factories/3mediatypefactory.js";
 import { titlesPhotographerFactory } from "../factories/4cardfactory.js";
-import { FormValidation, OpenAndCloseContactModal } from "../modules/formcontent.js";
+import {
+  FormValidation,
+  OpenAndCloseContactModal,
+} from "../modules/formcontent.js";
 import { lightboxDisplay } from "../modules/lightboxcontent.js";
 import {
+  ButtonSwitchListener,
   defaultSortByPopularity,
   sortByPopularity,
   sortByDate,
   sortByTitle,
 } from "../modules/sorter.js";
-
-const fullList = document.querySelector("ul");
-const boutonFiltre = document.querySelector(".filter-button");
-const popularity = document.querySelector(".popularity");
 
 async function getPhotographers() {
   let photographers = [];
@@ -73,7 +73,6 @@ async function init() {
   const { photographers } = await getPhotographers();
   displayData(photographers);
 }
-
 init();
 
 async function getPhotographersMedia() {
@@ -139,7 +138,6 @@ async function displayMedia(photographersMedia) {
 
   // crée la lightbox
   lightboxDisplay();
-
 }
 
 async function lastInit() {
@@ -150,21 +148,8 @@ async function lastInit() {
 
 lastInit();
 
-
-
-boutonFiltre.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  boutonFiltre.style.display = "none";
-  // set aria expanded to true
-  boutonFiltre.setAttribute("aria-expanded", "true");
-
-  // change innerHTML of popularity to "Popularity"
-  popularity.innerHTML = `<span> Popularité </span> <i class="fa-solid fa-chevron-up"></i>`;
-
-  fullList.classList.toggle("down");
-});
-
+// Transforme le bouton "Popularité" en li avec le même intitulé
+ButtonSwitchListener();
 // Menu de tri : tri par popularité
 sortByPopularity();
 // Menu de tri : tri par date
@@ -172,12 +157,9 @@ sortByDate();
 // Menu de tri : tri par titre
 sortByTitle();
 
-
-
 // formulaire
 
 // validation du formulaire
 FormValidation();
 // ouvre la modal de contact ou la ferme
 OpenAndCloseContactModal();
-

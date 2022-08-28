@@ -285,8 +285,6 @@ hr {
   width: 20vw;
 }
 
-.description-grid {}
-
 .description-grid2 {
   display: flex;
   justify-content: space-between;
@@ -302,9 +300,6 @@ hr {
   white-space: nowrap;
   width: 15vw;
 }
-
-//number of likes
-.pLikes {}
 
 
 //coeur subtitle
@@ -527,18 +522,17 @@ flex-direction: column;
     text-align: left;
   }
 
+  .chevron-left {
+    position: absolute;
+    left: 5%;
+    background: #FAFAFA;
+    font-size: 70px;
+    color: #901C1C;
+  }
 
 .chevron-right {
   position: absolute;
   right: 5%;
-  background: #FAFAFA;
-  font-size: 70px;
-  color: #901C1C;
-}
-
-.chevron-left {
-  position: absolute;
-  left: 5%;
   background: #FAFAFA;
   font-size: 70px;
   color: #901C1C;

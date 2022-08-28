@@ -5,6 +5,19 @@ const popularity = document.querySelector(".popularity");
 const date = document.querySelector(".date");
 const title = document.querySelector(".title");
 
+// Event listener on the filter button
+export function ButtonSwitchListener() {
+  boutonFiltre.addEventListener("click", (e) => {
+    e.preventDefault();
+    boutonFiltre.style.display = "none";
+    // set aria expanded to true
+    boutonFiltre.setAttribute("aria-expanded", "true");
+    // change innerHTML of popularity to "Popularity"
+    popularity.innerHTML = `<span> Popularité </span> <i class="fa-solid fa-chevron-up"></i>`;
+    fullList.classList.toggle("down");
+  });
+}
+
 // TRI PAR DEFAUT au chargement de la page PHOTOGRAPHER.HTML = POPULARITE
 export function defaultSortByPopularity() {
   const likeCount = document.querySelectorAll(".pLikes");
