@@ -1,7 +1,8 @@
-import { headerPhotographerFactory } from "../factories/headerPhotographer.js";
-import { mediaPhotographerFactory } from "../factories/mediaFactory.js";
-import { titlesPhotographerFactory } from "../factories/titlesFactory.js";
+import { headerPhotographerFactory } from "../factories/headerphotographer.js";
+import { mediaPhotographerFactory } from "../factories/mediafactory.js";
+import { titlesPhotographerFactory } from "../factories/titlesfactory.js";
 import { FormValidation } from "../modules/formcontent.js";
+import { lightboxDisplay } from "../modules/lightboxcontent.js";
 
 const photoSection = document.querySelector(".photographer_section");
 const fullList = document.querySelector("ul");
@@ -215,6 +216,10 @@ async function displayMedia(photographersMedia) {
   );
   const photographersTitlesDOM =
     photographerTitlesGallery.createTitlesFromArray();
+
+    lightboxDisplay();
+
+
 
   const likeCount = document.querySelectorAll(".pLikes");
   const likeCountArray = Array.from(likeCount);
@@ -497,3 +502,6 @@ contactButton.addEventListener("click", activateContactButton);
 // close the modal
 const closeButton = document.querySelector(".close-cross");
 closeButton.addEventListener("click", closeModalContact);
+
+
+lightboxDisplay();
