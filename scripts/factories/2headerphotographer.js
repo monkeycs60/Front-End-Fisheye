@@ -15,21 +15,21 @@ export function headerPhotographerFactory(data) {
     const pName = document.createElement("p");
     pName.textContent = `${name}`;
     pName.classList.add("name");
-    pName.setAttribute("tabindex", 2);
+    pName.setAttribute("tabindex", 0);
     return pName;
   }
   function photographersInfosLocation() {
     const pLocation = document.createElement("p");
     pLocation.textContent = `${city}, ${country}`;
     pLocation.classList.add("location");
-    pLocation.setAttribute("tabindex", 3);
+    pLocation.setAttribute("tabindex", 0);
     return pLocation;
   }
   function photographersTagline() {
     const pTagline = document.createElement("p");
     pTagline.textContent = `${tagline}`;
     pTagline.classList.add("tagline");
-    pTagline.setAttribute("tabindex", 4);
+    pTagline.setAttribute("tabindex", 0);
     return pTagline;
   }
 
@@ -37,7 +37,7 @@ export function headerPhotographerFactory(data) {
     const img = document.createElement("img");
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${name}`);
-    img.setAttribute("tabindex", 6);
+    img.setAttribute("tabindex", 0);
     return img;
   }
 

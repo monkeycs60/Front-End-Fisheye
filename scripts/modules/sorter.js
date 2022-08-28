@@ -59,12 +59,12 @@ export function defaultSortByPopularity() {
     // set data-position to the index of the array
     arrayMediaByOrder[index].dataset.position = index;
     // set attribute tabindex according to the index of the array + 8 + index*2
-    arrayMediaByOrder[index].setAttribute("tabindex", index * 3 + 8);
+    arrayMediaByOrder[index].setAttribute("tabindex", "0");
 
-    titleOrder[index].setAttribute("tabindex", `${8 + index * 3 + 1}`);
-    likeButton[index].setAttribute("tabindex", `${8 + index * 3 + 2}`);
+    titleOrder[index].setAttribute("tabindex", "0");
+    likeButton[index].setAttribute("tabindex", "0");
 
-    // titleOrder[index].setAttribute("tabindex", `${8 + index * 2}`);
+  
   }
 
   for (let index = 0; index < photoSection.children.length; index++) {
@@ -76,6 +76,14 @@ export function defaultSortByPopularity() {
       }
     }
   }
+
+//for each children of photoSection, log its dataset.order
+for (let index = 0; index < photoSection.children.length; index++) {
+  console.log(photoSection.children[index].dataset, photoSection.children [index]);
+}
+console.log(DOMStringMap);
+//change DOM ORDER according its data position attribute
+
 }
 
 // LISTENERS POUR LES 3 BOUTONS DE TRI
@@ -104,20 +112,19 @@ export function sortByPopularity() {
     const arrayMediaByOrderLike = arrayMediaLike.sort(
       (a, b) => a.dataset.position - b.dataset.position
     );
-
     for (let j = 0; j < arrayMediaByOrderLike.length; j++) {
-      arrayMediaByOrderLike[j].setAttribute("tabindex", `${8 + j * 3}`);
+      arrayMediaByOrderLike[j].setAttribute("tabindex", "0");
       arrayMediaByOrderLike[
         j
       ].parentNode.children[1].children[0].children[0].setAttribute(
         "tabindex",
-        `${8 + j * 3 + 1}`
+        "0"
       );
       arrayMediaByOrderLike[
         j
       ].parentNode.children[1].children[1].children[1].children[0].setAttribute(
         "tabindex",
-        `${8 + j * 3 + 2}`
+        "0"
       );
     }
 
@@ -188,9 +195,9 @@ export async function sortByDate() {
         });
 
         for (let j = 0; j < DateImageArray.length; j++) {
-          DateImageArray[j].setAttribute("tabindex", j * 3 + 8);
-          dateTitleArray[j].setAttribute("tabindex", j * 3 + 8 + 1);
-          dateLikeArray[j].setAttribute("tabindex", j * 3 + 8 + 2);
+          DateImageArray[j].setAttribute("tabindex", "0");
+          dateTitleArray[j].setAttribute("tabindex", "0");
+          dateLikeArray[j].setAttribute("tabindex", "0");
         }
 
         for (let index = 0; index < photoSection.children.length; index++) {
@@ -294,9 +301,9 @@ export function sortByTitle() {
 
     for (let j = 0; j < mediaTitleImageElement.length; j++) {
       // set data-position to the index of the array
-      mediaTitleImageElement[j].setAttribute("tabindex", j * 3 + 8);
-      mediaTitleSubElement[j].setAttribute("tabindex", `${8 + j * 3 + 1}`);
-      mediaLikeElement[j].setAttribute("tabindex", `${8 + j * 3 + 2}`);
+      mediaTitleImageElement[j].setAttribute("tabindex", "0");
+      mediaTitleSubElement[j].setAttribute("tabindex", "0");
+      mediaLikeElement[j].setAttribute("tabindex", "0");
     }
 
     fullList.classList.toggle("down");
