@@ -3,17 +3,16 @@ import { mediaPhotographerFactory } from "../factories/3mediatypefactory.js";
 import { titlesPhotographerFactory } from "../factories/4cardfactory.js";
 import { FormValidation } from "../modules/formcontent.js";
 import { lightboxDisplay } from "../modules/lightboxcontent.js";
-import { defaultSortByPopularity } from "../modules/sorter.js";
-import { sortByPopularity } from "../modules/sorter.js";
-import { sortByDate } from "../modules/sorter.js";
-import { sortByTitle } from "../modules/sorter.js";
+import {
+  defaultSortByPopularity,
+  sortByPopularity,
+  sortByDate,
+  sortByTitle,
+} from "../modules/sorter.js";
 
-const photoSection = document.querySelector(".photographer_section");
 const fullList = document.querySelector("ul");
 const boutonFiltre = document.querySelector(".filter-button");
 const popularity = document.querySelector(".popularity");
-const date = document.querySelector(".date");
-const title = document.querySelector(".title");
 
 async function getPhotographers() {
   let photographers = [];
@@ -95,10 +94,6 @@ async function getPhotographersMedia() {
   };
 }
 
-
-
-
-
 async function displayMedia(photographersMedia) {
   // if photographer.id = url param, get all the media related to this photographer
   const photographerMedia = photographersMedia.filter((photographerMediaId) => {
@@ -139,14 +134,12 @@ async function displayMedia(photographersMedia) {
   );
   photographerTitlesGallery.createTitlesFromArray();
 
-//Permet de faire le tri par popularité au chargement de la page photographe
-defaultSortByPopularity();
+  // Permet de faire le tri par popularité au chargement de la page photographe
+  defaultSortByPopularity();
 
-//crée la lightbox
+  // crée la lightbox
   lightboxDisplay();
 
- 
-  /// ///////////////////////////////////////////////////////
 }
 
 async function lastInit() {
@@ -157,9 +150,7 @@ async function lastInit() {
 
 lastInit();
 
-// classe les children de photoSection selon l'ordre alphabetique du titre de l'image
 
-// add event listener on FILTER pannel
 
 boutonFiltre.addEventListener("click", (e) => {
   e.preventDefault();
@@ -174,18 +165,14 @@ boutonFiltre.addEventListener("click", (e) => {
   fullList.classList.toggle("down");
 });
 
-
 // Menu de tri : tri par popularité
 sortByPopularity();
- // Menu de tri : tri par date
- sortByDate();
- // Menu de tri : tri par titre
+// Menu de tri : tri par date
+sortByDate();
+// Menu de tri : tri par titre
 sortByTitle();
 
 
-
-
-// log each individual like count
 
 /// CONTACT FORM MODAL
 const contactButton = document.querySelector(".contact_button");
