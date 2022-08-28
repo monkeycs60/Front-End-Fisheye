@@ -211,6 +211,7 @@ header p {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 5px;
+  cursor: pointer;
 }
 .grid-div video {
   width: 20vw;
@@ -218,6 +219,7 @@ header p {
   border-radius: 5px;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
 }
 
 .global-container {
