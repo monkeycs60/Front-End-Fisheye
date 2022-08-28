@@ -1,7 +1,7 @@
 import { headerPhotographerFactory } from "../factories/headerPhotographer.js";
 import { mediaPhotographerFactory } from "../factories/mediaFactory.js";
 import { titlesPhotographerFactory } from "../factories/titlesFactory.js";
-import { FormValidation } from "../modules/formFactory.js";
+import { FormValidation } from "../modules/formcontent.js";
 
 const photoSection = document.querySelector(".photographer_section");
 const fullList = document.querySelector("ul");
