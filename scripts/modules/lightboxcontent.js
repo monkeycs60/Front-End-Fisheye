@@ -48,8 +48,6 @@ export function lightboxDisplay() {
         const lightboxDescription = document.querySelector(
           ".lightboxDescription"
         );
-        console.log(lightboxDescription.offsetWidth);
-        console.log(e.target.offsetWidth);
         lightboxDescription.style.width = `${
           document.querySelector("#lightboxImage").offsetWidth
         }px`;

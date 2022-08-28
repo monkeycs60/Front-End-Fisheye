@@ -1,6 +1,3 @@
-// import photographer.js
-// import {Photographer} from './../pages/photographer.js';
-
 export function titlesPhotographerFactory(data) {
   // for each data create a new img element
   function createTitlesFromArray() {
@@ -51,6 +48,8 @@ export function titlesPhotographerFactory(data) {
       div2.appendChild(invisibleDate);
       counter += data[index].likes;
     }
+
+    // creation de la partie LIKE
     const p = document.createElement("p");
     p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
     sticky.appendChild(p);

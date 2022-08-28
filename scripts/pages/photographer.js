@@ -1,6 +1,6 @@
-import { headerPhotographerFactory } from "../factories/headerphotographer.js";
-import { mediaPhotographerFactory } from "../factories/mediafactory.js";
-import { titlesPhotographerFactory } from "../factories/titlesfactory.js";
+import { headerPhotographerFactory } from "../factories/2headerphotographer.js";
+import { mediaPhotographerFactory } from "../factories/3mediatypefactory.js";
+import { titlesPhotographerFactory } from "../factories/4cardfactory.js";
 import { FormValidation } from "../modules/formcontent.js";
 import { lightboxDisplay } from "../modules/lightboxcontent.js";
 
@@ -227,18 +227,16 @@ async function displayMedia(photographersMedia) {
 
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
 
-  for (let index = 0; index < photoSection.children.length; index++) {
-    for (let j = 0; j < likeCountArraySorted.length; j++) {
-      if (likeCountArraySorted[index].toString === likeCount[j].innerText) {
-        photoSection.children[j].style.order = index;
-        photoSection.children[j].dataset.order = index;
-        photoSection.children[j].children[0].dataset.order = index;
-      }
-    }
-  }
+  // for (let index = 0; index < photoSection.children.length; index++) {
+  //   for (let j = 0; j < likeCountArraySorted.length; j++) {
+  //     if (likeCountArraySorted[index].toString === likeCount[j].innerText) {
+  //       photoSection.children[j].style.order = index;
+  //       photoSection.children[j].dataset.order = index;
+  //       photoSection.children[j].children[0].dataset.order = index;
+  //     }
+  //   }
+  // }
 
-  // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
-  // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
   // CREATION DU DATA-POSITION AFIN D EVITER LES DOUBLONS DANS DATA ORDER
 
   // create a const for children of article

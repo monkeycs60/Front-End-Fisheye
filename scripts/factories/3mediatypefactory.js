@@ -13,17 +13,13 @@ export function mediaPhotographerFactory(data) {
       if (data[index].includes(".mp4")) {
         const video = document.createElement("video");
 
-        //   video.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
         video.setAttribute("src", `./../../assets/SamplePhotos/${data[index]}`);
-        // video.setAttribute("controls", "controls");
         article.appendChild(video);
         // add a data-attribute to the video element, equal to its data position in the array
         video.setAttribute("data-video", "true");
         // tabindex 0 for the video element
       } else {
         const img = document.createElement("img");
-        // img.setAttribute("src", `/assets/SamplePhotos/${data[index]}`);
-        // img.setAttribute("src", `/Front-End-Fisheye/assets/SamplePhotos/${data[index]}`);
         img.setAttribute("src", `./../../assets/SamplePhotos/${data[index]}`);
         // add a data-attribute to the img element, equal to its data position in the array
         img.setAttribute("data-image", "true");
