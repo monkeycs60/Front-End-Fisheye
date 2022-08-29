@@ -104,7 +104,7 @@ async function displayMedia(photographersMedia) {
     return photographerMediaId.photographerId.toString() === id;
   });
 
-  // make an array with all images contained in photographerMedia
+  // Permet de faire le tri entre les différentes types de médias (photo, vidéo)
   const photographersMediaArray = photographerMedia.map(
     (photographerMediaType) => {
       if (photographerMediaType.image) {
@@ -117,6 +117,7 @@ async function displayMedia(photographersMedia) {
     }
   );
 
+  // on sélectionne les éléments qui nous intéressent pour ensuite les afficher (likes, titres), sauf la date - qui nous servira pour le tri
   const photographersTitleArray = photographerMedia.map(
     (photographerMediaInformation) => ({
       title: photographerMediaInformation.title,
@@ -125,6 +126,7 @@ async function displayMedia(photographersMedia) {
     })
   );
 
+  // On affiche les médias filtrés et leur titre dans le DOM
   const photographerGalleryFirst = mediaPhotographerFactory(
     photographersMediaArray
   );
