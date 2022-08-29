@@ -18,9 +18,9 @@
   <div class="page-container">
 
     <header>
-      <a href="./index.html" tabindex="-1" aria-label="lien vers la page d'accueil">
+      <a href="./index.html" tabindex="0" aria-label="lien vers la page d'accueil">
         <p>Lien vers la page d'accueil</p>
-        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page" tabindex="1" />
+        <img src="assets/images/logo.png" class="logo" alt="Fisheye Home page"/>
       </a>
     </header>
 
@@ -30,7 +30,7 @@
 
 
       <div class="photograph-header">
-        <button class="contact_button" tabindex="5">Contactez-moi</button>
+        <button class="contact_button" tabindex="0">Contactez-moi</button>
       </div>
 
 
@@ -39,7 +39,7 @@
 
 
         <div class="filter-section">
-          <button class="filter-button" id="buttonTrigger" role="combobox" tabindex="7" aria-label="Tri par catégorie" aria-haspopup=”listbox” aria-controls="menuTri" aria-expanded="false">
+          <button class="filter-button" id="buttonTrigger" role="combobox" tabindex="0" aria-label="Tri par catégorie" aria-haspopup=”listbox” aria-controls="menuTri" aria-expanded="false">
             <span class="filter-text-button">Popularité</span>
             <i class="fa-solid fa-chevron-down"></i>
           </button>
@@ -64,8 +64,7 @@
   <div id="contact_modal" aria-labelledby="popupTitle">
     <div class="modal">
       <header>
-        <h2 id="popupTitle">Contactez-moi</h2>
-        <img class="close-cross" src="assets/icons/close.svg" alt="close cross" aria-label="Fermer la fenêtre contact" />
+        <h2 id="popupTitle" tabindex="0">Contactez-moi</h2>
       </header>
 
 
@@ -80,9 +79,9 @@
           </div>
 
           <div class="formData">
-            <label for="lastname" id="name input">Nom</label>
+            <label for="lastname" id="name-input">Nom</label>
             <input type="text" class="inputText" id="lastname" name="lastname" aria-label="last name field"
-             aria-labelledby="name input" placeholder="Entrez un nom valide (entre 2 et 20 caractères non-numériques et non spéciaux)" aria-required="true"
+             aria-labelledby="name-input" placeholder="Entrez un nom valide (entre 2 et 20 caractères non-numériques et non spéciaux)" aria-required="true"
                 tabindex="0" />
           </div>
 
@@ -104,29 +103,31 @@
         <button class="contact_button center_button" aria-label="Envoyer" id="submitContact">Envoyer</button>
 
       </form>
-
+      
+      <img class="close-cross" src="assets/icons/close.svg" alt="close cross" aria-label="Fermer la fenêtre contact" tabindex="0"/>
     </div>
   </div>
 
 
   <!-- LIGHTBOX -->
-  <div id="lightbox-container" aria-label="Gallerie image taille réelle">
+  <div id="lightbox-container">
 
     <div class="lightbox-content">
-
    
-      <i class="fa-solid fa-xmark" aria-label="Fermer la gallerie" tabindex="0"></i>
-
+      
       <div class="chevron-left chevron">
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="fa-chevron-left"><path d="M224 480c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25l192-192c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25L77.25 256l169.4 169.4c12.5 12.5 12.5 32.75 0 45.25C240.4 476.9 232.2 480 224 480z"/></svg> -->
         <i class="fa-solid fa-chevron-left" aria-label="Image précédente"  tabindex="0"></i>
       </div>
       <div class="lightbox-image">
-
+        
       </div>
       <div class="chevron-right chevron">
         <i class="fa-solid fa-chevron-right" aria-label="Image suivante" tabindex="0"></i>
+        <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="fa-chevron-right"><path d="M96 480c-8.188 0-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L242.8 256L73.38 86.63c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l192 192c12.5 12.5 12.5 32.75 0 45.25l-192 192C112.4 476.9 104.2 480 96 480z"/></svg> -->
       </div>
-
+      
+      <i class="fa-solid fa-xmark" aria-label="Fermer la gallerie" tabindex="0"></i>
 
     </div>
 
@@ -134,9 +135,6 @@
 
 
 
-
-
-  <!-- <script type="module" src="/Front-End-Fisheye/scripts/pages/photographer.js"></script> -->
   <script type="module" src="./scripts/pages/photographer.js"></script>
 </body>
 

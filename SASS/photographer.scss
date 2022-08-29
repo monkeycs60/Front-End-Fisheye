@@ -285,8 +285,6 @@ hr {
   width: 20vw;
 }
 
-.description-grid {}
-
 .description-grid2 {
   display: flex;
   justify-content: space-between;
@@ -302,9 +300,6 @@ hr {
   white-space: nowrap;
   width: 15vw;
 }
-
-//number of likes
-.pLikes {}
 
 
 //coeur subtitle
@@ -366,9 +361,15 @@ hr {
   margin-bottom: 3vh;
 }
 
-.modal header img {
+.modal  img {
   cursor: pointer;
-  transform: translateX(-2vw);
+  position: absolute;
+  right: 5%;
+  top: 5%;
+  &:hover {
+    transform: scale(1.1);
+    color: black;
+  }
 }
 
 .modal header h2 {
@@ -527,6 +528,13 @@ flex-direction: column;
     text-align: left;
   }
 
+  .chevron-left {
+    position: absolute;
+    left: 5%;
+    background: #FAFAFA;
+    font-size: 70px;
+    color: #901C1C;
+  }
 
 .chevron-right {
   position: absolute;
@@ -536,10 +544,10 @@ flex-direction: column;
   color: #901C1C;
 }
 
-.chevron-left {
-  position: absolute;
-  left: 5%;
-  background: #FAFAFA;
-  font-size: 70px;
-  color: #901C1C;
+.fa-xmark, .chevron-left, .chevron-right, .lightboxDescription {
+  cursor: pointer;
+  //hover and focus 
+  &:hover, &:focus {
+    color: #d3573c;
+  }
 }

@@ -1,6 +1,3 @@
-// import closemodal from photographer.js
-import { closeModalContact } from "../pages/photographer.js";
-
 // FORM VALIDATION
 const surname = document.querySelector("#surname");
 const name = document.querySelector("#lastname");
@@ -12,6 +9,12 @@ const surnameErrorMessage = document.createElement("p");
 const nameErrorMessage = document.createElement("p");
 const emailErrorMessage = document.createElement("p");
 const messageErrorMessage = document.createElement("p");
+
+// const ouvertue/fermeture form
+const contactButton = document.querySelector(".contact_button");
+const contactModal = document.querySelector("#contact_modal");
+const closeButton = document.querySelector(".close-cross");
+
 // fonctions validation formulaire
 export function validateSurname() {
   const surnameRegExp = /^[a-zA-ZÀ-ÿ-]+$/;
@@ -138,11 +141,16 @@ export function validateMessage() {
   return true;
 }
 
+// fermeture formulaire
+export function closeModalContact() {
+  document.querySelector(".page-container").style.opacity = "1";
+  contactModal.style.display = "none";
+  document.querySelector(".page-container").style.pointerEvents = "auto";
+}
+
 // add event listener to the button submit
 export function SubmitForm(envoiForm) {
   envoiForm.preventDefault();
-  const errors = document.querySelectorAll(".errorClass");
-  console.log(errors);
 
   if (
     validateSurname() &&
@@ -166,27 +174,6 @@ export function SubmitForm(envoiForm) {
     email.value = "";
     message.value = "";
 
-    surnameErrorMessage.remove();
-    surnameErrorMessage.textContent = "";
-    surnameErrorMessage.classList.remove("errorClass");
-
-    nameErrorMessage.remove();
-    nameErrorMessage.textContent = "";
-    nameErrorMessage.classList.remove("errorClass");
-
-    emailErrorMessage.remove();
-    emailErrorMessage.textContent = "";
-    emailErrorMessage.classList.remove("errorClass");
-
-    messageErrorMessage.remove();
-    messageErrorMessage.textContent = "";
-    messageErrorMessage.classList.remove("errorClass");
-
-    // reset errors
-    errors.forEach((error) => {
-      error.remove();
-    });
-
     closeModalContact();
   } else {
     validateSurname();
@@ -206,4 +193,67 @@ export function FormValidation() {
   name.addEventListener("keyup", validateNom);
   message.addEventListener("keyup", validateMessage);
   submit.addEventListener("click", SubmitForm, { once: true });
+}
+
+function activateContactButton(e) {
+  e.preventDefault();
+
+  // add aria-label to the contact modal with the name of the photographer
+  contactModal.setAttribute("aria-label", "formulaire de contact");
+  // add the photographer name to the contact form
+  const artistName = document.querySelector(".name").innerText;
+  contactModal.setAttribute("aria-label", `Contactez ${artistName} `);
+  const titre = document.querySelector("h2");
+  titre.innerHTML = `<span>Contactez-moi </span> <span> ${artistName} </span>`;
+
+  contactModal.style.display = "block";
+
+  document.querySelector(".page-container").style.opacity = "0.5";
+  // change pointervent to none on the page container
+  document.querySelector(".page-container").style.pointerEvents = "none";
+
+  // add all the elements inside modal which you want to make focusable
+  function focusOnContactModal() {
+    const focusableElements = contactModal.querySelectorAll('[tabindex="0"]');
+    const firstFocusableElement = focusableElements[0]; // get first element to be focused inside modal
+    const lastFocusableElement =
+      focusableElements[focusableElements.length - 1]; // get last element to be focused inside modal
+
+    document.addEventListener("keydown", (tab) => {
+      const isTabPressed = tab.key === "Tab";
+      if (!isTabPressed) {
+        return;
+      }
+
+      if (tab.shiftKey) {
+        // if shift key pressed for shift + tab combination
+        if (document.activeElement === firstFocusableElement) {
+          lastFocusableElement.focus(); // add focus for the last focusable element
+          tab.preventDefault();
+        }
+      } else {
+        // if tab key is pressed
+        if (document.activeElement === lastFocusableElement) {
+          // if focused has reached to last focusable element then focus first focusable element after pressing tab
+          firstFocusableElement.focus(); // add focus for the first focusable element
+          tab.preventDefault();
+        }
+      }
+    });
+    firstFocusableElement.focus();
+  }
+// add event listener on escape key to close the modal
+  document.addEventListener("keydown", (escape) => {
+    if (escape.key === "Escape") {
+      closeModalContact();
+    }
+  });
+
+focusOnContactModal();
+FormValidation();
+}
+
+export function OpenAndCloseContactModal() {
+  contactButton.addEventListener("click", activateContactButton);
+  closeButton.addEventListener("click", closeModalContact);
 }
