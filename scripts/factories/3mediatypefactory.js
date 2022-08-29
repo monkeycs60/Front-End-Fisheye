@@ -1,3 +1,4 @@
+// factory pour créer soit une card IMG, soit une card VIDEO
 export function mediaPhotographerFactory(data) {
   // for each data create a new img element
   function createImageFromArray() {
@@ -12,16 +13,12 @@ export function mediaPhotographerFactory(data) {
       // if data contains .mp4 in its title, create a video element
       if (data[index].includes(".mp4")) {
         const video = document.createElement("video");
-
         video.setAttribute("src", `./../../assets/samplephotos/${data[index]}`);
         article.appendChild(video);
-        // add a data-attribute to the video element, equal to its data position in the array
         video.setAttribute("data-video", "true");
-        // tabindex 0 for the video element
       } else {
         const img = document.createElement("img");
         img.setAttribute("src", `./../../assets/samplephotos/${data[index]}`);
-        // add a data-attribute to the img element, equal to its data position in the array
         img.setAttribute("data-image", "true");
         article.appendChild(img);
       }

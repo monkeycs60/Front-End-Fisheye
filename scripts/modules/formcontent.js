@@ -195,9 +195,9 @@ export function FormValidation() {
   submit.addEventListener("click", SubmitForm, { once: true });
 }
 
+// Handle the form opening pattern, the form validation and set the focus on the form modal
 function activateContactButton(e) {
   e.preventDefault();
-
   // add aria-label to the contact modal with the name of the photographer
   contactModal.setAttribute("aria-label", "formulaire de contact");
   // add the photographer name to the contact form
@@ -205,14 +205,13 @@ function activateContactButton(e) {
   contactModal.setAttribute("aria-label", `Contactez ${artistName} `);
   const titre = document.querySelector("h2");
   titre.innerHTML = `<span>Contactez-moi </span> <span> ${artistName} </span>`;
-
+  // Ensure focus on form, when modal is opened - makes background fade in
   contactModal.style.display = "block";
-
   document.querySelector(".page-container").style.opacity = "0.5";
   // change pointervent to none on the page container
   document.querySelector(".page-container").style.pointerEvents = "none";
 
-  // add all the elements inside modal which you want to make focusable
+  // Ensure to focus on the form when modal is opened - ACCESSIBILITY
   function focusOnContactModal() {
     const focusableElements = contactModal.querySelectorAll('[tabindex="0"]');
     const firstFocusableElement = focusableElements[0]; // get first element to be focused inside modal
@@ -252,7 +251,7 @@ function activateContactButton(e) {
   focusOnContactModal();
   FormValidation();
 }
-
+// Managing opening and closing of the contact modal
 export function OpenAndCloseContactModal() {
   contactButton.addEventListener("click", activateContactButton);
   closeButton.addEventListener("click", closeModalContact);

@@ -5,7 +5,7 @@ const popularity = document.querySelector(".popularity");
 const date = document.querySelector(".date");
 const title = document.querySelector(".title");
 
-// Event listener on the filter button
+// Transform the popularity filter-Button into a dropdown menu with a top list-item that has the same name as the previous button
 export function ButtonSwitchListener() {
   boutonFiltre.addEventListener("click", (e) => {
     e.preventDefault();
@@ -19,16 +19,16 @@ export function ButtonSwitchListener() {
   });
 }
 
-// TRI PAR DEFAUT au chargement de la page PHOTOGRAPHER.HTML = POPULARITE
+// TRI PAR DEFAUT au chargement de la page PHOTOGRAPHER.HTML = tri par POPULARITE
 export function defaultSortByPopularity() {
   const likeCount = document.querySelectorAll(".pLikes");
   const likeCountArray = Array.from(likeCount);
-
   const likeCountArrayInt = likeCountArray.map((likeCountNumber) =>
     parseInt(likeCountNumber.textContent)
   );
   const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
 
+  // double boucle for : on cherche quelle photo a le plus de likes et on l'affiche en premier, puis on répète pour trouver la seconde photo etc.
   const tableauArticleLike = [];
   for (let index = 0; index < photoSection.children.length; index++) {
     for (let j = 0; j < likeCountArraySorted.length; j++) {
@@ -61,18 +61,17 @@ export function defaultSortByPopularity() {
 // LISTENERS POUR LES 3 BOUTONS DE TRI
 
 // 1 - PREMIER BOUTON : POPULARITE
+// Tri par popularité quand on clique sur le LI popularity
 export function sortByPopularity() {
   function buttonPopularityPress(e) {
     e.preventDefault();
 
     const likeCount = document.querySelectorAll(".pLikes");
     const likeCountArray = Array.from(likeCount);
-
     const likeCountArrayInt = likeCountArray.map((likeCountText) =>
       parseInt(likeCountText.textContent)
     );
     const likeCountArraySorted = likeCountArrayInt.sort((a, b) => b - a);
-
     const tableauArticleLikeSort = [];
     for (let index = 0; index < photoSection.children.length; index++) {
       for (let j = 0; j < likeCountArraySorted.length; j++) {
@@ -86,6 +85,7 @@ export function sortByPopularity() {
       tableauArticleLikeSort[k].style.order = k;
     }
 
+    // Reset le dropdown menu (le fait disparaitre) et remet le bouton en place + accessibilité
     fullList.classList.toggle("down");
     boutonFiltre.innerHTML = `<span>Popularité</span> <em class="fa-solid fa-chevron-down"></em>`;
     boutonFiltre.style.display = "block";
@@ -99,8 +99,9 @@ export function sortByPopularity() {
 }
 
 // 2 - DEUXIEME BOUTON : DATE
-
+// Tri par date quand on clique sur le LI date
 export async function sortByDate() {
+  // fetch des données date de chacun des médias, avant de les trier
   await fetch("./../../data/photographers.json")
     .then((response) => response.json())
     .then((data) => {
@@ -109,13 +110,11 @@ export async function sortByDate() {
       // search parameter in the url
       const urlParams = new URLSearchParams(window.location.search);
       const id = urlParams.get("id");
-
       // get the media related to the photographer
       const photographerMedia = data.media.filter(
         (photographerMediaGetId) =>
           photographerMediaGetId.photographerId.toString() === id
       );
-
       // create an array with all the dates of the media
       const photographersDateArray = photographerMedia.map(
         (photographerMediaDate) => photographerMediaDate.date
@@ -145,15 +144,14 @@ export async function sortByDate() {
           tableauArticleDateSort[j].style.order = j;
         }
 
+        // reset menu, bouton et accessibilité
         fullList.classList.toggle("down");
         boutonFiltre.innerHTML = `<span>Date</span> <em class="fa-solid fa-chevron-down"></em>`;
         boutonFiltre.style.display = "block";
         boutonFiltre.setAttribute("aria-expanded", "false");
-        // change aria selected to true
         popularity.setAttribute("aria-selected", "false");
         title.setAttribute("aria-selected", "false");
         date.setAttribute("aria-selected", "true");
-        // change aria activedescendant of fulllist to date
         fullList.setAttribute("aria-activedescendant", "date");
       }
       fullList.children[1].addEventListener("click", ButtonDatePress);
@@ -164,6 +162,7 @@ export async function sortByDate() {
 }
 
 // 3 - TROISIEME BOUTON : TITRE
+// Tri par titre quand on clique sur le LI title
 export function sortByTitle() {
   function buttonTitlePress(e) {
     e.preventDefault();
@@ -176,7 +175,6 @@ export function sortByTitle() {
       // push the title of each media in an array
       mediaTitleArray.push(mediaTitleText.innerText);
     });
-
     mediaTitle.forEach((mediaTitleParent) => {
       // push the title of each media in an array
       mediaTitleArrayParent.push(mediaTitleParent);
@@ -207,6 +205,7 @@ export function sortByTitle() {
       tableauArticleTitleSort[l].style.order = l;
     }
 
+    // reset menu, bouton et accessibilité
     fullList.classList.toggle("down");
     boutonFiltre.innerHTML = `<span>Titre</span> <em class="fa-solid fa-chevron-down"></em>`;
     boutonFiltre.style.display = "block";

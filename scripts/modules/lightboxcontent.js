@@ -5,18 +5,20 @@ export function lightboxDisplay() {
     "article > video, article > img"
   );
 
-  // add event listener to each img
+  // add event listener to each img, when you click on it
   doubleSelector.forEach((img) => {
     img.addEventListener("click", (e) => {
       e.preventDefault();
 
+      // quand la lightbox est ouverte, la fenêtre revient au top de la page
       window.scrollTo(0, 0);
 
-      // create a const for html
       const wholeDocument = document.querySelector("html");
       const closeCross = document.querySelector(".fa-xmark");
       const chevronLeft = document.querySelector(".fa-chevron-left");
       const chevronRight = document.querySelector(".fa-chevron-right");
+      const typeOfMedia = e.target.tagName;
+      const mediaContainer = document.querySelector(".lightbox-image");
       // impeed scroll, focus on the lightbox
       wholeDocument.style.overflowY = "hidden";
       wholeDocument.style.overflowX = "hidden";
@@ -25,13 +27,7 @@ export function lightboxDisplay() {
       // make lightbox visible
       lightboxContainer.style.display = "flex";
 
-      // set the src of the lightboxImage to the src of the img that was clicked
-
-      // console.log(lightboxImage.src);
-
-      const typeOfMedia = e.target.tagName;
-      const mediaContainer = document.querySelector(".lightbox-image");
-
+      // Permet d'afficher le bon élément cliqué, qu'il s'agisse d'une image ou d'une vidéo
       if (typeOfMedia === "VIDEO") {
         mediaContainer.innerHTML = ` <div class="lightboxImageContainer"> <video id="lightboxImage" controls autoplay loop width=500 tabindex="0"><source src="${e.target.src}" type="video/mp4"></video> </div>
        <p class="lightboxDescription">${e.target.parentNode.children[1].children[0].children[0].textContent}</p> 
@@ -44,7 +40,6 @@ export function lightboxDisplay() {
         mediaContainer.innerHTML = `<div class="lightboxImageContainer"> <img id="lightboxImage" src="${e.target.src}" alt="${e.target.alt}" tabindex="0"> </div>
   <p class="lightboxDescription">${e.target.alt}</p> 
   `;
-        // set .lightboxDescription width = img width
         const lightboxDescription = document.querySelector(
           ".lightboxDescription"
         );
@@ -53,7 +48,7 @@ export function lightboxDisplay() {
         }px`;
       }
 
-      // CREATION DE L INDEX POUR LA LIGHTBOX ////////////////////////////
+      // CREATION DE L INDEX POUR LA LIGHTBOX
 
       // create a const for children of article
       const articleChildren = document.querySelectorAll("article");
@@ -227,7 +222,7 @@ export function lightboxDisplay() {
         mediaContainer.innerHTML = "";
       });
 
-      // ACTIVATE FOCUS ON LIGHTBOX WHEN OPENED
+      // ACTIVATE FOCUS ON LIGHTBOX WHEN OPENED - ACCESSIBILITY
       function focusOnLightboxModal() {
         const allFocusableElements =
           lightboxContainer.querySelectorAll('[tabindex="0"]');

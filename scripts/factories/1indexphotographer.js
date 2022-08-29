@@ -1,3 +1,4 @@
+// factory pour la page index (page d'accueil)
 export function photographerFactory(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
   const picture = `assets/photographers/${portrait}`;
@@ -9,7 +10,6 @@ export function photographerFactory(data) {
     const img = document.createElement("img");
     const h2 = document.createElement("h2");
     img.setAttribute("src", picture);
-    // img.setAttribute("alt", `photo de profil de ${name}`);
     h2.textContent = name;
     h2.classList.add("name");
     link.appendChild(img);
@@ -20,7 +20,6 @@ export function photographerFactory(data) {
     link.setAttribute("aria-label", `Lien vers le profil de ${name}`);
     link.setAttribute("role", "link");
     // redirection dynamique sur la page de la photographe
-
     link.setAttribute("href", `./../../photographer.html?id=${id}`);
 
     article.appendChild(link);

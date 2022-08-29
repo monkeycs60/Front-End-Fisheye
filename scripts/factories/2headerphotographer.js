@@ -1,3 +1,4 @@
+// factory pour le header de la page photographer
 export function headerPhotographerFactory(data) {
   const { name, portrait, city, country, tagline, id } = data;
   const picture = `assets/photographers/${portrait}`;

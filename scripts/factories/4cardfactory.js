@@ -1,12 +1,11 @@
+// factory pour créer chacune des cartes (img+titre+likes+coeur) qui composent le photographer_section
 export function titlesPhotographerFactory(data) {
-  // for each data create a new img element
   function createTitlesFromArray() {
     const photoSection = document.querySelector(".photographer_section");
     const sticky = document.querySelector(".sticky");
-    // define first child of photosection
     let counter = 0;
 
-    // CREATE N IMG ELEMENTS CORRESPOND TO DATA.LENGTH and fill each img element with the data.image
+    // CREATE N IMG ELEMENTS CORRESPONDING TO DATA.LENGTH and fill each img element with the data.image
     for (let index = 0; index < data.length; index++) {
       // create a p element with data.title and data.likes as text
       const globalContainer = document.createElement("div");
@@ -19,19 +18,15 @@ export function titlesPhotographerFactory(data) {
       globalContainer.classList.add("global-container");
       pTitle.innerHTML = `${data[index].title}`;
       pTitle.classList.add("pTitle");
-      // create a const for img element inside article
       const imgArticle = document.querySelector(".photographer_section")
         .children[index].children[0];
-      // set alt attribute to img element
       imgArticle.setAttribute("alt", `${data[index].title}`);
-      // add aria-label attribute to img element
       imgArticle.setAttribute(
         "aria-label",
         `${data[index].title}, Ouvrir en grand`
       );
       const pLikes = document.createElement("p");
       const pHeart = document.createElement("div");
-      // creat a const that creates i
       pLikes.innerHTML = `${data[index].likes}`;
       pLikes.classList.add("pLikes");
       pLikes.setAttribute("aria-label", `nombre de likes`);
@@ -60,8 +55,8 @@ export function titlesPhotographerFactory(data) {
     p.setAttribute("aria-label", `nombre total de likes : ${counter}`);
     sticky.appendChild(p);
 
+    //  gère le compteur total de likes et le remplissage des coeurs (vides ou colorés)
     const icon = document.querySelectorAll(".fa-heart");
-    // event listener for each icon
     icon.forEach((iconHeart) => {
       iconHeart.addEventListener("click", (e) => {
         const previous = e.target.parentNode.previousSibling;
