@@ -20,7 +20,7 @@ export function photographerFactory(data) {
     link.setAttribute("aria-label", `Lien vers le profil de ${name}`);
     link.setAttribute("role", "link");
     // redirection dynamique sur la page de la photographe
- 
+
     link.setAttribute("href", `./../../photographer.html?id=${id}`);
 
     article.appendChild(link);

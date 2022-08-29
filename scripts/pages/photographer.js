@@ -31,6 +31,7 @@ async function getPhotographers() {
   };
 }
 
+// On récupère les données de chacun des photographes depuis les JSON pour les afficher sur le header de la page photographer html
 async function displayData(photographers) {
   const photoHeader = document.querySelector(".photograph-header");
 
@@ -57,7 +58,6 @@ async function displayData(photographers) {
   const photographersTagline = photographerHeaderInfos.photographersTagline();
   photographersInfosTxt.appendChild(photographersTagline);
 
-  // append the picture to photoheader
   const photographersProfilPic =
     photographerHeaderInfos.photographersProfilPic();
   photoHeader.appendChild(photographersProfilPic);
@@ -75,6 +75,7 @@ async function init() {
 }
 init();
 
+// On récupère les médias de chacun des photographes 
 async function getPhotographersMedia() {
   let photographersMedia = [];
 
@@ -93,6 +94,7 @@ async function getPhotographersMedia() {
   };
 }
 
+// On affiche les médias chargés depuis le JSON dans le corps de la page photographer
 async function displayMedia(photographersMedia) {
   // if photographer.id = url param, get all the media related to this photographer
   const photographerMedia = photographersMedia.filter((photographerMediaId) => {
@@ -145,7 +147,7 @@ async function lastInit() {
   const { photographersMedia } = await getPhotographersMedia();
   displayMedia(photographersMedia);
 }
-
+// Appel de la fonction asynchrone
 lastInit();
 
 // Transforme le bouton "Popularité" en li avec le même intitulé

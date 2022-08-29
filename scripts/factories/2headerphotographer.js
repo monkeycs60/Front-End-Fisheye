@@ -26,7 +26,10 @@ export function headerPhotographerFactory(data) {
     pLocation.textContent = `${city}, ${country}`;
     pLocation.classList.add("location");
     pLocation.setAttribute("tabindex", 0);
-    pLocation.setAttribute("aria-label", `${name} habite à ${city}, ${country}`);
+    pLocation.setAttribute(
+      "aria-label",
+      `${name} habite à ${city}, ${country}`
+    );
     return pLocation;
   }
   function photographersTagline() {
