@@ -40,6 +40,7 @@ export function titlesPhotographerFactory(data) {
         "aria-label",
         `Ajouter à mes favoris ; déjà ${data[index].likes} j'aime !`
       );
+      pHeart.children[0].setAttribute("role", "button");
       invisibleDate.innerHTML = `${data[index].date}`;
       invisibleDate.classList.add("invisibleDate");
       photoSection.children[index].appendChild(globalContainer);

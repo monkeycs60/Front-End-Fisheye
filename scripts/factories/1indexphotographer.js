@@ -17,10 +17,10 @@ export function photographerFactory(data) {
 
     // ajouts des éléments d'accessibilité
     link.setAttribute("tabindex", 0);
-    link.setAttribute("aria-label", `${name}`);
+    link.setAttribute("aria-label", `Lien vers le profil de ${name}`);
     link.setAttribute("role", "link");
     // redirection dynamique sur la page de la photographe
-    // link.setAttribute("href", `/Front-End-Fisheye/photographer.html?id=${id}`);
+ 
     link.setAttribute("href", `./../../photographer.html?id=${id}`);
 
     article.appendChild(link);
