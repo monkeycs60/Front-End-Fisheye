@@ -75,7 +75,7 @@ async function init() {
 }
 init();
 
-// On récupère les médias de chacun des photographes 
+// On récupère les médias de chacun des photographes
 async function getPhotographersMedia() {
   let photographersMedia = [];
 
