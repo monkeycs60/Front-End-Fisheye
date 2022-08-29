@@ -52,6 +52,8 @@ export function titlesPhotographerFactory(data) {
     // creation de la partie LIKE
     const p = document.createElement("p");
     p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
+    p.setAttribute("tabindex", 0);
+    
     sticky.appendChild(p);
 
     const icon = document.querySelectorAll(".fa-heart");
