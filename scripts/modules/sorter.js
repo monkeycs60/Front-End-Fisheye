@@ -15,6 +15,7 @@ export function ButtonSwitchListener() {
     // change innerHTML of popularity to "Popularity"
     popularity.innerHTML = `<span> Popularité </span> <i class="fa-solid fa-chevron-up"></i>`;
     fullList.classList.toggle("down");
+    console.log("cool");
   });
 }
 

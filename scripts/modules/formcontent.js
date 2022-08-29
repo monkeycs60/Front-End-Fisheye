@@ -242,8 +242,15 @@ function activateContactButton(e) {
     });
     firstFocusableElement.focus();
   }
-  focusOnContactModal();
-  FormValidation();
+// add event listener on escape key to close the modal
+  document.addEventListener("keydown", (escape) => {
+    if (escape.key === "Escape") {
+      closeModalContact();
+    }
+  });
+
+focusOnContactModal();
+FormValidation();
 }
 
 export function OpenAndCloseContactModal() {
