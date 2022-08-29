@@ -13,7 +13,7 @@ export function ButtonSwitchListener() {
     // set aria expanded to true
     boutonFiltre.setAttribute("aria-expanded", "true");
     // change innerHTML of popularity to "Popularity"
-    popularity.innerHTML = `<span> Popularité </span> <i class="fa-solid fa-chevron-up"></i>`;
+    popularity.innerHTML = `<span> Popularité </span> <em class="fa-solid fa-chevron-up"></em>`;
     fullList.classList.toggle("down");
     console.log("cool");
   });
@@ -87,7 +87,7 @@ export function sortByPopularity() {
     }
 
     fullList.classList.toggle("down");
-    boutonFiltre.innerHTML = `<span>Popularité</span> <i class="fa-solid fa-chevron-down"></i>`;
+    boutonFiltre.innerHTML = `<span>Popularité</span> <em class="fa-solid fa-chevron-down"></em>`;
     boutonFiltre.style.display = "block";
     boutonFiltre.setAttribute("aria-expanded", "false");
     popularity.setAttribute("aria-selected", "true");
@@ -146,7 +146,7 @@ export async function sortByDate() {
         }
 
         fullList.classList.toggle("down");
-        boutonFiltre.innerHTML = `<span>Date</span> <i class="fa-solid fa-chevron-down"></i>`;
+        boutonFiltre.innerHTML = `<span>Date</span> <em class="fa-solid fa-chevron-down"></em>`;
         boutonFiltre.style.display = "block";
         boutonFiltre.setAttribute("aria-expanded", "false");
         // change aria selected to true
@@ -208,7 +208,7 @@ export function sortByTitle() {
     }
 
     fullList.classList.toggle("down");
-    boutonFiltre.innerHTML = `<span>Titre</span> <i class="fa-solid fa-chevron-down"></i>`;
+    boutonFiltre.innerHTML = `<span>Titre</span> <em class="fa-solid fa-chevron-down"></em>`;
     boutonFiltre.style.display = "block";
     boutonFiltre.setAttribute("aria-expanded", "false");
     popularity.setAttribute("aria-selected", "false");

@@ -29,7 +29,7 @@
 
 
       <div class="photograph-header">
-        <button class="contact_button" tabindex="0">Contactez-moi</button>
+        <button class="contact_button" tabindex="0" aria-label="Ouvrir ce formulaire pour me contacter">Contactez-moi</button>
       </div>
 
 
@@ -38,14 +38,14 @@
 
 
         <div class="filter-section">
-          <button class="filter-button" id="buttonTrigger" role="combobox" tabindex="0" aria-label="Tri par catégorie" aria-haspopup=”listbox” aria-controls="menuTri" aria-expanded="false">
+          <button class="filter-button" id="buttonTrigger" role="combobox" tabindex="0" aria-label="Tri des photos de l'artiste par catégorie" aria-haspopup="listbox" aria-controls="menuTri" aria-expanded="false">
             <span class="filter-text-button">Popularité</span>
-            <i class="fa-solid fa-chevron-down"></i>
+            <em class="fa-solid fa-chevron-down"></em>
           </button>
           <ul class="specs down" id="menuTri" role="listbox" tabindex="-1"  aria-labelledby="buttonTrigger" aria-activedescendant="popularity">
-            <li class="popularity" id="popularity" role="option" aria-label="Popularité" tabindex="0" aria-selected="true"> <span> Popularité </span></li>
-            <li class="date" id="date" role="option" aria-label="Date" tabindex="0" aria-selected="false"><span> Date </span></li>
-            <li class="title" id="title" role="option" aria-label="Titre" tabindex="0" aria-selected="false"><span> Titre </span></li>
+            <li class="popularity" id="popularity" role="option" aria-label="Tri par Popularité" tabindex="0" aria-selected="true"> <span> Popularité </span></li>
+            <li class="date" id="date" role="option" aria-label="Tri par Date" tabindex="0" aria-selected="false"><span> Date </span></li>
+            <li class="title" id="title" role="option" aria-label="Tri par Titre" tabindex="0" aria-selected="false"><span> Titre </span></li>
           </ul>
 
         </div>
@@ -59,7 +59,7 @@
 
      <div class="sticky"></div>
 
-     
+
   </div>
 
 
@@ -118,19 +118,18 @@
     <div class="lightbox-content">
    
       
-      <div class="chevron-left chevron">
+      <div class="chevron-left chevron" aria-label="Image précédente"  tabindex="0">
 
-        <i class="fa-solid fa-chevron-left" aria-label="Image précédente"  tabindex="0"></i>
+        <em class="fa-solid fa-chevron-left"></em>
       </div>
       <div class="lightbox-image">
         
       </div>
-      <div class="chevron-right chevron">
-        <i class="fa-solid fa-chevron-right" aria-label="Image suivante" tabindex="0"></i>
-      
+      <div class="chevron-right chevron" aria-label="Image suivante" tabindex="0">
+        <em class="fa-solid fa-chevron-right"></em>
       </div>
       
-      <i class="fa-solid fa-xmark" aria-label="Fermer la gallerie" tabindex="0"></i>
+      <em class="fa-solid fa-xmark" aria-label="Fermer la gallerie" tabindex="0"></em>
 
     </div>
 

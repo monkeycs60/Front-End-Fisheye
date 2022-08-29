@@ -36,7 +36,10 @@ export function titlesPhotographerFactory(data) {
       pLikes.classList.add("pLikes");
       pLikes.setAttribute("aria-label", `nombre de likes`);
       pHeart.innerHTML = `<i class="coeur fa-regular fa-heart"></i>`;
-      pHeart.children[0].setAttribute("aria-label", `Ajouter à mes favoris`);
+      pHeart.children[0].setAttribute(
+        "aria-label",
+        `Ajouter à mes favoris ; déjà ${data[index].likes} j'aime !`
+      );
       invisibleDate.innerHTML = `${data[index].date}`;
       invisibleDate.classList.add("invisibleDate");
       photoSection.children[index].appendChild(globalContainer);
@@ -53,6 +56,7 @@ export function titlesPhotographerFactory(data) {
     const p = document.createElement("p");
     p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
     p.setAttribute("tabindex", 0);
+    p.setAttribute("aria-label", `nombre total de likes : ${counter}`);
     sticky.appendChild(p);
 
     const icon = document.querySelectorAll(".fa-heart");

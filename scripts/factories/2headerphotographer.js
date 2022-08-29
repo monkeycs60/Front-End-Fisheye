@@ -5,6 +5,7 @@ export function headerPhotographerFactory(data) {
   const p = document.createElement("p");
   p.innerHTML = `${data.price} € / jour`;
   p.setAttribute("tabindex", "0");
+  p.setAttribute("aria-label", `Prix du photographe: ${data.price} € par jour`);
   sticky.appendChild(p);
   function infoCard() {
     const infoCardDiv = document.createElement("div");
@@ -17,6 +18,7 @@ export function headerPhotographerFactory(data) {
     pName.textContent = `${name}`;
     pName.classList.add("name");
     pName.setAttribute("tabindex", 0);
+    pName.setAttribute("aria-label", `Nom du photographe: ${name}`);
     return pName;
   }
   function photographersInfosLocation() {
@@ -24,6 +26,7 @@ export function headerPhotographerFactory(data) {
     pLocation.textContent = `${city}, ${country}`;
     pLocation.classList.add("location");
     pLocation.setAttribute("tabindex", 0);
+    pLocation.setAttribute("aria-label", `${name} habite à ${city}, ${country}`);
     return pLocation;
   }
   function photographersTagline() {
@@ -31,6 +34,7 @@ export function headerPhotographerFactory(data) {
     pTagline.textContent = `${tagline}`;
     pTagline.classList.add("tagline");
     pTagline.setAttribute("tabindex", 0);
+    pTagline.setAttribute("aria-label", `${name} a comme devise: ${tagline}`);
     return pTagline;
   }
 
@@ -39,6 +43,7 @@ export function headerPhotographerFactory(data) {
     img.setAttribute("src", picture);
     img.setAttribute("alt", `${name}`);
     img.setAttribute("tabindex", 0);
+    img.setAttribute("aria-label", `photo de profil de ${name}`);
     return img;
   }
 

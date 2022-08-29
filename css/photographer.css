@@ -112,7 +112,7 @@ header p {
   left: 8%;
   font-size: 0.9em;
 }
-.filter button i {
+.filter button em {
   position: absolute;
   top: 30%;
   left: 65%;
@@ -151,7 +151,7 @@ header p {
   top: 28%;
   left: 8%;
 }
-.filter li i {
+.filter li em {
   position: absolute;
   top: 30%;
   left: 65%;
@@ -164,7 +164,7 @@ header p {
   color: #901C1C;
   background: #901C1C;
 }
-.filter i {
+.filter em {
   color: #FAFAFA;
   font-size: 20px;
   margin-left: 25px;
