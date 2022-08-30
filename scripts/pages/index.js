@@ -8,8 +8,21 @@ async function getPhotographers() {
   let page = blocPages[blocPages.length - 1];
   let photographers = [];
   console.log(url.substring(0, url.indexOf(page)));
+  //log front end fisheye
+  // await fetch("/Front-End-Fisheye/data/photographers.json")
+  console.log(
+    `${url.substring(
+      0,
+      url.indexOf(page)
+    )}Front-End-Fisheye/data/photographers.json`
+  );
   console.log(`${url.substring(0, url.indexOf(page))}data/photographers.json`);
-  await fetch(`${url.substring(0, url.indexOf(page))}data/photographers.json`)
+  await fetch(
+    `${url.substring(
+      0,
+      url.indexOf(page)
+    )}Front-End-Fisheye/data/photographers.json`
+  )
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
