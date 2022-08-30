@@ -10,20 +10,20 @@ export function mediaPhotographerFactory(data) {
       article.classList.add("grid-div");
       photoSection.appendChild(article);
 
-// create link for local and gh pages
- let lienExterneMedia = `${window.location.origin}/assets/samplephotos/${data[index]}`;
- if (!lienExterneMedia.includes("192.168")) {
-   lienExterneMedia = lienExterneMedia.replace(
-     "/assets",
-     "/Front-End-Fisheye/assets"
-   );
- }
+      // create link for local and gh pages
+      let lienExterneMedia = `${window.location.origin}/assets/samplephotos/${data[index]}`;
+      if (!lienExterneMedia.includes("192.168")) {
+        lienExterneMedia = lienExterneMedia.replace(
+          "/assets",
+          "/Front-End-Fisheye/assets"
+        );
+      }
 
       // if data contains .mp4 in its title, create a video element
       if (data[index].includes(".mp4")) {
         const video = document.createElement("video");
-        // video.setAttribute("src", `./../../assets/samplephotos/${data[index]}`);  
-        video.setAttribute("src", lienExterneMedia);  
+        // video.setAttribute("src", `./../../assets/samplephotos/${data[index]}`);
+        video.setAttribute("src", lienExterneMedia);
         article.appendChild(video);
         video.setAttribute("data-video", "true");
       } else {
