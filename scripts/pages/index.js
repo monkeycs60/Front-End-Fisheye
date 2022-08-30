@@ -2,11 +2,11 @@
 import { photographerFactory } from "../factories/1indexphotographer.js";
 
 async function getPhotographers() {
+  let photographers = [];
   // Penser à remplacer par les données récupérées dans le json
   let url = window.location.href;
   let blocPages = window.location.pathname.split("/");
   let page = blocPages[blocPages.length - 1];
-  let photographers = [];
   console.log(url.substring(0, url.indexOf(page)));
   //log front end fisheye
   // await fetch("/Front-End-Fisheye/data/photographers.json")
@@ -21,7 +21,7 @@ async function getPhotographers() {
     `${url.substring(
       0,
       url.indexOf(page)
-    )}Front-End-Fisheye/data/photographers.json`
+    )}data/photographers.json`
   )
     .then((response) => response.json())
     .then((data) => {
