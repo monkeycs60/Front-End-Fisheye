@@ -7,8 +7,10 @@ async function getPhotographers() {
   let blocPages = window.location.pathname.split("/");
   let page = blocPages[blocPages.length - 1];
   let photographers = [];
-  
-  await fetch(`${url.slice(url.indexOf(page), page.length)}/data/photographers.json`)
+  console.log(
+    `${url.slice(url.indexOf(page), page.length)}/data/photographers.json`
+  );
+  await fetch(`${url.slice(url.indexOf(page), page.length)}data/photographers.json`)
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
