@@ -3,9 +3,12 @@ import { photographerFactory } from "../factories/1indexphotographer.js";
 
 async function getPhotographers() {
   // Penser à remplacer par les données récupérées dans le json
-
+  let url = window.location.href;
+  let blocPages = window.location.pathname.split("/");
+  let page = blocPages[blocPages.length - 1];
   let photographers = [];
-  await fetch(`${window.location.origin}/data/photographers.json`)
+  
+  await fetch(`${url.slice(url.indexOf(page), page.length)}/data/photographers.json`)
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
