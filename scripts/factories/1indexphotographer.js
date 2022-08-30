@@ -19,8 +19,17 @@ export function photographerFactory(data) {
     link.setAttribute("tabindex", 0);
     link.setAttribute("aria-label", `Lien vers le profil de ${name}`);
     link.setAttribute("role", "link");
+
+    let lienPagePhoto = `${window.location.origin}/photographer.html?id=${id}`;
+    if (!lienPagePhoto.includes("192.168")) {
+      lienPagePhoto = lienPagePhoto.replace(
+        "/photographer",
+        "/Front-End-Fisheye/photographer"
+      );
+    }
     // redirection dynamique sur la page de la photographe
-    link.setAttribute("href", `./../../photographer.html?id=${id}`);
+    link.setAttribute("href", lienPagePhoto);
+    // link.setAttribute("href", `./../../photographer.html?id=${id}`);
 
     article.appendChild(link);
     return article;
