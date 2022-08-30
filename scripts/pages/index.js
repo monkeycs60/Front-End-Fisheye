@@ -7,7 +7,7 @@ async function getPhotographers() {
 
   console.log(window.location.origin);
   // await fetch("/Front-End-Fisheye/data/photographers.json")
-  const lienExterne = window.location.origin + "/data/photographers.json";
+  let lienExterne = window.location.origin + "/data/photographers.json";
   console.log(lienExterne);
   //if lien externe  does not contains 192 then add Front-End-Fisheye before the data in LienExterne 
   if (!lienExterne.includes("192")) {
