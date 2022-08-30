@@ -4,25 +4,18 @@ import { photographerFactory } from "../factories/1indexphotographer.js";
 async function getPhotographers() {
   let photographers = [];
   // Penser à remplacer par les données récupérées dans le json
-  let url = window.location.href;
-  let blocPages = window.location.pathname.split("/");
-  let page = blocPages[blocPages.length - 1];
-  console.log(url.substring(0, url.indexOf(page)));
-  //log front end fisheye
+
+  console.log(window.location.origin);
   // await fetch("/Front-End-Fisheye/data/photographers.json")
-  console.log(
-    `${url.substring(
-      0,
-      url.indexOf(page)
-    )}Front-End-Fisheye/data/photographers.json`
-  );
-  console.log(`${url.substring(0, url.indexOf(page))}data/photographers.json`);
-  await fetch(
-    `${url.substring(
-      0,
-      url.indexOf(page)
-    )}data/photographers.json`
-  )
+  const lienExterne = window.location.origin + "/data/photographers.json";
+  console.log(lienExterne);
+  //if lien externe  does not contains 192 then add Front-End-Fisheye before the data in LienExterne 
+  if (!lienExterne.includes("192")) {
+    lienExterne = window.location.origin + "/Front-End-Fisheye/data/photographers.json";
+  }
+console.log(lienExterne);
+
+  await fetch(lienExterne)
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
