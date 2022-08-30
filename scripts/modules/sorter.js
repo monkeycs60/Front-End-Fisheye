@@ -101,8 +101,12 @@ export function sortByPopularity() {
 // 2 - DEUXIEME BOUTON : DATE
 // Tri par date quand on clique sur le LI date
 export async function sortByDate() {
+  let lienExterne = `${window.location.origin}/data/photographers.json`;
+  if (!lienExterne.includes("192.168")) {
+    lienExterne = lienExterne.replace("/data", "/Front-End-Fisheye/data");
+  }
   // fetch des données date de chacun des médias, avant de les trier
-  await fetch(`${window.location.origin}/data/photographers.json`)
+  await fetch(lienExterne)
     .then((response) => response.json())
     .then((data) => {
       // filter the media array to get only the media related to the photographer
