@@ -12,7 +12,9 @@ async function getPhotographers() {
   //if lien externe  does not contains 192 then add Front-End-Fisheye before the data in LienExterne 
   if (!lienExterne.includes("192")) {
     console.log("lien externe ne contient pas 192");
-    lienExterne = window.location.origin + "/Front-End-Fisheye/data/photographers.json";
+    //insert Front-End-Fisheye in the middle of the lien externe
+    lienExterne = lienExterne.replace("/data", "/Front-End-Fisheye/data");
+    // lienExterne = window.location.origin + "/Front-End-Fisheye/data/photographers.json";
   }
 console.log(lienExterne);
 
