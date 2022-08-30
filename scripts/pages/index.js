@@ -8,10 +8,8 @@ async function getPhotographers() {
   let page = blocPages[blocPages.length - 1];
   let photographers = [];
   console.log(url.substring(0, url.indexOf(page)));
-  console.log(
-    `${url.slice(url.indexOf(page), page.length)}data/photographers.json`
-  );
-  await fetch(`${url.slice(url.indexOf(page), page.length)}data/photographers.json`)
+  console.log(`${url.substring(0, url.indexOf(page))}data/photographers.json`);
+  await fetch(`${url.substring(0, url.indexOf(page))}data/photographers.json`)
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
