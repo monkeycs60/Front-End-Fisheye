@@ -7,7 +7,8 @@ async function getPhotographers() {
   let photographers = [];
   // await fetch("/Front-End-Fisheye/data/photographers.json")
   // await fetch("./../../data/photographers.json")
-  await fetch("../../data/photographers.json")
+  console.log(window.location.origin);
+  await fetch(`${window.location.origin}/data/photographers.json`)
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
