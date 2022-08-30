@@ -102,7 +102,7 @@ export function sortByPopularity() {
 // Tri par date quand on clique sur le LI date
 export async function sortByDate() {
   // fetch des données date de chacun des médias, avant de les trier
-  await fetch("./../../data/photographers.json")
+  await fetch(`${window.location.origin}/data/photographers.json`)
     .then((response) => response.json())
     .then((data) => {
       // filter the media array to get only the media related to the photographer

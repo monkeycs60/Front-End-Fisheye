@@ -17,7 +17,7 @@ import {
 async function getPhotographers() {
   let photographers = [];
   // await fetch("/Front-End-Fisheye/data/photographers.json")
-  await fetch("./../../data/photographers.json")
+  await fetch(`${window.location.origin}/data/photographers.json`)
     .then((response) => response.json())
     .then((data) => {
       photographers = data.photographers;
@@ -80,7 +80,7 @@ async function getPhotographersMedia() {
   let photographersMedia = [];
 
   // await fetch("/Front-End-Fisheye/data/photographers.json")
-  await fetch("./../../data/photographers.json")
+  await fetch(`${window.location.origin}/data/photographers.json`)
     .then((response) => response.json())
     .then((data) => {
       photographersMedia = data.media;
