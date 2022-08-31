@@ -73,7 +73,34 @@ export function titlesPhotographerFactory(data) {
         e.target.classList.toggle("fa-solid");
         e.target.classList.toggle("fa-regular");
       });
-    });
+
+      // listener on Enter button
+      iconHeart.addEventListener("keydown", (eEnter) => {
+        if (eEnter.key === "Enter") {
+          console.log("Enter");
+          const previous = iconHeart.parentNode.previousSibling;
+          if (iconHeart.classList.contains("fa-solid")) {
+            counter--;
+            previous.innerHTML = parseInt(previous.innerHTML) - 1;
+            p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
+          } else {
+            counter++;
+            previous.innerHTML = parseInt(previous.innerHTML) + 1;
+            p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
+          }
+     
+          iconHeart.classList.toggle("fa-solid");
+          iconHeart.classList.toggle("fa-regular");
+        }
+      });
+
+  });
+
+
+
+    //event listener on enter key
+    
+
   }
 
   return { createTitlesFromArray };
