@@ -88,19 +88,14 @@ export function titlesPhotographerFactory(data) {
             previous.innerHTML = parseInt(previous.innerHTML) + 1;
             p.innerHTML = `${counter} <i class="fa-solid fa-heart"></i>`;
           }
-     
+
           iconHeart.classList.toggle("fa-solid");
           iconHeart.classList.toggle("fa-regular");
         }
       });
+    });
 
-  });
-
-
-
-    //event listener on enter key
-    
-
+    // event listener on enter key
   }
 
   return { createTitlesFromArray };
